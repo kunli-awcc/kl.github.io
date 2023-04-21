@@ -1,29 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>页面标题</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#">菜单1</a></li>
-          <li><a href="#">菜单2</a></li>
-          <li><a href="#">菜单3</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h1>欢迎来到我的网站</h1>
-      <p>这是我的网站的首页。请浏览一下我的内容。</p>
-      <a href="#">了解更多</a>
-    </main>
-    <footer>
-      <p>&copy; 2023. All rights reserved.</p>
-    </footer>
-    <script src="js/script.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>My Lab</title>
+	<style>
+		/* 添加样式 */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+		
+		nav {
+			background-color: #f2f2f2;
+			overflow: hidden;
+		}
+		
+		nav a {
+			display: block;
+			color: #333;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+		
+		nav a:hover {
+			background-color: #ddd;
+			color: #333;
+		}
+		
+		.container {
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 10px;
+		}
+		
+		/* 添加更多样式 */
+		section {
+			margin-top: 20px;
+		}
+		
+		h1 {
+			font-size: 36px;
+			margin-top: 0;
+		}
+		
+		h2 {
+			font-size: 24px;
+		}
+		
+		p {
+			font-size: 18px;
+			line-height: 1.5;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>My Lab</h1>
+	</header>
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="people.html">People</a>
+		<a href="publication.html">Publication</a>
+		<a href="contact.html">Contact</a>
+	</nav>
+	<div class="container">
+		<section>
+			<h2>Welcome to My Lab</h2>
+			<p>This is the home page of My Lab.</p>
+		</section>
+	</div>
+</body>
 </html>
