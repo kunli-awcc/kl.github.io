@@ -4,28 +4,28 @@
 	<meta charset="UTF-8">
 	<title>My Lab</title>
 	<style>
-		/* 添加样式 */
 		body {
+			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
+			/*background-image: url('background.jpg');*/ /* 设置背景图片 */
+			/*background-size: cover;*/
 		}
 		
 		header {
-			background-image: url("top.png");
-			background-size: cover;
-			background-position: center;
+			background-color: rgba(0, 0, 0, 0.5); /* 设置半透明背景 */
 			color: #fff;
 			padding: 10px;
 			text-align: center;
-			height: 200px;
 		}
 		
 		nav {
+			float: left; /* 设置目录栏在页面左半边 */
 			background-color: #f2f2f2;
-			float: left;
-			width: 50%;
+			width: 200px;
 			height: 100%;
-			overflow: hidden;
+			position: fixed;
+			overflow: auto;
 		}
 		
 		nav a {
@@ -42,14 +42,10 @@
 		}
 		
 		.container {
-			max-width: 960px;
-			margin: 0 auto;
+			margin-left: 200px; /* 设置内容栏在页面右半边 */
 			padding: 10px;
-			float: right;
-			width: 50%;
 		}
 		
-		/* 添加更多样式 */
 		section {
 			margin-top: 20px;
 		}
@@ -71,7 +67,7 @@
 </head>
 <body>
 	<header>
-		<h1 style="background-image: url('header_bg.jpg'); background-size: cover; background-position: center; height: 200px;">My Lab</h1>
+		<h1>My Lab</h1>
 	</header>
 	<nav>
 		<a href="#home">Home</a>
@@ -85,16 +81,16 @@
 			<p>This is the home page of My Lab.</p>
 		</section>
 		<section id="people">
-			<h2>Meet the People in My Lab</h2>
-			<p>Here are the people who work in My Lab.</p>
+			<h2>People</h2>
+			<p>This is the people page of My Lab.</p>
 		</section>
 		<section id="publication">
-			<h2>Publications from My Lab</h2>
-			<p>Here are some of the recent publications from My Lab.</p>
+			<h2>Publication</h2>
+			<p>This is the publication page of My Lab.</p>
 		</section>
 		<section id="contact">
-			<h2>Contact My Lab</h2>
-			<p>Here's how to get in touch with My Lab.</p>
+			<h2>Contact</h2>
+			<p>This is the contact page of My Lab.</p>
 		</section>
 	</div>
 </body>
