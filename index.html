@@ -4,25 +4,28 @@
 	<meta charset="UTF-8">
 	<title>My Lab</title>
 	<style>
-		/* 添加样式 */
 		body {
 			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
+			background-image: url('top.jpg'); /* 设置背景图片 */
+			background-size: cover;
 		}
 		
 		header {
-			background-color: #333;
+			background-color: rgba(0, 0, 0, 0.5); /* 设置半透明背景 */
 			color: #fff;
 			padding: 10px;
 			text-align: center;
 		}
 		
 		nav {
+			float: left; /* 设置目录栏在页面左半边 */
 			background-color: #f2f2f2;
-			overflow: hidden;
-			display: flex; /* 添加flex布局 */
-			justify-content: center; /* 设置目录水平居中 */
+			width: 200px;
+			height: 100%;
+			position: fixed;
+			overflow: auto;
 		}
 		
 		nav a {
@@ -39,12 +42,10 @@
 		}
 		
 		.container {
-			max-width: 960px;
-			margin: 0 auto;
+			margin-left: 200px; /* 设置内容栏在页面右半边 */
 			padding: 10px;
 		}
 		
-		/* 添加更多样式 */
 		section {
 			margin-top: 20px;
 		}
@@ -66,26 +67,30 @@
 </head>
 <body>
 	<header>
-		<h1>Smart Antenna and Bio-EMC Laboratory</h1>
+		<h1>My Lab</h1>
 	</header>
 	<nav>
 		<a href="#home">Home</a>
 		<a href="#people">People</a>
 		<a href="#publication">Publication</a>
-
+		<a href="#contact">Contact</a>
 	</nav>
 	<div class="container">
-		<section id="home"> <!-- 添加id -->
-			<h2>Welcome to Smart Antena and Bio-EMC Lab</h2>
-			<p></p>
+		<section id="home">
+			<h2>Welcome to My Lab</h2>
+			<p>This is the home page of My Lab.</p>
 		</section>
-		<section id="people"> <!-- 添加id -->
+		<section id="people">
 			<h2>People</h2>
-			<p>Our lab members are...</p>
+			<p>This is the people page of My Lab.</p>
 		</section>
-		<section id="publication"> <!-- 添加id -->
+		<section id="publication">
 			<h2>Publication</h2>
-			<p>Our lab's recent publications include...</p>
+			<p>This is the publication page of My Lab.</p>
+		</section>
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>This is the contact page of My Lab.</p>
 		</section>
 	</div>
 </body>
