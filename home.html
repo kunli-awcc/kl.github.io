@@ -23,13 +23,16 @@
 		}
 		
 		nav {
-			float: left; /* 设置目录栏在页面左半边 */
+			display: flex; /* 设置目录栏水平摆放 */
+			justify-content: center; /* 目录栏居中对齐 */
 			background-color: #f2f2f2;
-			width: 200px;
-			height: 100%;
 			position: fixed;
-			overflow: auto;
 			top: 0; /* 将目录栏固定在页面上方 */
+			width: 100%; /* 目录栏宽度占满页面 */
+			/*width: 200px;*/
+			/*height: 100%;*/
+			/*position: fixed;*/
+			/*overflow: auto;*/
 		}
 		
 		nav a {
@@ -46,12 +49,17 @@
 		}
 		
 		.container {
-			max-width: 800px; /* 设置内容最大宽度为800像素 */
-  			margin: 0 auto; /* 居中显示 */
+			
+			margin-top: 60px; /* 留出目录栏的空间 */
+			padding: 10px;
+			
+			/*max-width: 800px;  设置内容最大宽度为800像素 */
+  			/*margin: 0 auto;  居中显示 */
 		}
 		
 		section {
 			margin-top: 20px;
+			margin-bottom: 20px;
 		}
 		
 		h1 {
