@@ -22,32 +22,37 @@
 			
 		}
 		
+		/* 修改 nav 样式 */
 		nav {
-			float: left; /* 设置目录栏在页面左半边 */
-			background-color: #f2f2f2;
-			width: 200px;
-			height: 100%;
-			position: fixed;
-			overflow: auto;
-		}
-		
+   			 display: flex; /* 使用flex布局让链接水平排列 */
+    			justify-content: center; /* 居中排列 */
+    			background-color: #f2f2f2;
+    			width: 100%; /* 横跨整个页面宽度 */
+    			position: sticky; /* 使导航条在滚动时始终停留在顶部 */
+    			top: 0; /* 粘贴到顶部 */
+    			z-index: 1000; /* 确保导航在其他元素之上 */
+			}
+
+		/* 修改 nav a 的样式 */
 		nav a {
-			display: block;
-			color: #333;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-		}
+    			display: inline-block; /* 使链接并排显示 */
+    			padding: 10px 20px; /* 增加左右的padding使其看起来宽敞 */
+			text-decoration: none !important;
+			font-size: 18px;                     /* 设置字体大小为18像素 */
+			}
 		
 		nav a:hover {
 			background-color: #ddd;
 			color: #333;
 		}
 		
+		/* 修改 .container 的样式 */
 		.container {
-			max-width: 800px; /* 设置内容最大宽度为800像素 */
-  			margin: 0 auto; /* 居中显示 */
-		}
+    			margin-top: 60px; /* 调整间距以留出导航条的空间 */
+   			padding: 10px;
+    			max-width: 800px;  
+    			margin: 0 auto;  
+			}
 		
 		section {
 			margin-top: 20px;
