@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>電気通信大学・AWCC 李研究室</title>
+	<style>
+		body {
+			font-family: Verdana, sans-serif;
+			margin: 0;
+			padding: 0;
+			/*background-image: url('top.png');*/ /* 设置背景图片 */
+			/*background-size: auto;*/
+		}
+		
+		header {
+			/*background-color: rgb(0, 0, 0); */ /* 设置半透明背景 */
+			/*color: #fff;*/
+			background-image: url('leadspace2.jpg'); /* 设置背景图片 */
+			background-size: contain;
+			padding: 35px;
+			text-align: center;
+			
+		}
+		
+		/* 修改 nav 样式 */
+		nav {
+   			 display: flex; /* 使用flex布局让链接水平排列 */
+    			justify-content: center; /* 居中排列 */
+    			background-color: #f2f2f2;
+    			width: 100%; /* 横跨整个页面宽度 */
+    			position: sticky; /* 使导航条在滚动时始终停留在顶部 */
+    			top: 0; /* 粘贴到顶部 */
+    			z-index: 1000; /* 确保导航在其他元素之上 */
+			}
+
+		/* 修改 nav a 的样式 */
+		nav a {
+    			display: inline-block; /* 使链接并排显示 */
+    			padding: 10px 20px; /* 增加左右的padding使其看起来宽敞 */
+			text-decoration: none !important;
+			font-size: 20px;                     /* 设置字体大小为18像素 */
+			}
+		
+		nav a:hover {
+    			color: white;
+   			background-color: #003366;  /* 这里使用了深蓝色作为背景色 */
+		}
+		
+		/* 修改 .container 的样式 */
+		.container {
+    			margin-top: 60px; /* 调整间距以留出导航条的空间 */
+   			padding: 10px;
+    			max-width: 800px;  
+    			margin: 0 auto;  
+			}
+		
+		section {
+			margin-top: 20px;
+		}
+		
+		h1 {
+			font-size: 20px;
+			color: white;
+			margin-top: 0;
+		}
+		
+		h2 {
+			font-size: 20px;
+		}
+		
+		p {
+			font-size: 16px;
+			line-height: 1.5;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>電気通信大学・先端ワイヤレス・コミュニケーション研究センター(AWCC) 李研究室</h1>
+		<h1>Li Laboratory, Advanced Wireless & Communication Research Center (AWCC), <br> The University of Electro-Communications</h1>
+	</header>
+	<nav>
+		<a href="index.html">HOME</a>
+		<a href="research.html">RESEARCH</a>
+		<a href="people.html">PEOPLE</a>
+		<a href="publication.html">PUBLICATION</a>
+    <a href="openings.html">OPENINGS</a>
+		<a href="contact.html">CONTACT</a>
+	</nav>
+	<div class="container">
+		<section id="home">
+			<h2>Research Topics</h2>
+			<div style="display: flex; flex-direction: column;align-items: center;">
+				<img src="Research1.png" style="width: 800px;">
+			</div> 
+			
+			<div style="display: flex; flex-direction: column;align-items: center;">
+				<img src="Research2.png" style="width: 800px;">
+			</div>
+
+		<a href="https://www.hitwebcounter.com" target="_blank">
+    		<img src="https://hitwebcounter.com/counter/counter.php?page=7174927&style=0006&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" >
+    		</a>
+
+</body>
+</html>
