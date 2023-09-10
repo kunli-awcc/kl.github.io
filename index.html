@@ -56,27 +56,43 @@
 		
 
 		h1 {
-			font-size: 22px;
+			font-size: 30px;
 			color: white;
 			margin-top: 0;
 			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
 		}
 		
 		h2 {
-			font-size: 20px;
+			font-size: 25px;
 			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
 		}
 		
 		p, ol li {
-			font-size: 18px;
+			font-size: 20px;
 			line-height: 1.5;
 		}
 
-  		.doi-link {
-			color: darkblue;
-			text-decoration: underline;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
+		.date {
+   			display: inline-block;
+    			width: 90px; /* This width can be adjusted according to the widest date. */
+    			text-align: right;
+    			margin-right: 10px; /* Spacing between date and content */
+    			font-weight: bold; /* Bold date for emphasis */
 		}
+
+		.news-content {
+    			vertical-align: top;
+		}
+
+		.doi-link {
+    			color: #0056b3; /* Sample blue color for DOI link */
+    			text-decoration: none;
+		}
+
+		.doi-link:hover {
+    			text-decoration: underline;
+		}
+
 
 	</style>
 </head>
@@ -117,6 +133,35 @@
 				[<a href="https://doi.org/10.1016/j.aeue.2023.154773" class="doi-link" target="_blank">DOI</a>]</li>
 				<li> 2023/04/01: Smart Body-Centric Wireless Communications laboratory has been established@AWCC,UEC</li>
 			</ul>
+
+			<h2>News</h2>
+				<ul style="line-height: 1.5;">
+   				 <li>
+					<span class="date">2023/09/04:</span> 
+       					<span class="news-content"> Our paper entitled “Intensity-dependent Temperature Rise Induced by Local Exposure to 26.5 GHz Quasi-Millimeter-Wave in Rat” has been accepted for publication in <b>in vivo</b> (collaboration work with Kurume Univ., Hokkaido Univ., Aichi-Gakuin Univ., and TUAT)
+					[<a href="https://doi.org/10.21873/invivo.13306" class="doi-link" target="_blank">DOI</a>]</span>
+    				</li>
+    				 <li>
+					<span class="date">2023/09/01:</span> 
+       					<span class="news-content"> Our paper entitled “Clothing Effect on Multilayered Skin Model Exposure from 20 GHz to 100 GHz” has been accepted for publication in <b>IEEE Journal of Electromagnetics, RF and Microwaves in Medicine and Biology</b> (collaboration work with NICT and IETR)
+					[<a href="https://doi.org/10.1109/JERM.2023.3309935" class="doi-link" target="_blank">DOI</a>]</span>
+    				</li>
+    				 <li>
+					<span class="date">2023/08/23:</span> 
+       					<span class="news-content"> Prof. Kun Li has been selected as the <b>Early Career Representative (ECR)</b> of URSI Commision-K in URSI-GASS 2023@Sapporo</span>
+    				</li>
+				<li>
+					<span class="date">2023/07/04:</span> 
+       					<span class="news-content"> Our paper entitled “A Novel Power Divider With Arbitrary Power Ratio, Arbitrary Phase Difference and Controllable Bandwidths” has been accepted for publication in <b>AEU - International Journal of Electronics and Communications</b> (collaboration work with Jilin Univ.)
+					[<a href="https://doi.org/10.1016/j.aeue.2023.154773" class="doi-link" target="_blank">DOI</a>]</span>
+    				</li>
+				<li>
+					<span class="date">2023/04/01:</span> 
+       					<span class="news-content"> Smart Body-Centric Wireless Communications laboratory has been established@AWCC,UEC</span>
+    				</li>
+			</ul>
+
+			
 		</section>
 
 	</div>
