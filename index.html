@@ -28,6 +28,7 @@
     			top: 0;
     			z-index: 1000;
 			padding: 10px 20px;
+			font-weight: bold;
 			font-size: 20px;
 			font-family: Roboto, メイリオ, Roboto, sans-serif;
 		}
@@ -119,16 +120,8 @@
 	font-family: Roboto, メイリオ, Roboto, sans-serif;
 }
 
-.news-date {
-  display: inline-block;
-  width: 120px;  /* 增加日期的宽度，确保内容能够对齐 */
-  vertical-align: top;
-		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
-}
-
 #news-list {
-  height: 350px;  /* 增大滚动框的高度 */
+  height: 350px;
   overflow-y: scroll;
   border: 1px solid #ccc;
   padding: 10px;
@@ -137,10 +130,23 @@
 }
 
 #news-list ul li {
+  position: relative;
+  padding-left: 130px; /* 留出足够的空间给日期 */
   margin-bottom: 10px;
 		    font-size: 20px;
 	font-family: Roboto, メイリオ, Roboto, sans-serif;
 }
+
+.news-date {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px; /* 如果日期太长，可以适当调整 */
+  white-space: nowrap; /* 确保日期不会折行 */
+		    font-size: 20px;
+	font-family: Roboto, メイリオ, Roboto, sans-serif;
+}
+
 
 
 
@@ -177,7 +183,7 @@
 
 
 
-
+　　　　　　　　　　　　　<!--
 			<h2>News</h2>
 			<div id="news-list" style="height: 250px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
   			<ul style="list-style-type: none; padding-left: 0;">
@@ -192,6 +198,19 @@
     
  			 </ul>
 			</div>
+			-->
+
+			<h2>News</h2>
+				<div id="news-list">
+  				<ul>
+    				<li>
+     				 <span class="news-date">2023/09/04:</span>
+      <span class="news-content">Our paper entitled “Intensity-dependent ...”</span>
+    </li>
+    <!-- 其他新闻项按照此格式添加 -->
+  </ul>
+</div>
+
 
 
 			
