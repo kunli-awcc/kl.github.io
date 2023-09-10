@@ -79,6 +79,12 @@
     		padding-left: 0; /* 这将确保列表不会有额外的左侧缩进 */
 		}
 
+		#news-list {
+   		 height: 200px; /* 或者您需要的高度 */
+  		  overflow-y: auto;
+		}
+
+
 
 .date {
     display: inline-block;
@@ -113,6 +119,16 @@
 	font-family: Roboto, メイリオ, Roboto, sans-serif;
 }
 
+		document.addEventListener('DOMContentLoaded', function() {
+    const newsList = document.querySelectorAll('#news-list ul li');
+    for (let i = 0; i < newsList.length; i++) {
+        if (i >= 5) {
+            newsList[i].style.display = 'none';
+        }
+    }
+});
+
+
 
 
 	</style>
@@ -145,7 +161,8 @@
 			
 
 			<h2>News</h2>
-			<ul style="line-height: 1.8;">
+			<div id="news-list">
+				　<ul style="line-height: 1.8;">
    				 <li>
 					<span class="date">2023/09/04:</span> 
        					<span class="news-content"> Our paper entitled “Intensity-dependent Temperature Rise Induced by Local Exposure to 26.5 GHz Quasi-Millimeter-Wave in Rat” has been accepted for publication in <b>in vivo</b> (collaboration work with Kurume Univ., Hokkaido Univ., Aichi-Gakuin Univ., and TUAT)
@@ -169,7 +186,8 @@
 					<span class="date">2023/04/01:</span> 
        					<span class="news-content"> Smart Body-Centric Wireless Communications laboratory has been established@AWCC,UEC</span>
     				</li>
-			</ul>
+				</ul>
+			</div>
 
 			
 		</section>
