@@ -3,46 +3,57 @@
 	<meta charset="UTF-8">
 	<title>電気通信大学・AWCC 李研究室</title>
 	<style>
-		body {
-			font-family: Roboto, メイリオ, Roboto, sans-serif;
-			margin: 0;
-			padding: 0;
-			width: 100%;
-		}
-		
-		header {
-			background-image: url('leadspace2.jpg'); 
-			background-size: cover;
-			background-repeat: no-repeat; /* Ensure the image doesn't repeat */
-			padding: 30px 0;
-			text-align: center;
-		}
-		
-		/* Modify nav styles */
-		nav {
-    			display: flex; 
-    			justify-content: center; /* Place navigation to the center*/
-    			background-color: #f2f2f2;
-    			position: sticky;
-    			top: 0;
-    			z-index: 1000;
-			padding: 10px 20px;
-			font-weight: bold;
-			font-size: 20px;
-			font-family: Roboto, メイリオ, Roboto, sans-serif;
-			width: 100%;
-		}
+body {
 
-		nav a {
-			text-decoration: none !important;
-			font-size: 20px;
-			padding: 0 10px;
-		}
-		
-		nav a:hover {
-			color: white;
-			background-color: #003366;
-		}
+    font-family:'Abel',Verdana, Geneva, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: url('leadspace2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 30px 0;
+    text-align: center;
+    display: flex; /* 使用flex布局 */
+    justify-content: space-between; /* 分隔标题和导航 */
+    align-items: center; /* 垂直居中 */
+}
+
+.title-container {
+    display: block;
+    text-align: left;
+    padding-left: 20px;  /* 添加左边距 */
+}
+
+header h1 {
+    margin: 5px 0;
+    color: white;
+}
+
+
+nav {
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0 10px;
+    margin: 0 5px;
+    color: white;        /* 导航链接颜色设置为白色 */
+}
+
+nav a:hover {
+    background-color: #003366;
+}
+
+
+
+
 		
 		.container {
     			margin-top: 60px;
@@ -96,7 +107,7 @@
   border: 1px solid #ccc;
   padding: 10px;
 		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
+  font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
 #news-list ul li {
@@ -104,7 +115,7 @@
   padding-left: 130px; /* 留出足够的空间给日期 */
   margin-bottom: 10px;
 		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
+  font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
 .news-date {
@@ -114,7 +125,7 @@
   width: 120px; /* 如果日期太长，可以适当调整 */
   white-space: nowrap; /* 确保日期不会折行 */
 		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
+  font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
 
