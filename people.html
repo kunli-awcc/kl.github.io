@@ -1,89 +1,128 @@
 <html>
 <head>
-	
-<meta charset="UTF-8">
-<title>電気通信大学・AWCC 李研究室</title>
-
-<style>
-
-body {
-			font-family: Roboto, sans-serif;
+	<meta charset="UTF-8">
+	<title>電気通信大学・AWCC 李研究室</title>
+	<style>
+		body {
+			font-family: Roboto, メイリオ, Roboto, sans-serif;
 			margin: 0;
 			padding: 0;
-			/*background-image: url('top.png');*/ /* 设置背景图片 */
-			/*background-size: auto;*/
+			width: 100%;
 		}
-	
-	header {
-			/*background-color: rgb(0, 0, 0); */ /* 设置半透明背景 */
-			/*color: #fff;*/
-			background-image: url('leadspace2.jpg'); /* 设置背景图片 */
-			background-size: contain;
-			padding: 30px;
+		
+		header {
+			background-image: url('leadspace2.jpg'); 
+			background-size: cover;
+			background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+			padding: 30px 0;
 			text-align: center;
-			
 		}
-	
-	/* 修改 nav 样式 */
+		
+		/* Modify nav styles */
 		nav {
-   			 display: flex; /* 使用flex布局让链接水平排列 */
-    			justify-content: center; /* 居中排列 */
+    			display: flex; 
+    			justify-content: center; /* Place navigation to the center*/
     			background-color: #f2f2f2;
-    			width: 100%; /* 横跨整个页面宽度 */
-    			position: sticky; /* 使导航条在滚动时始终停留在顶部 */
-    			top: 0; /* 粘贴到顶部 */
-    			z-index: 1000; /* 确保导航在其他元素之上 */
+    			position: sticky;
+    			top: 0;
+    			z-index: 1000;
+			padding: 10px 20px;
 			font-weight: bold;
-			}
+			font-size: 20px;
+			font-family: Roboto, メイリオ, Roboto, sans-serif;
+			width: 100%;
+		}
 
-		/* 修改 nav a 的样式 */
 		nav a {
-    			display: inline-block; /* 使链接并排显示 */
-    			padding: 10px 20px; /* 增加左右的padding使其看起来宽敞 */
 			text-decoration: none !important;
-			font-size: 16px;                     /* 设置字体大小为18像素 */
-			}
+			font-size: 20px;
+			padding: 0 10px;
+		}
 		
 		nav a:hover {
-    			color: white;
-   			background-color: #003366;  /* 这里使用了深蓝色作为背景色 */
+			color: white;
+			background-color: #003366;
 		}
 		
-		/* 修改 .container 的样式 */
 		.container {
-    			margin-top: 60px; /* 调整间距以留出导航条的空间 */
-   			padding: 10px;
-    			max-width: 800px;  
-    			margin: 0 auto;  
-			}
-	
-	section {
-		margin-top: 20px;
-		padding-top: 0;
-	}
-	
-	h1 {
-			font-size: 22px;
+    			margin-top: 60px;
+    			padding: 10px;
+			max-width: 50%; /* Half the screen width */
+			margin-left: auto;
+			margin: 0 auto;     /* This centers the content. */
+		}
+		
+		section {
+			margin-top: 20px;
+		}
+		
+
+		h1 {
+			font-size: 30px;
 			color: white;
 			margin-top: 0;
+			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
 		}
 		
-	h2 {
+		h2 {
+			font-size: 30px;
+			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
+		}
+		
+		p, ol li {
 			font-size: 20px;
-	}
-	
-	p {
-		font-size: 16px;
-		line-height: 1.5;
-	}
-	
-	ol li {
-  		font-size: 16px;
-	}
-	
-</style>
+			line-height: 1.5;
+		}
 
-	
+		/* 去掉新闻列表前的点 */
+		ul {
+    		list-style-type: none;
+    		padding-left: 0; /* 这将确保列表不会有额外的左侧缩进 */
+		}
+
+		#news-list {
+   		 height: 200px; /* 或者您需要的高度 */
+  		  overflow-y: auto;
+		}
+
+
+
+
+
+
+#news-list {
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+		    font-size: 20px;
+	font-family: Roboto, メイリオ, Roboto, sans-serif;
+}
+
+#news-list ul li {
+  position: relative;
+  padding-left: 130px; /* 留出足够的空间给日期 */
+  margin-bottom: 10px;
+		    font-size: 20px;
+	font-family: Roboto, メイリオ, Roboto, sans-serif;
+}
+
+.news-date {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px; /* 如果日期太长，可以适当调整 */
+  white-space: nowrap; /* 确保日期不会折行 */
+		    font-size: 20px;
+	font-family: Roboto, メイリオ, Roboto, sans-serif;
+}
+
+
+
+
+
+
+	</style>
 </head>
 <body>
 	<div id="top"></div>
