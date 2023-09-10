@@ -72,26 +72,31 @@
 			line-height: 1.5;
 		}
 
-		.date {
-   			display: inline-block;
-    			width: 90px; /* This width can be adjusted according to the widest date. */
-    			text-align: right;
-    			margin-right: 10px; /* Spacing between date and content */
-    			font-weight: bold; /* Bold date for emphasis */
-		}
+.date {
+    display: inline-block;
+    width: 110px;  /* Adjust this width to be wider if needed */
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+    vertical-align: top;  /* Align the top of the date with the top of the news content */
+}
 
-		.news-content {
-    			vertical-align: top;
-		}
+.news-content {
+    display: inline-block;  /* This ensures that the content wraps below itself, not below the date */
+    width: calc(100% - 120px);  /* 110px for the date and 10px for margin */
+    font-family: "Arial", sans-serif;  /* Change this as needed */
+    vertical-align: top;
+}
 
-		.doi-link {
-    			color: #0056b3; /* Sample blue color for DOI link */
-    			text-decoration: none;
-		}
+.doi-link {
+    color: #0056b3;
+    text-decoration: none;
+}
 
-		.doi-link:hover {
-    			text-decoration: underline;
-		}
+.doi-link:hover {
+    text-decoration: underline;
+}
+
 
 
 	</style>
