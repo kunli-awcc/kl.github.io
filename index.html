@@ -65,7 +65,7 @@
 		}
 		
 		h2 {
-			font-size: 25px;
+			font-size: 30px;
 			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
 		}
 		
@@ -87,38 +87,8 @@
 
 
 
-.date {
-    display: inline-block;
-    width: 110px;  /* Adjust this width to be wider if needed */
-    text-align: right;
-    margin-right: 10px;
-    font-weight: bold;
-    vertical-align: top;  /* Align the top of the date with the top of the news content */
-    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
-}
 
-.news-content {
-    display: inline-block;  /* This ensures that the content wraps below itself, not below the date */
-    width: calc(100% - 120px);  /* 110px for the date and 10px for margin */
-    font-family: "Arial", sans-serif;  /* Change this as needed */
-    vertical-align: top;
-	    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
-}
 
-.doi-link {
-    color: #0056b3;
-    text-decoration: underline;
-	    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
-}
-
-.doi-link:hover {
-    text-decoration: underline;
-	    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
-}
 
 #news-list {
   height: 350px;
@@ -201,15 +171,21 @@
 			-->
 
 			<h2>News</h2>
-				<div id="news-list">
+			<div id="news-list">
   				<ul>
     				<li>
-     				 <span class="news-date">2023/09/04:</span>
-      <span class="news-content">Our paper entitled “Intensity-dependent ...”</span>
-    </li>
-    <!-- 其他新闻项按照此格式添加 -->
-  </ul>
-</div>
+     					<span class="news-date">2023/09/04:</span>
+      					<span class="news-content">Our paper entitled “Intensity-dependent Temperature Rise Induced by Local Exposure to 26.5 GHz Quasi-Millimeter-Wave in Rat” has been accepted for publication in <b>in vivo</b> (collaboration work with Kurume Univ., Hokkaido Univ., Aichi-Gakuin Univ., and TUAT)
+					[<a href="https://doi.org/10.21873/invivo.13306" class="doi-link" target="_blank">DOI</a>]</span>
+    				</li>
+
+				<li>
+  					<span class="news-date">2023/09/01:</span>
+      					<span class="news-content">Our paper entitled “Clothing Effect on Multilayered Skin Model Exposure from 20 GHz to 100 GHz” has been accepted for publication in <b>IEEE Journal of Electromagnetics, RF and Microwaves in Medicine and Biology</b> (collaboration work with NICT and IETR)
+					[<a href="https://doi.org/10.1109/JERM.2023.3309935" class="doi-link" target="_blank">DOI</a>]</span>
+				</li>
+  				</ul>
+			</div>
 
 
 
