@@ -4,10 +4,10 @@
 	<title>電気通信大学・AWCC 李研究室</title>
 	<style>
 body {
-    font-family: Roboto, メイリオ, Roboto, sans-serif;
+
+    font-family:'Abel',Verdana, Geneva, sans-serif;
     margin: 0;
     padding: 0;
-    position: relative;
 }
 
 header {
@@ -16,30 +16,44 @@ header {
     background-repeat: no-repeat;
     padding: 30px 0;
     text-align: center;
+    display: flex; /* 使用flex布局 */
+    justify-content: space-between; /* 分隔标题和导航 */
+    align-items: center; /* 垂直居中 */
 }
 
+.title-container {
+    display: block;
+    text-align: left;
+    padding-left: 20px;  /* 添加左边距 */
+}
+
+header h1 {
+    margin: 5px 0;
+    color: white;
+}
+
+
 nav {
-    position: absolute;  /* 绝对定位 */
-    top: 10px;           /* 从顶部开始的位置 */
-    right: 20px;         /* 从右侧开始的位置 */
-    background-color: #f2f2f2;
     padding: 10px 20px;
     font-weight: bold;
     font-size: 20px;
-    z-index: 1000;       /* 保证导航栏始终位于其他内容的顶部 */
 }
 
 nav a {
     text-decoration: none;
     font-size: 20px;
     padding: 0 10px;
-    margin: 0 5px;  /* 在链接之间添加一些间隔 */
+    margin: 0 5px;
+    color: white;        /* 导航链接颜色设置为白色 */
 }
 
 nav a:hover {
-    color: white;
     background-color: #003366;
 }
+
+
+
+
 		
 		.container {
     			margin-top: 60px;
@@ -93,7 +107,7 @@ nav a:hover {
   border: 1px solid #ccc;
   padding: 10px;
 		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
+  font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
 #news-list ul li {
@@ -101,7 +115,7 @@ nav a:hover {
   padding-left: 130px; /* 留出足够的空间给日期 */
   margin-bottom: 10px;
 		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
+  font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
 .news-date {
@@ -111,7 +125,7 @@ nav a:hover {
   width: 120px; /* 如果日期太长，可以适当调整 */
   white-space: nowrap; /* 确保日期不会折行 */
 		    font-size: 20px;
-	font-family: Roboto, メイリオ, Roboto, sans-serif;
+  font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
 
