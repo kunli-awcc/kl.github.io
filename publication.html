@@ -128,19 +128,6 @@ nav a:hover {
   font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
-		#publication-list {
-    list-style: none;   /* 移除默认的列表样式 */
-    counter-reset: publication 11;  /* 开始计数值设置为11，根据您的出版物数量进行调整 */
-}
-
-#publication-list > li::before {
-    content: "[" counter(publication) "]";  /* 使用计数器作为内容并加上方括号 */
-    counter-decrement: publication;  /* 减少计数器的值 */
-    margin-right: 5px;   /* 在计数器和出版物标题之间增加一些空间 */
-}
-
-
-
 
 
 
