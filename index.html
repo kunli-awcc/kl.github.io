@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>電気通信大学・AWCC 李研究室</title>
 	<style>
-		body {
+body {
     font-family: Roboto, メイリオ, Roboto, sans-serif;
     margin: 0;
     padding: 0;
@@ -16,17 +16,22 @@ header {
     background-repeat: no-repeat;
     padding: 30px 0;
     text-align: center;
-    display: flex;       /* 用flex布局将内容分为两半 */
-    justify-content: space-between; /* 将主要内容和导航栏分开 */
-    align-items: center; /* 垂直居中内容 */
+    display: flex; /* 使用flex布局 */
+    justify-content: space-between; /* 分隔标题和导航 */
+    align-items: center; /* 垂直居中 */
+}
+
+.title-container { /* 控制两行标题的布局 */
+    display: block; /* 默认值，但可以确保清晰性 */
+    text-align: left; /* 左对齐文本 */
 }
 
 header h1 {
-    margin-left: 20px;   /* 从左侧添加一些空间 */
+    margin: 5px 0; /* 上下添加一些空间 */
+    color: white; /* 标题颜色 */
 }
 
 nav {
-    background-color: #f2f2f2;
     padding: 10px 20px;
     font-weight: bold;
     font-size: 20px;
@@ -37,14 +42,15 @@ nav a {
     font-size: 20px;
     padding: 0 10px;
     margin: 0 5px;
+    color: white;        /* 导航链接颜色设置为白色 */
 }
 
 nav a:hover {
-    color: white;
     background-color: #003366;
 }
 
-/* ... 其他样式保持不变 ... */
+
+
 
 		
 		.container {
@@ -128,18 +134,21 @@ nav a:hover {
 	</style>
 </head>
 <body>
-	<header>
-		<h1>電気通信大学 AWCC 李研究室</h1>
-		<h1>Li Laboratory, AWCC, The University of Electro-Communications (UEC)</h1>
-		<nav>
-			<a href="index.html">HOME</a>
-			<a href="people.html">PEOPLE</a>
-			<a href="research.html">RESEARCH</a>
-			<a href="publication.html">PUBLICATION</a>
-			<a href="openings.html">OPENINGS</a>
-			<a href="contact.html">CONTACT</a>
-		</nav>
-	</header>
+<header>
+    <div class="title-container"> <!-- 添加这个容器 -->
+        <h1>電気通信大学 AWCC 李研究室</h1>
+        <h1>Li Laboratory, AWCC, The University of Electro-Communications (UEC)</h1>
+    </div>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="people.html">PEOPLE</a>
+        <a href="research.html">RESEARCH</a>
+        <a href="publication.html">PUBLICATION</a>
+        <a href="openings.html">OPENINGS</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+</header>
+
 
 	<div class="container">
 		<section id="home">
