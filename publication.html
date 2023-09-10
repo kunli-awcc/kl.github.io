@@ -128,6 +128,18 @@ nav a:hover {
   font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
+		#publication-list {
+    list-style: none;   /* 移除默认的列表样式 */
+    counter-reset: publication 11;  /* 开始计数值设置为11，根据您的出版物数量进行调整 */
+}
+
+#publication-list > li::before {
+    content: "[" counter(publication) "]";  /* 使用计数器作为内容并加上方括号 */
+    counter-decrement: publication;  /* 减少计数器的值 */
+    margin-right: 5px;   /* 在计数器和出版物标题之间增加一些空间 */
+}
+
+
 
 
 
@@ -156,7 +168,7 @@ nav a:hover {
 		<section id="publication">
 			<h2>学術論文(Journal Paper)</h2>
 			
-			<ol class="list_parentheses">
+			<ol id="publication-list" reversed>
 				<li><u><b>Kun Li</b></u>, Kensuke Sasaki, Giulia Sacco, and Maxim Zhadobov, “Clothing Effect on Multilayered Skin Model Exposure from 20 GHz to 100 GHz”, IEEE Journal of Electromagnetics, RF and Microwaves in Medicine and Biology, vol. **, no. **, pp. **-**, **. 2023. (accepted)
 					[<a href="https://doi.org/10.1109/JERM.2023.3309935" class="doi-link" target="_blank">DOI</a>]</li>
 				
