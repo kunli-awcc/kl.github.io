@@ -1,10 +1,13 @@
 <html>
+
+
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
 	<title>電気通信大学・AWCC 李研究室</title>
 	<style>
 body {
-
+    background-color: #f5f5f5;  /* 浅灰色背景 */
     font-family:'Abel',Verdana, Geneva, sans-serif;
     margin: 0;
     padding: 0;
@@ -34,18 +37,20 @@ header h1 {
 
 
 nav {
-    padding: 10px 20px;
+    padding: 0px 5px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 12px;
 }
 
 nav a {
     text-decoration: none;
-    font-size: 20px;
-    padding: 0 10px;
-    margin: 0 5px;
-    color: white;        /* 导航链接颜色设置为白色 */
+    font-size: 12px;
+    padding: 0 5px;      /* 调整后的padding值 */
+    margin: 0 2px;       /* 调整后的margin值 */
+    color: white;
 }
+
+
 
 nav a:hover {
     background-color: #003366;
@@ -56,32 +61,58 @@ nav a:hover {
 
 		
 		.container {
+			
     			margin-top: 60px;
     			padding: 10px;
 			max-width: 50%; /* Half the screen width */
 			margin-left: auto;
 			margin: 0 auto;     /* This centers the content. */
+		    	background-color: #ffffff;  /* 白色背景 */
+    			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加一个轻微的阴影 */
+   		 	border-radius: 4px;  /* 轻微的边界半径 */
+
+			display: flex;
+   			justify-content: space-between;  /* 分隔标题和导航栏 */
+    			align-items: center;  
+    			max-width: 1000px;  /* 或您正文页面的宽度 */
+    			width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
+    			padding: 0 30px;  /* 给两边加上一点内边距，以便有些空间 */
 		}
+
+		.header-container {
+    		max-width: 1100px;  /* 或您正文页面的宽度 */
+    		width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
+    		padding: 0 20px;  /* 给两边加上一点内边距，以便有些空间 */
+    		margin: 0 auto;     /* 这使内容居中 */
+    		display: flex;
+    		justify-content: space-between;  /* 分隔标题和导航栏 */
+    		align-items: center;  
+		}
+
 		
 		section {
-			margin-top: 20px;
+			margin-top: 30px;
 		}
 		
 
 		h1 {
-			font-size: 30px;
+			font-size: 16px;
 			color: white;
 			margin-top: 0;
 			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
+			margin: 0; /* 去掉默认的外边距 */
+		}
+
+
 		}
 		
 		h2 {
-			font-size: 30px;
+			font-size: 16px;
 			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
 		}
 		
 		p, ol li {
-			font-size: 20px;
+			font-size: 16px;
 			line-height: 1.5;
 		}
 
@@ -96,11 +127,12 @@ nav a:hover {
   		  overflow-y: auto;
 		}
 
+		.module h2 {
+    			font-size: 16px;  // 调整为所需的大小
+		}
 
-#publication-list {
-    list-style-type: decimal;   /* 设置为默认的数字样式 */
-    /* ...其他样式... */
-}
+
+
 
 
 
@@ -110,7 +142,7 @@ nav a:hover {
   overflow-y: scroll;
   border: 1px solid #ccc;
   padding: 10px;
-		    font-size: 20px;
+  font-size: 14px;
   font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
@@ -118,7 +150,7 @@ nav a:hover {
   position: relative;
   padding-left: 130px; /* 留出足够的空间给日期 */
   margin-bottom: 10px;
-		    font-size: 20px;
+		    font-size: 14px;
   font-family:'Abel',Verdana, Geneva, sans-serif;
 }
 
@@ -128,9 +160,19 @@ nav a:hover {
   top: 0;
   width: 120px; /* 如果日期太长，可以适当调整 */
   white-space: nowrap; /* 确保日期不会折行 */
-		    font-size: 20px;
+		    font-size: 14px;
   font-family:'Abel',Verdana, Geneva, sans-serif;
 }
+
+
+
+.module {
+    background-color: white;    /* 白色背景 */
+    margin: 20px 0;             /* 上下外边距，增加空隙 */
+    padding: 20px;              /* 内边距，使内容不会紧贴边界 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* 添加轻微的阴影效果 */
+}
+
 
 
 
@@ -141,22 +183,25 @@ nav a:hover {
 <body>
 	<div id="top"></div>
 <header>
-    <div class="title-container">
-        <h1>電気通信大学 AWCC 李研究室</h1>
-        <h1>Li Laboratory, AWCC, The University of Electro-Communications (UEC)</h1>
-    </div>
-    <nav>
-        <a href="index.html">HOME</a>
-        <a href="people.html">PEOPLE</a>
-        <a href="research.html">RESEARCH</a>
-        <a href="publication.html">PUBLICATION</a>
-        <a href="openings.html">OPENINGS</a>
-        <a href="contact.html">CONTACT</a>
-    </nav>
+	<div class="header-container">
+    		<div class="title-container">
+        	<h1>電気通信大学 AWCC 李研究室</h1>
+        	<h1>Li Laboratory, AWCC, <br>The University of Electro-Communications (UEC)</h1>
+    	</div>
+    	<nav>
+        	<a href="index.html">HOME</a>
+        	<a href="people.html">PEOPLE</a>
+        	<a href="research.html">RESEARCH</a>
+        	<a href="publication.html">PUBLICATION</a>
+        	<a href="openings.html">OPENINGS</a>
+        	<a href="contact.html">CONTACT</a>
+    	</nav>
+	</div>
 </header>
 	<div class="container">
 		
 		<section id="publication">
+			<div class="module">
 			<h2>学術論文(Journal Paper)</h2>
 			
 			<ol id="publication-list" reversed>
@@ -254,8 +299,9 @@ nav a:hover {
 
 
 			</ol>
-
-
+			</div>
+			
+			<div class="module">
 			<h2>国際会議(International Conference)</h2>
 			
 			<ol id="publication-list" reversed>
@@ -329,6 +375,7 @@ nav a:hover {
 
 
 			</ol>
+			</div>
 
 
 			<h2>研究会等(Technical Report/Workshop)</h2>
