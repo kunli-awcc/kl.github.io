@@ -165,7 +165,7 @@ nav a:hover {
 #news-list ul li {
   position: relative;
   padding-left: 130px; /* 留出足够的空间给日期 */
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 		    font-size: 14px;
   font-family:'Abel',Verdana, Geneva, sans-serif;
 }
@@ -309,7 +309,7 @@ nav a:hover {
     		document.addEventListener('DOMContentLoaded', function() {
       		const newsList = document.querySelectorAll('#news-list ul li');
       		for (let i = 0; i < newsList.length; i++) {
-        		if (i >= 5) {
+        		if (i >= 6) {
         		  newsList[i].style.display = 'none';
         		}
       		}
