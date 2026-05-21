@@ -1,278 +1,604 @@
-<html>
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="UTF-8">
-	<title>電気通信大学・AWCC 李研究室</title>
-	<style>
-body {
-    background-color: #000033;  /* 浅灰色背景 */
-    font-family:'Georgia',Verdana, Geneva, sans-serif;
-	
-    margin: 0;
-    padding: 0;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Li Laboratory | AWCC | UEC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clr-bg:        #f5f7fa;
+      --clr-surface:   #ffffff;
+      --clr-border:    #e2e8f0;
+      --clr-accent:    #2563eb;
+      --clr-accent-lt: #dbeafe;
+      --clr-navy:      #1e3a5f;
+      --clr-text:      #1a202c;
+      --clr-muted:     #64748b;
+      --radius:        8px;
+      --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
+      --shadow-md:     0 4px 16px rgba(0,0,0,.09);
+      --font-sans:     'DM Sans', sans-serif;
+      --font-serif:    'DM Serif Display', serif;
+      --font-jp:       'Noto Sans JP', 'DM Sans', sans-serif;
+      --sidebar-w:     260px;
+    }
 
-header {
-    background-image: url('leadspace7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 30px 0;
-    text-align: center;
-    display: flex; /* 使用flex布局 */
-    justify-content: space-between; /* 分隔标题和导航 */
-    align-items: center; /* 垂直居中 */
-}
-		
-footer {
-    background-image: url('leadspace7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 30px 0;
-    text-align: center;
-    height: 20px;           /* 调整为您希望的高度 */
-    color: white;           /* 文本颜色，根据背景调整 */
-    display: flex;
-    align-items: center;    /* 使文本垂直居中 */
-    justify-content: center;/* 使文本水平居中 */
-    font-size: 12px;        /* 调整为适合的字体大小 */
-}
-		
-.title-container {
-    display: block;
-    text-align: left;
-    padding-left: 20px;  /* 添加左边距 */
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    a { color: var(--clr-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    b, strong { font-weight: 600; }
 
-header h1 {
-    margin: 5px 0;
-    color: white;
-}
+    /* --- Japanese text helper class --- */
+    .ja {
+      font-family: var(--font-jp);
+    }
 
+    /* HEADER */
+    .site-header {
+      background: var(--clr-navy);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .site-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      letter-spacing: .3px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .site-title span {
+      color: #93c5fd;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 13px;
+      margin-left: 10px;
+      opacity: .9;
+    }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 5px;
+      transition: background .18s, color .18s;
+      letter-spacing: .3px;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(255,255,255,.13);
+      color: #fff;
+      text-decoration: none;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: .3s;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--clr-navy);
+      padding: 12px 24px 16px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .mobile-nav a {
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .mobile-nav.open { display: flex; }
 
-nav {
-    padding: 0px 5px;
-    font-weight: bold;
-    font-size: 80px;
-}
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
+      color: #fff;
+      padding: 52px 24px 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 4vw, 34px);
+      margin-bottom: 10px;
+      letter-spacing: .3px;
+    }
+    .hero p {
+      font-size: 14.5px;
+      opacity: .88;
+      max-width: 640px;
+      margin: 0 auto;
+    }
 
-nav a {
-    text-decoration: none;
-    font-size: 14px;
-    padding: 0 5px;      /* 调整后的padding值 */
-    margin: 0 2px;       /* 调整后的margin值 */
-    color: white;
-}
+    /* PAGE WRAPPER */
+    .page-wrapper {
+      max-width: 1160px;
+      margin: 32px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: 28px;
+      align-items: start;
+    }
 
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .card-head {
+      background: var(--clr-navy);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+    }
+    .card-body { padding: 16px; }
+    .lab-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-accent);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .info-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      color: var(--clr-text);
+    }
+    .info-item:last-child { margin-bottom: 0; }
+    .info-icon {
+      width: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--clr-accent);
+    }
+    .quick-links { display: flex; flex-direction: column; gap: 6px; }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--clr-accent);
+      padding: 6px 10px;
+      border-radius: 5px;
+      transition: background .15s;
+    }
+    .quick-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
+    .quick-link svg { flex-shrink: 0; }
 
+    /* MAIN */
+    .main-content { display: flex; flex-direction: column; gap: 24px; }
+    .section-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .section-head {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      color: var(--clr-navy);
+      font-weight: 400;
+    }
+    .section-head .accent-bar {
+      width: 3px;
+      height: 18px;
+      background: var(--clr-accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-body { padding: 20px 24px; }
 
-nav a:hover {
-    background-color: #003366;
-}
+    /* CONTACT SPECIFIC */
+    .contact-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--clr-border);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .contact-row:first-child { padding-top: 0; }
+    .contact-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .contact-icon {
+      width: 20px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--clr-accent);
+    }
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--clr-muted);
+      margin-bottom: 3px;
+    }
+    .contact-value {
+      font-size: 16px;
+      color: var(--clr-text);
+      line-height: 1.6;
+    }
+    .contact-name {
+      font-family: var(--font-jp);   /* <-- CJK font applied here */
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--clr-navy);
+    }
+    .contact-name-en {
+      font-size: 14px;
+      color: var(--clr-muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
 
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--clr-border);
+      line-height: 0;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
 
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .access-item {
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .access-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--clr-muted);
+      margin-bottom: 6px;
+    }
+    .access-item-value {
+      font-size: 15px;
+      color: var(--clr-text);
+      line-height: 1.6;
+    }
+    .access-item-value .ja {
+      font-size: 15px;
+    }
 
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12.5px;
+      color: var(--clr-muted);
+      border-top: 1px solid var(--clr-border);
+      margin-top: 8px;
+    }
 
-		
-		.container {
-			
-    			margin-top: 60px;
-    			padding: 10px;
-			max-width: 50%; /* Half the screen width */
-			margin-left: auto;
-			margin: 0 auto;     /* This centers the content. */
-		    	background-color: #000033;  /* 白色背景 */
-    			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加一个轻微的阴影 */
-   		 	border-radius: 4px;  /* 轻微的边界半径 */
-
-			display: flex;
-   			justify-content: space-between;  /* 分隔标题和导航栏 */
-    			align-items: center;  
-    			max-width: 1000px;  /* 或您正文页面的宽度 */
-    			width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
-    			padding: 0 30px;  /* 给两边加上一点内边距，以便有些空间 */
-		}
-
-		.header-container {
-    		max-width: 1100px;  /* 或您正文页面的宽度 */
-    		width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
-    		padding: 0 20px;  /* 给两边加上一点内边距，以便有些空间 */
-    		margin: 0 auto;     /* 这使内容居中 */
-    		display: flex;
-    		justify-content: space-between;  /* 分隔标题和导航栏 */
-    		align-items: center;  
-		}
-
-		
-		section {
-			margin-top: 30px;
-		}
-		
-
-		h1 {
-			font-size: 16px;
-			color: white;
-			margin-top: 0;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-			margin: 0; /* 去掉默认的外边距 */
-		}
-
-
-		}
-		
-		h2 {
-			font-size: 16px;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-		}
-		
-		p, ol li {
-			font-size: 16px;
-			line-height: 1.5;
-		}
-
-		/* 去掉新闻列表前的点 */
-		ul {
-    		list-style-type: none;
-    		padding-left: 0; /* 这将确保列表不会有额外的左侧缩进 */
-		}
-
-		#news-list {
-   		 height: 200px; /* 或者您需要的高度 */
-  		  overflow-y: auto;
-		}
-
-		.module h2 {
-    			font-size: 16px;  // 调整为所需的大小
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-			color: darkblue;
-		}
-
-
-
-
-
-
-
-#news-list {
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
-  font-family:'Century Gothic',Verdana, Geneva, sans-serif;
-}
-
-#news-list ul li {
-  position: relative;
-  padding-left: 130px; /* 留出足够的空间给日期 */
-  margin-bottom: 10px;
-		    font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-.news-date {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 120px; /* 如果日期太长，可以适当调整 */
-  white-space: nowrap; /* 确保日期不会折行 */
-		    font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-
-
-.module {
-    background-color: white;    /* 白色背景 */
-    margin: 20px 0;             /* 上下外边距，增加空隙 */
-    padding: 20px;              /* 内边距，使内容不会紧贴边界 */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* 添加轻微的阴影效果 */
-}
-
-
-
-
-
-
-	</style>
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .page-wrapper { grid-template-columns: 1fr; }
+      .hamburger { display: flex; }
+      nav { display: none; }
+      .site-title span { display: none; }
+      .access-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-	<div id="top"></div>
-<header>
-	<div class="header-container">
-    		<div class="title-container">
-        	<h1>電気通信大学 AWCC 李研究室</h1>
-        	<h1>Li Laboratory, AWCC, <br>The University of Electro-Communications (UEC)</h1>
-    	</div>
-    	<nav>
-        	<a href="index.html">HOME</a>
-        	<a href="people.html">PEOPLE</a>
-        	<a href="research.html">RESEARCH</a>
-        	<a href="publication.html">PUBLICATION</a>
-        	<a href="openings.html">OPENINGS</a>
-        	<a href="contact.html">CONTACT</a>
-    	</nav>
-	</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title">
+      Li Lab. / AWCC / UEC
+      <span>The University of Electro-Communications, Tokyo</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="research.html">Research</a>
+      <a href="publication.html">Publications</a>
+      <a href="openings.html">Openings</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="people.html">People</a>
+    <a href="research.html">Research</a>
+    <a href="publication.html">Publications</a>
+    <a href="openings.html">Openings</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </header>
 
-	<div class="container">
-		
-		<section id="contact">
-			<div class="module">
-			<h2>Contact Information</h2>
-			<p><b>李　鯤　准教授 (KUN LI, PH.D)</b></p>
-			<p>Email: li.kun[at mark]awcc.uec.ac.jp</p>
-			<p>Address: 〒182-8585 東京都調布市 調布ヶ丘1-5-1 東地区東10号館 313号室 
-				(Room 313, Building E-10, 1-5-1 Chofugaoka, Chofu-shi, Tokyo 182-8585, Japan)</p>
-			</div>
+<div class="hero">
+  <h1>Contact Us</h1>
+  <p>Advanced Wireless and Communication Center (AWCC) &nbsp;|&nbsp;
+     The University of Electro-Communications, Tokyo, Japan</p>
+</div>
 
-			<div class="module">
-			<h2>Access</h2>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7998500400195!2d139.5423726271209!3d35.6573025812858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f013c429b7e7%3A0xbcfe242df7dbf3a0!2z44CSMTgyLTAwMjEg5p2x5Lqs6YO96Kq_5biD5biC6Kq_5biD44Kx5LiY77yR5LiB55uu!5e0!3m2!1sja!2sjp!4v1694072882477!5m2!1sja!2sjp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
-			
-			<!--
-			<h2>Direction to UEC</h2>
-			
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="map1.gif" style="width: 400px;">
-			</div>
+<div class="page-wrapper">
 
-			
-			<h2>Location Map</h2>
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="map2.gif" style="width: 400px;">
-			</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-			<h2>Campus map</h2>
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="map3.png" style="width: 400px;">
-			</div>
-			-->
+    <div class="card">
+      <div class="lab-photo-placeholder">Lab Photo</div>
+      <div class="card-body" style="padding:12px 16px; font-size:13px; color:var(--clr-muted); text-align:center; line-height:1.5;">
+        Li Laboratory<br>AWCC, UEC, Tokyo
+      </div>
+    </div>
 
-		</section>
+    <div class="card">
+      <div class="card-head">Lab Information</div>
+      <div class="card-body">
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          <span>1-5-1 Chofugaoka, Chofu, Tokyo 182-8585, Japan</span>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          <span>Established: April 2023</span>
+        </div>
+      </div>
+    </div>
 
-	</div>
+    <div class="card">
+      <div class="card-head">Quick Links</div>
+      <div class="card-body">
+        <div class="quick-links">
+          <a class="quick-link" href="people.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+            </svg>
+            Members &amp; Alumni
+          </a>
+          <a class="quick-link" href="research.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+            </svg>
+            Research Topics
+          </a>
+          <a class="quick-link" href="publication.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+            Publications
+          </a>
+          <a class="quick-link" href="openings.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+            </svg>
+            Join the Lab
+          </a>
+          <a class="quick-link" href="https://scholar.google.com" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+            </svg>
+            Google Scholar
+          </a>
+        </div>
+      </div>
+    </div>
 
-	
-		<div class="flag-counter-container">
-    			<a href="https://info.flagcounter.com/Vknb"><img src="https://s11.flagcounter.com/countxl/Vknb/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-			float: right; /* 使元素浮动到右侧 */
-		</div>
+  </aside>
 
-		<footer>
-    			© Since 2023 Li Lab./AWCC/UEC. All Rights Reserved.
-		</footer>	
-		<!--
-		<div style="text-align:center;">
-    		<p style="color: darkblue;"><b>Visitor</b>:</p>
-    		<a href="https://www.hitwebcounter.com" target="_blank">
-        		<img src="https://hitwebcounter.com/counter/counter.php?page=7174927&style=0006&nbdigits=5&type=page&initCount=0" title="Free Counter" alt="web counter" border="0">
-    		</a>
-		</div>
-		-->
+  <!-- MAIN -->
+  <main class="main-content">
 
+    <!-- Contact Information -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2>Contact Information</h2>
+      </div>
+      <div class="section-body">
+
+        <!-- Name -->
+        <div class="contact-row">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+          </svg>
+          <div>
+            <div class="contact-label">Principal Investigator</div>
+            <!--
+              *** FIX: .contact-name uses font-family: Noto Sans JP
+                  which fully supports the kanji character U+9BE4 (鯤).
+                  Without this, DM Sans falls back to a system font
+                  that may render 鯤 as the wrong glyph (e.g. 鯄).
+            -->
+            <div class="contact-name ja">李 鯤 准教授</div>
+            <div class="contact-name-en">KUN LI, Ph.D. &nbsp;/&nbsp; Associate Professor</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-row">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-row">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value ja" style="margin-bottom:6px;">
+              〒182-8585 東京都調布市調布ヶ丘1-5-1<br>
+              東地区東10号館 313号室
+            </div>
+            <div class="contact-value" style="color:var(--clr-muted); font-size:14.5px;">
+              Room 313, Building E-10, 1-5-1 Chofugaoka,<br>
+              Chofu-shi, Tokyo 182-8585, Japan
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Access / Map -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2>Access</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="access-grid" style="margin-bottom: 20px;">
+          <div class="access-item">
+            <div class="access-item-label">Nearest Station</div>
+            <div class="access-item-value">
+              <strong>Chofu Stn.</strong> (Keio Line)<br>
+              <span class="ja" style="font-size:14px; color:var(--clr-muted);">京王線 調布駅</span><br>
+              North Exit &rarr; 15 min walk
+            </div>
+          </div>
+          <div class="access-item">
+            <div class="access-item-label">Bus from Chofu Stn.</div>
+            <div class="access-item-value">
+              Keio Bus bound for <strong>UEC</strong><br>
+              <span class="ja" style="font-size:14px; color:var(--clr-muted);">電通大行き</span><br>
+              Alight at <strong>Denki Tsushin Daigaku</strong> stop
+            </div>
+          </div>
+          <div class="access-item">
+            <div class="access-item-label">Building</div>
+            <div class="access-item-value">
+              East Campus, Building E-10<br>
+              <span class="ja" style="font-size:14px; color:var(--clr-muted);">東地区 東10号館</span><br>
+              Room 313 (3F)
+            </div>
+          </div>
+          <div class="access-item">
+            <div class="access-item-label">By Car</div>
+            <div class="access-item-value">
+              Exit <strong>Chofu</strong> on Chuo Expressway<br>
+              Parking available on campus<br>
+              <span style="font-size:13.5px; color:var(--clr-muted);">(visitor pass required)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7998500400195!2d139.5423726271209!3d35.6573025812858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f013c429b7e7%3A0xbcfe242df7dbf3a0!2z44CSMTgyLTAwMjEg5p2x5Lqs6YO96Kq_5biD5biC6Kq_5biD44Kx5LiY77yR5LiB55uu!5e0!3m2!1sja!2sjp!4v1694072882477!5m2!1sja!2sjp"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-nav');
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>
