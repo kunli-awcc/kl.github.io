@@ -4,10 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Li Laboratory | AWCC | UEC</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Added Noto Sans JP for CJK characters (fixes the 李 鯤 issue) -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  
   <style>
+    /* ============================================================
+       DESIGN TOKENS — edit these to change the whole site theme
+       ============================================================ */
     :root {
       --clr-bg:        #f5f7fa;
       --clr-surface:   #ffffff;
@@ -17,15 +23,21 @@
       --clr-navy:      #1e3a5f;
       --clr-text:      #1a202c;
       --clr-muted:     #64748b;
+      --clr-tag-j:     #0e7490;   /* Journal  */
+      --clr-tag-c:     #7c3aed;   /* Conference */
+      --clr-tag-a:     #b45309;   /* Award */
       --radius:        8px;
       --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
       --shadow-md:     0 4px 16px rgba(0,0,0,.09);
       --font-sans:     'DM Sans', sans-serif;
       --font-serif:    'DM Serif Display', serif;
-      --font-jp:       'Noto Sans JP', 'DM Sans', sans-serif;
+      --font-jp:       'Noto Sans JP', sans-serif; /* Fallback for Japanese/Chinese characters */
       --sidebar-w:     260px;
     }
 
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -35,16 +47,16 @@
       font-size: 15px;
       line-height: 1.7;
     }
+    .ja {
+      font-family: var(--font-jp);
+    }
     a { color: var(--clr-accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     b, strong { font-weight: 600; }
 
-    /* --- Japanese text helper class --- */
-    .ja {
-      font-family: var(--font-jp);
-    }
-
-    /* HEADER */
+    /* ============================================================
+       TOP HEADER BAR
+       ============================================================ */
     .site-header {
       background: var(--clr-navy);
       color: #fff;
@@ -77,6 +89,8 @@
       margin-left: 10px;
       opacity: .9;
     }
+
+    /* NAV */
     nav { display: flex; gap: 4px; }
     nav a {
       color: rgba(255,255,255,.82);
@@ -92,6 +106,8 @@
       color: #fff;
       text-decoration: none;
     }
+
+    /* Hamburger (mobile) */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -122,7 +138,9 @@
     }
     .mobile-nav.open { display: flex; }
 
-    /* HERO */
+    /* ============================================================
+       HERO STRIP
+       ============================================================ */
     .hero {
       background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
       color: #fff;
@@ -138,11 +156,13 @@
     .hero p {
       font-size: 14.5px;
       opacity: .88;
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
-    /* PAGE WRAPPER */
+    /* ============================================================
+       PAGE WRAPPER (sidebar + main)
+       ============================================================ */
     .page-wrapper {
       max-width: 1160px;
       margin: 32px auto;
@@ -153,8 +173,11 @@
       align-items: start;
     }
 
-    /* SIDEBAR */
+    /* ============================================================
+       SIDEBAR
+       ============================================================ */
     .sidebar { display: flex; flex-direction: column; gap: 20px; }
+
     .card {
       background: var(--clr-surface);
       border: 1px solid var(--clr-border);
@@ -172,6 +195,8 @@
       padding: 8px 16px;
     }
     .card-body { padding: 16px; }
+
+    /* Lab photo placeholder */
     .lab-photo-placeholder {
       width: 100%;
       aspect-ratio: 4/3;
@@ -183,6 +208,8 @@
       font-size: 13px;
       font-weight: 500;
     }
+
+    /* Sidebar info */
     .info-item {
       display: flex;
       gap: 10px;
@@ -198,6 +225,8 @@
       margin-top: 2px;
       color: var(--clr-accent);
     }
+
+    /* Quick links */
     .quick-links { display: flex; flex-direction: column; gap: 6px; }
     .quick-link {
       display: flex;
@@ -212,8 +241,11 @@
     .quick-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
     .quick-link svg { flex-shrink: 0; }
 
-    /* MAIN */
+    /* ============================================================
+       MAIN CONTENT (Contact specific adjustments)
+       ============================================================ */
     .main-content { display: flex; flex-direction: column; gap: 24px; }
+
     .section-card {
       background: var(--clr-surface);
       border: 1px solid var(--clr-border);
@@ -241,98 +273,93 @@
       border-radius: 2px;
       flex-shrink: 0;
     }
-    .section-body { padding: 20px 24px; }
+    
+    /* Slightly increased padding and font sizes for Contact readability */
+    .section-body { padding: 24px; }
 
-    /* CONTACT SPECIFIC */
-    .contact-row {
+    /* Contact Item Info (Larger font for better readability) */
+    .contact-item {
       display: flex;
       gap: 14px;
       align-items: flex-start;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--clr-border);
-      font-size: 16px;
-      line-height: 1.7;
+      margin-bottom: 20px;
+      font-size: 16px; /* Optimized size */
+      line-height: 1.6;
+      color: var(--clr-text);
     }
-    .contact-row:first-child { padding-top: 0; }
-    .contact-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
+    .contact-item:last-child { margin-bottom: 0; }
+    
     .contact-icon {
-      width: 20px;
+      width: 24px;
       flex-shrink: 0;
       margin-top: 3px;
       color: var(--clr-accent);
+      background: var(--clr-accent-lt);
+      padding: 5px;
+      border-radius: 50%;
     }
-    .contact-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: var(--clr-muted);
-      margin-bottom: 3px;
-    }
-    .contact-value {
-      font-size: 16px;
-      color: var(--clr-text);
-      line-height: 1.6;
-    }
-    .contact-name {
-      font-family: var(--font-jp);   /* <-- CJK font applied here */
+
+    .contact-title {
       font-size: 16.5px;
       font-weight: 600;
       color: var(--clr-navy);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .contact-name-en {
-      font-size: 14px;
-      color: var(--clr-muted);
-      font-weight: 400;
-      margin-top: 2px;
+    
+    .contact-badge {
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--clr-accent);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+      font-family: var(--font-sans);
     }
 
-    .map-wrap {
+    /* Map container */
+    .map-container {
+      margin-top: 24px;
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--clr-border);
-      line-height: 0;
+      height: 380px;
     }
-    .map-wrap iframe {
+    .map-container iframe {
       width: 100%;
-      height: 420px;
-      border: none;
+      height: 100%;
+      border: 0;
       display: block;
     }
 
-    .access-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 4px;
-    }
-    .access-item {
-      background: var(--clr-bg);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-    }
-    .access-item-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: var(--clr-muted);
-      margin-bottom: 6px;
-    }
-    .access-item-value {
+    /* Directions List */
+    .directions-list {
+      list-style: none;
+      margin-top: 12px;
       font-size: 15px;
       color: var(--clr-text);
-      line-height: 1.6;
     }
-    .access-item-value .ja {
-      font-size: 15px;
+    .directions-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+    }
+    .directions-list li::before {
+      content: "•";
+      color: var(--clr-accent);
+      position: absolute;
+      left: 0;
+      font-size: 18px;
+      line-height: 1;
+      top: 2px;
     }
 
-    /* FOOTER */
+    /* ============================================================
+       FOOTER
+       ============================================================ */
     footer {
       text-align: center;
       padding: 24px;
@@ -342,18 +369,24 @@
       margin-top: 8px;
     }
 
-    /* RESPONSIVE */
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
     @media (max-width: 768px) {
-      .page-wrapper { grid-template-columns: 1fr; }
+      .page-wrapper {
+        grid-template-columns: 1fr;
+      }
       .hamburger { display: flex; }
       nav { display: none; }
       .site-title span { display: none; }
-      .access-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
 <header class="site-header">
   <div class="header-inner">
     <div class="site-title">
@@ -382,17 +415,23 @@
   </div>
 </header>
 
+<!-- ============================================================
+     HERO (UPDATED SUBTITLE)
+     ============================================================ -->
 <div class="hero">
   <h1>Contact Us</h1>
-  <p>Advanced Wireless and Communication Center (AWCC) &nbsp;|&nbsp;
-     The University of Electro-Communications, Tokyo, Japan</p>
+  <p>Smart Body-Centric Wireless Communications Laboratory &nbsp;|&nbsp;
+     AWCC, The University of Electro-Communications, Tokyo, Japan</p>
 </div>
 
+<!-- ============================================================
+     PAGE BODY
+     ============================================================ -->
 <div class="page-wrapper">
 
-  <!-- SIDEBAR -->
+  <!-- ---- SIDEBAR ---- -->
   <aside class="sidebar">
-
+    <!-- Lab photo -->
     <div class="card">
       <div class="lab-photo-placeholder">Lab Photo</div>
       <div class="card-body" style="padding:12px 16px; font-size:13px; color:var(--clr-muted); text-align:center; line-height:1.5;">
@@ -400,24 +439,26 @@
       </div>
     </div>
 
+    <!-- Lab info -->
     <div class="card">
       <div class="card-head">Lab Information</div>
       <div class="card-body">
         <div class="info-item">
-          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 2a6 6 0 100 12A6 6 0 0010 2zm0 10.5a4.5 4.5 0 110-9 4.5 4.5 0 010 9zM10 18a8 8 0 100-16 8 8 0 000 16z" opacity=".3"/>
             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
           </svg>
-          <span>1-5-1 Chofugaoka, Chofu, Tokyo 182-8585, Japan</span>
+          <span class="ja">1-5-1 Chofugaoka, Chofu, Tokyo 182-8585, Japan</span>
         </div>
         <div class="info-item">
-          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
           </svg>
-          <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a>
+          <a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a>
         </div>
         <div class="info-item">
-          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
           </svg>
           <span>Established: April 2023</span>
@@ -425,6 +466,7 @@
       </div>
     </div>
 
+    <!-- Quick links -->
     <div class="card">
       <div class="card-head">Quick Links</div>
       <div class="card-body">
@@ -453,145 +495,94 @@
             </svg>
             Join the Lab
           </a>
-          <a class="quick-link" href="https://scholar.google.com" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-            </svg>
-            Google Scholar
-          </a>
         </div>
       </div>
     </div>
-
   </aside>
 
-  <!-- MAIN -->
+  <!-- ---- MAIN CONTENT ---- -->
   <main class="main-content">
 
-    <!-- Contact Information -->
+    <!-- Principal Investigator -->
     <div class="section-card">
       <div class="section-head">
         <div class="accent-bar"></div>
-        <h2>Contact Information</h2>
+        <h2>Principal Investigator</h2>
       </div>
       <div class="section-body">
-
-        <!-- Name -->
-        <div class="contact-row">
-          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
-            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
           </svg>
           <div>
-            <div class="contact-label">Principal Investigator</div>
-            <!--
-              *** FIX: .contact-name uses font-family: Noto Sans JP
-                  which fully supports the kanji character U+9BE4 (鯤).
-                  Without this, DM Sans falls back to a system font
-                  that may render 鯤 as the wrong glyph (e.g. 鯄).
-            -->
-            <div class="contact-name ja">李 鯤 准教授</div>
-            <div class="contact-name-en">KUN LI, Ph.D. &nbsp;/&nbsp; Associate Professor</div>
-          </div>
-        </div>
-
-        <!-- Email -->
-        <div class="contact-row">
-          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-          </svg>
-          <div>
-            <div class="contact-label">Email</div>
-            <div class="contact-value">
-              <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a>
+            <div class="contact-title">
+              <span class="ja">Kun Li (李 鯤)</span> 
+              <span class="contact-badge">Associate Professor</span>
+            </div>
+            <div style="color: var(--clr-muted); font-size: 14.5px; margin-bottom: 8px;">
+              Advanced Wireless and Communication Center (AWCC)<br>
+              The University of Electro-Communications (UEC)
+            </div>
+            
+            <div style="margin-bottom: 4px;">
+              <strong>Email:</strong> <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun@awcc.uec.ac.jp</a>
+            </div>
+            <div>
+              <strong>Address:</strong> <br>
+              <span class="ja">1-5-1 Chofugaoka, Chofu, Tokyo 182-8585, Japan</span>
             </div>
           </div>
         </div>
-
-        <!-- Address -->
-        <div class="contact-row">
-          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
-            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-          </svg>
-          <div>
-            <div class="contact-label">Address</div>
-            <div class="contact-value ja" style="margin-bottom:6px;">
-              〒182-8585 東京都調布市調布ヶ丘1-5-1<br>
-              東地区東10号館 313号室
-            </div>
-            <div class="contact-value" style="color:var(--clr-muted); font-size:14.5px;">
-              Room 313, Building E-10, 1-5-1 Chofugaoka,<br>
-              Chofu-shi, Tokyo 182-8585, Japan
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- Access / Map -->
+    <!-- Access & Directions -->
     <div class="section-card">
       <div class="section-head">
         <div class="accent-bar"></div>
-        <h2>Access</h2>
+        <h2>Access to the Campus</h2>
       </div>
       <div class="section-body">
-
-        <div class="access-grid" style="margin-bottom: 20px;">
-          <div class="access-item">
-            <div class="access-item-label">Nearest Station</div>
-            <div class="access-item-value">
-              <strong>Chofu Stn.</strong> (Keio Line)<br>
-              <span class="ja" style="font-size:14px; color:var(--clr-muted);">京王線 調布駅</span><br>
-              North Exit &rarr; 15 min walk
-            </div>
-          </div>
-          <div class="access-item">
-            <div class="access-item-label">Bus from Chofu Stn.</div>
-            <div class="access-item-value">
-              Keio Bus bound for <strong>UEC</strong><br>
-              <span class="ja" style="font-size:14px; color:var(--clr-muted);">電通大行き</span><br>
-              Alight at <strong>Denki Tsushin Daigaku</strong> stop
-            </div>
-          </div>
-          <div class="access-item">
-            <div class="access-item-label">Building</div>
-            <div class="access-item-value">
-              East Campus, Building E-10<br>
-              <span class="ja" style="font-size:14px; color:var(--clr-muted);">東地区 東10号館</span><br>
-              Room 313 (3F)
-            </div>
-          </div>
-          <div class="access-item">
-            <div class="access-item-label">By Car</div>
-            <div class="access-item-value">
-              Exit <strong>Chofu</strong> on Chuo Expressway<br>
-              Parking available on campus<br>
-              <span style="font-size:13.5px; color:var(--clr-muted);">(visitor pass required)</span>
-            </div>
+        <div class="contact-item" style="margin-bottom: 0;">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg>
+          <div>
+            <div class="contact-title">Direction from Chofu Station</div>
+            <p style="margin-top: 4px;">The UEC campus is a short walk from <strong>Chofu Station</strong> (Keio Line).</p>
+            <ul class="directions-list">
+              <li>Take the Keio Line from Shinjuku Station (approx. 15-20 min by Special Express/Express).</li>
+              <li>Get off at Chofu Station and take the Central Exit.</li>
+              <li>Walk north for about 10 minutes to reach the main gate of the University of Electro-Communications.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="map-wrap">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7998500400195!2d139.5423726271209!3d35.6573025812858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f013c429b7e7%3A0xbcfe242df7dbf3a0!2z44CSMTgyLTAwMjEg5p2x5Lqs6YO96Kq_5biD5biC6Kq_5biD44Kx5LiY77yR5LiB55uu!5e0!3m2!1sja!2sjp!4v1694072882477!5m2!1sja!2sjp"
-            allowfullscreen=""
-            loading="lazy"
+        <!-- Google Map Embed -->
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8247070183144!2d139.5408992152586!3d35.656683880200236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f1082d6dc015%3A0xc3afbf6bc75a9634!2sThe%20University%20of%20Electro-Communications!5e0!3m2!1sen!2sjp!4v1683103233215!5m2!1sen!2sjp" 
+            allowfullscreen="" 
+            loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
-
       </div>
     </div>
 
-  </main>
-</div>
+  </main><!-- /main-content -->
+</div><!-- /page-wrapper -->
 
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
 <footer>
   &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
 </footer>
 
+<!-- ============================================================
+     JS (hamburger only — no framework needed)
+     ============================================================ -->
 <script>
   const btn = document.getElementById('hamburger');
   const menu = document.getElementById('mobile-nav');
