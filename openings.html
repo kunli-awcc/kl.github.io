@@ -1,342 +1,809 @@
 <!DOCTYPE html>
-<html>
-
-
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="UTF-8">
-	<title>電気通信大学・AWCC 李研究室</title>
-	<style>
-body {
-    background-color: #000033;  /* 浅灰色背景 */
-    font-family:'Georgia',Verdana, Geneva, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Openings | Li Laboratory | AWCC | UEC</title>
 
-header {
-    background-image: url('leadspace7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 30px 0;
-    text-align: center;
-    display: flex; /* 使用flex布局 */
-    justify-content: space-between; /* 分隔标题和导航 */
-    align-items: center; /* 垂直居中 */
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-footer {
-    background-image: url('leadspace7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 30px 0;
-    text-align: center;
-    height: 20px;           /* 调整为您希望的高度 */
-    color: white;           /* 文本颜色，根据背景调整 */
-    display: flex;
-    align-items: center;    /* 使文本垂直居中 */
-    justify-content: center;/* 使文本水平居中 */
-    font-size: 12px;        /* 调整为适合的字体大小 */
-}
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --clr-bg:        #f5f7fa;
+      --clr-surface:   #ffffff;
+      --clr-border:    #e2e8f0;
+      --clr-accent:    #2563eb;
+      --clr-accent-lt: #dbeafe;
+      --clr-navy:      #1e3a5f;
+      --clr-text:      #1a202c;
+      --clr-muted:     #64748b;
+      --radius:        8px;
+      --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
+      --font-sans:     'DM Sans', sans-serif;
+      --font-serif:    'DM Serif Display', serif;
+      --font-jp:       'Noto Sans JP', sans-serif;
+      --sidebar-w:     260px;
+    }
 
-.title-container {
-    display: block;
-    text-align: left;
-    padding-left: 20px;  /* 添加左边距 */
-}
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .ja { font-family: var(--font-jp); }
+    a { color: var(--clr-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    b, strong { font-weight: 600; }
 
-header h1 {
-    margin: 5px 0;
-    color: white;
-}
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      background: var(--clr-navy);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .site-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      letter-spacing: .3px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .site-title span {
+      color: #93c5fd;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 13px;
+      margin-left: 10px;
+      opacity: .9;
+    }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 5px;
+      transition: background .18s, color .18s;
+      letter-spacing: .3px;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(255,255,255,.13);
+      color: #fff;
+      text-decoration: none;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: .3s;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--clr-navy);
+      padding: 12px 24px 16px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .mobile-nav a {
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .mobile-nav.open { display: flex; }
 
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
+      color: #fff;
+      padding: 52px 24px 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 4vw, 34px);
+      margin-bottom: 10px;
+      letter-spacing: .3px;
+    }
+    .hero p {
+      font-size: 14.5px;
+      opacity: .88;
+      max-width: 680px;
+      margin: 0 auto;
+    }
 
-nav {
-    padding: 0px 5px;
-    font-weight: bold;
-    font-size: 80px;
-}
+    /* ============================================================
+       PAGE WRAPPER
+       ============================================================ */
+    .page-wrapper {
+      max-width: 1160px;
+      margin: 32px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: 28px;
+      align-items: start;
+    }
 
-nav a {
-    text-decoration: none;
-    font-size: 14px;
-    padding: 0 5px;      /* 调整后的padding值 */
-    margin: 0 2px;       /* 调整后的margin值 */
-    color: white;
-}
+    /* ============================================================
+       SIDEBAR
+       ============================================================ */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
 
+    .card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .card-head {
+      background: var(--clr-navy);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+    }
+    .card-body { padding: 16px; }
 
+    .lab-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-accent);
+      font-size: 13px;
+      font-weight: 500;
+    }
 
-nav a:hover {
-    background-color: #003366;
-}
+    .info-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      color: var(--clr-text);
+    }
+    .info-item:last-child { margin-bottom: 0; }
+    .info-icon {
+      width: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--clr-accent);
+    }
 
+    /* Position badges in sidebar */
+    .position-list { display: flex; flex-direction: column; gap: 8px; }
+    .position-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--clr-border);
+      font-size: 13px;
+      color: var(--clr-text);
+      background: var(--clr-bg);
+    }
+    .position-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-green  { background: #16a34a; }
+    .dot-blue   { background: var(--clr-accent); }
+    .dot-purple { background: #7c3aed; }
 
+    .quick-links { display: flex; flex-direction: column; gap: 6px; }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--clr-accent);
+      padding: 6px 10px;
+      border-radius: 5px;
+      transition: background .15s;
+    }
+    .quick-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
+    .quick-link svg { flex-shrink: 0; }
 
+    /* ============================================================
+       MAIN CONTENT
+       ============================================================ */
+    .main-content { display: flex; flex-direction: column; gap: 24px; }
 
-		
-		.container {
-			
-    			margin-top: 60px;
-    			padding: 10px;
-			max-width: 50%; /* Half the screen width */
-			margin-left: auto;
-			margin: 0 auto;     /* This centers the content. */
-		    	background-color: #000033;  /* 白色背景 */
-    			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加一个轻微的阴影 */
-   		 	border-radius: 4px;  /* 轻微的边界半径 */
+    .section-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .section-head {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      color: var(--clr-navy);
+      font-weight: 400;
+    }
+    .section-head .accent-bar {
+      width: 3px;
+      height: 18px;
+      background: var(--clr-accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-body { padding: 20px 24px; font-size: 13.5px; line-height: 1.75; }
 
-			display: flex;
-   			justify-content: space-between;  /* 分隔标题和导航栏 */
-    			align-items: center;  
-    			max-width: 1000px;  /* 或您正文页面的宽度 */
-    			width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
-    			padding: 0 30px;  /* 给两边加上一点内边距，以便有些空间 */
-		}
+    /* Welcome message box */
+    .welcome-box {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--clr-accent);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--clr-text);
+      margin-bottom: 0;
+    }
 
-		.header-container {
-    		max-width: 1100px;  /* 或您正文页面的宽度 */
-    		width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
-    		padding: 0 20px;  /* 给两边加上一点内边距，以便有些空间 */
-    		margin: 0 auto;     /* 这使内容居中 */
-    		display: flex;
-    		justify-content: space-between;  /* 分隔标题和导航栏 */
-    		align-items: center;  
-		}
+    /* Section divider inside card */
+    .inner-divider {
+      border: none;
+      border-top: 1px solid var(--clr-border);
+      margin: 20px 0;
+    }
 
-		
-		section {
-			margin-top: 30px;
-		}
-		
+    /* Sub-section heading (inside section-body) */
+    .sub-heading {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: var(--clr-navy);
+      font-weight: 400;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-heading::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 14px;
+      background: var(--clr-accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
 
-		h1 {
-			font-size: 16px;
-			color: white;
-			margin-top: 0;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-			margin: 0; /* 去掉默认的外边距 */
-		}
+    /* Schedule list (bullet style) */
+    .schedule-list {
+      list-style: none;
+      margin: 10px 0 0 0;
+      padding: 0;
+    }
+    .schedule-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+      font-size: 13.5px;
+      color: var(--clr-text);
+    }
+    .schedule-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+    }
+    .schedule-list li strong {
+      color: var(--clr-navy);
+      margin-right: 6px;
+    }
 
+    /* Journal/Conference link chips */
+    .link-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--clr-border);
+      color: var(--clr-accent);
+      background: var(--clr-surface);
+      transition: background .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .chip:hover { background: var(--clr-accent-lt); border-color: #93c5fd; text-decoration: none; }
 
-		}
-		
-		h2 {
-			font-size: 16px;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-		}
-		
-		p, ol li {
-			font-size: 16px;
-			line-height: 1.5;
-		}
+    /* Requirements table */
+    .req-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      border: 1px solid var(--clr-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+    .req-grid .rg-label {
+      background: #f8fafc;
+      border-bottom: 1px solid var(--clr-border);
+      border-right: 1px solid var(--clr-border);
+      padding: 10px 14px;
+      font-weight: 600;
+      color: var(--clr-navy);
+    }
+    .req-grid .rg-val {
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+      padding: 10px 14px;
+      color: var(--clr-text);
+    }
+    .req-grid .rg-label:last-of-type,
+    .req-grid .rg-val:last-of-type {
+      border-bottom: none;
+    }
 
-		/* 去掉新闻列表前的点 */
-		ul {
-    		list-style-type: none;
-    		padding-left: 0; /* 这将确保列表不会有额外的左侧缩进 */
-		}
+    /* Apply box */
+    .apply-box {
+      background: var(--clr-navy);
+      color: #fff;
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-top: 0;
+    }
+    .apply-box .apply-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .apply-box p { font-size: 13.5px; opacity: .9; line-height: 1.7; }
+    .apply-box a { color: #93c5fd; }
+    .apply-box a:hover { color: #fff; }
 
-		#news-list {
-   		 height: 200px; /* 或者您需要的高度 */
-  		  overflow-y: auto;
-		}
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12.5px;
+      color: var(--clr-muted);
+      border-top: 1px solid var(--clr-border);
+      margin-top: 8px;
+    }
 
-		.module h2 {
-    			font-size: 16px;  // 调整为所需的大小
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-			color: darkblue;
-		}
-
-
-
-
-
-
-
-#news-list {
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-#news-list ul li {
-  position: relative;
-  padding-left: 130px; /* 留出足够的空间给日期 */
-  margin-bottom: 10px;
-		    font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-.news-date {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 120px; /* 如果日期太长，可以适当调整 */
-  white-space: nowrap; /* 确保日期不会折行 */
-		    font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-
-
-.module {
-    background-color: white;    /* 白色背景 */
-    margin: 20px 0;             /* 上下外边距，增加空隙 */
-    padding: 20px;              /* 内边距，使内容不会紧贴边界 */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* 添加轻微的阴影效果 */
-}
-
-
-
-
-
-
-	</style>
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 768px) {
+      .page-wrapper { grid-template-columns: 1fr; }
+      .hamburger { display: flex; }
+      nav { display: none; }
+      .site-title span { display: none; }
+      .req-grid { grid-template-columns: 1fr; }
+      .req-grid .rg-label { border-right: none; }
+    }
+  </style>
 </head>
 <body>
-	<div id="top"></div>
-<header>
-	<div class="header-container">
-    		<div class="title-container">
-        	<h1>電気通信大学 AWCC 李研究室</h1>
-        	<h1>Li Laboratory, AWCC, <br>The University of Electro-Communications (UEC)</h1>
-    	</div>
-    	<nav>
-        	<a href="index.html">HOME</a>
-        	<a href="people.html">PEOPLE</a>
-        	<a href="research.html">RESEARCH</a>
-        	<a href="publication.html">PUBLICATION</a>
-        	<a href="openings.html">OPENINGS</a>
-        	<a href="contact.html">CONTACT</a>
-    	</nav>
-	</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title">
+      Li Lab. / AWCC / UEC
+      <span>The University of Electro-Communications, Tokyo</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="research.html">Research</a>
+      <a href="publication.html">Publications</a>
+      <a href="openings.html" class="active">Openings</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="people.html">People</a>
+    <a href="research.html">Research</a>
+    <a href="publication.html">Publications</a>
+    <a href="openings.html">Openings</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </header>
-	
-	<div class="container">
-		<section id="home">
-			<div class="module">
-			<h2>応募者へのメッセージ (Message for Applicants)</h2>
-			<p>We welcome applications from outstanding and highly motivated candidates for postdoctoral research positions, as well as Master and PhD degree programs. 
-			<br>We are also pleased to support exceptional candidates in applying for external fellowships.</p>
-			</div>
 
-			<div class="module">
-			<h2> 研究室配属 (Graduate Students)</h2>
-			<p>当研究室は2023年4月に新たに設立され、卒研生、博士前期課程と博士後期課程の学生を随時募集中です。
-			   私たちの研究室は、研究課題の選択や研究室の生活スタイルに大きな自由度があります。
-			   指導教員が外国出身であり、長年海外の大学や研究機関と密接に連携している経緯から、当研究室の雰囲気は時間効率、チームワークとライフワークバランスを重視しています。
-			   卒業研究の配属については、教員との面談において示される研究テーマへの興味、熱意、そして将来のビジョンとの相性を基に決定します。
-			   移動通信、アンテナ・電波伝搬、生体電磁工学、ヘルスケア・医療無線機器、マルチフィジックスアルゴリズムの開発等の研究テーマに興味がある方は、
-			   どうぞお気軽にご連絡ください (li.kun[at mark]awcc.uec.ac.jp)。</p>
-			
-			<p><b>卒業研究のおおよそのスケジュールは以下の通りです</b>
-			<br>週1回ゼミ（研究の進捗状況報告）、日本語教科書輪読
-			<br>3月：研究室集合、新B4・M1勉強会（AWCCイベント）
-			<br>4〜6月：基礎ゼミ（AWCCイベント）
-			<br>7〜8月：院試準備、就活期間、合宿（AWCCイベント）
-			<br>9月下旬：中間発表（EIプログラムで）
-			<br>9〜1月：卒業論文作成、発表練習
-			<br>2月上旬：卒論発表（EIプログラムで）
-			<br>3月中旬：学会発表（IEICE全国大会、大学院進学者必須） 
-			</p>
-			
-			<p><b>博士前期課程のおおよそのスケジュールは以下の通りです</b>
-			<br>週1回ゼミ（研究の進捗状況報告）、英語教科書輪読
-			<br>国内学会発表：<a href="https://www.ieice.org/jpn_r/activities/taikai.html"target="_blank">IEICEソサイエティ大会・全国大会</a>、
-					<a href="https://www.ieice.org/cs_r/jpn/events/technical_committees/list.html"target="_blank">IEICE研究会</a>
-					（<a href="https://www.ieice.org/cs/rcs/jpn/"target="_blank">RCS研</a>、
-					  <a href="https://www.ieice.org/cs/ap/"target="_blank">AP研</a>、
-				          <a href="https://www.ieice.org/cs/emcj/jpn/index.html"target="_blank">EMCJ研</a>、
-				          <a href="https://www.ieice.org/cs/mict/index.php"target="_blank">MICT研</a>など）
-				          
-			<br>国際学会発表：
-				無線通信（<a href="https://pimrc2024.ieee-pimrc.org/"target="_blank">PIMRC</a>, 
-					<a href="https://events.vtsociety.org/vtc2023-spring/"target="_blank">VTC</a>）
-				アンテナ・伝搬関係（<a href="https://ieeeaps.org/"target="_blank">AP-S</a>, 
-				                           <a href="https://www.eucap.org/"target="_blank">EuCAP</a>,
-							   <a href="https://www.ieice.org/cs/isap/"target="_blank">ISAP</a>）、
-				生体電磁工学関係（<a href="https://bioem.org/"target="_blank">BioEM</a>, 
-						<a href="https://www.ursi.org/events.php"target="_blank">URSI</a>）、
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<div class="hero">
+  <h1>Openings</h1>
+  <p>Smart Body-Centric Wireless Communications Laboratory &nbsp;|&nbsp;
+     AWCC, The University of Electro-Communications, Tokyo, Japan</p>
+</div>
 
-			<br>学術論文投稿：
-				無線通信（<a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7693" target="_blank">IEEE Trans. on Wireless Communications</a>, 
-					<a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962382" target="_blank">IEEE Wireless Communications Letters</a>, 
-				        <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=25" target="_blank">IEEE Transactions on Vehicular Technology</a>, 
-				        <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6488907" target="_blank">IEEE Internet of Things Journal</a>）、
-				アンテナ・伝搬関係（<a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8"target="_blank">IEEE Trans. on Antenna and Propagation</a>, 
-				<a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7727"target="_blank">IEEE Antennas and Wireless Propagation Letters</a>）、
-				生体電磁工学関係（<a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=15" target="_blank">IEEE Trans. on Electromagnetic Compatibility</a>, 
-				<a href="https://iopscience.iop.org/journal/0031-9155" target="_blank">Physics in Medicine & Biology</a>,
-				<a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7397573" target="_blank">IEEE Journal of Electromagnetics, RF and Microwaves in Medicine and Biology</a>）
+<!-- ============================================================
+     PAGE BODY
+     ============================================================ -->
+<div class="page-wrapper">
 
-				
+  <!-- ---- SIDEBAR ---- -->
+  <aside class="sidebar">
 
-			</p>			
+    <!-- Lab photo placeholder -->
+    <div class="card">
+      <div class="lab-photo-placeholder">Lab Photo</div>
+      <div class="card-body" style="padding:12px 16px; font-size:13px; color:var(--clr-muted); text-align:center; line-height:1.5;">
+        Li Laboratory<br>AWCC, UEC, Tokyo
+      </div>
+    </div>
 
-			</div>	
+    <!-- Open positions -->
+    <div class="card">
+      <div class="card-head">Open Positions</div>
+      <div class="card-body">
+        <div class="position-list">
+          <div class="position-badge">
+            <span class="dot dot-green"></span>
+            Postdoctoral Researcher
+          </div>
+          <div class="position-badge">
+            <span class="dot dot-blue"></span>
+            <span class="ja">PhD Students (D)</span>
+          </div>
+          <div class="position-badge">
+            <span class="dot dot-blue"></span>
+            <span class="ja">Master Students (M)</span>
+          </div>
+          <div class="position-badge">
+            <span class="dot dot-purple"></span>
+            <span class="ja">Undergraduate (B4)</span>
+          </div>
+        </div>
+        <p style="font-size:12.5px; color:var(--clr-muted); margin-top:12px; line-height:1.6;">
+          Applications accepted on a rolling basis. External fellowship support available for exceptional candidates.
+        </p>
+      </div>
+    </div>
 
-			<div class="module">
-			<h2>修士と博士 (Master and PhD Students)</h2>
-			<p>博士前期課程および博士後期課程の学生を随時募集しています。他大学からの進学希望者、編入希望者、また留学生の方々は、以下に示す大学院入試スケジュールをご参考ください。
-			<br>(We are currently accepting applications for master's and PhD program students. Prospective students are encouraged to refer to the entrance examination schedule below)
-			<br><li> <a href="https://www.uec.ac.jp/education/graduate/admission/schedule.html" target="_blank"><b>情報理工学研究科入試スケジュール（Entrance Examination Schedule）</b></a></li></p>
-				
-			<p>博士後期課程の留学生の皆様には、文部科学省（MEXT）などの国費奨学金の申請をご検討ください。
-			<br>(To PhD program international students, please consider applying for Japanese government scholarships (MEXT))
-			<br><li> <a href="https://www.fedu.uec.ac.jp/en/future_students/scholarship/japanese-government-mext-scholarship-students-1.html" target="_blank"><b>MXET（Japanese Government Scholarship）</b></a></li></p>
-			</div>
-			
-			<div class="module">
-			<h2>ポスドク研究員 (Post-Doctoral Position)</h2>
-			<p><b>Project Title</b>: Thermophysiological Responses to Radio Waves Toward Beyond 5G,
-			<br>National Commissioned Project (Ministry of Internal Affairs and Communications), 
-			<br>Project Fiscal Year: accepting applications at any time.
-			<!--
-			<p>Research Fields: electromagnetic field, millimeter waves, dosimetry, antennas, voxel model, thermal analysis
-			<br>Offer Type: Project Researcher position (12-month employment contract including transportation expenses and all statutory welfare expenses based on national university corporation. Employment period can be extended as appropriate according to project and research output)
-			<!--
-				<br>Expected Starting Date: Oct. 1st, 2025.
-				-->
-			<br>Research Objectives:				
-			<br>This candidate will deal with the numerical analysis of a mmWave dosimetry system and associated methodology for near-field exposure assessment. Based on vital signs from the mmWave exposure experiments of laboratory animals, the project aims to develop a representative thermophysiological model accounting for a potential increase of exposure levels due to presence of the human body.</p>
-			
-			<p><b>Candidate</b>:
-			<br>Education: PhD degree or equivalent.
-			<br>Background: Bioelectromagnetics, numerical modeling, antennas and EMC. Strong skills and background in numerical simulation for dosimetry analysis using FDTD or other methods, coding ability of C/C++ language and operation of workstation and GPU server are mandatory. Knowledge in using EM-simulation software such as CST STUDIO, FEKO and Sim4life is welcome.</p>
-			
-			</div>
-				
-			<div class="module">
-			<h2>応募方法 (How to apply)</h2>
-			<p>To apply please send your CV, publication list, motivation letter, and reference letters (optional) to:
-			<br>Email: li.kun[at mark]awcc.uec.ac.jp </p>
-			</div>
-			
-		
-		</section>
+    <!-- Lab info -->
+    <div class="card">
+      <div class="card-head">Lab Information</div>
+      <div class="card-body">
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="ja" style="font-size:13.5px;">Chofu, Tokyo, Japan</span>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <a href="mailto:li.kun[at mark]awcc.uec.ac.jp" style="font-size:13.5px;">li.kun[at mark]awcc.uec.ac.jp</a>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          <span style="font-size:13.5px;">Established: April 2023</span>
+        </div>
+      </div>
+    </div>
 
-	</div>
+    <!-- Quick links -->
+    <div class="card">
+      <div class="card-head">Quick Links</div>
+      <div class="card-body">
+        <div class="quick-links">
+          <a class="quick-link" href="https://www.uec.ac.jp/education/graduate/admission/schedule.html" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+            </svg>
+            <span class="ja">Entrance Exam Schedule</span>
+          </a>
+          <a class="quick-link" href="https://www.fedu.uec.ac.jp/en/future_students/scholarship/japanese-government-mext-scholarship-students-1.html" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            MEXT Scholarship
+          </a>
+          <a class="quick-link" href="people.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+            </svg>
+            Lab Members
+          </a>
+          <a class="quick-link" href="contact.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+            </svg>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
 
-		
-		<div class="flag-counter-container">
-    			<a href="https://info.flagcounter.com/Vknb"><img src="https://s11.flagcounter.com/countxl/Vknb/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-		</div>
-		
-		<footer>
-    			© Since 2023 Li Lab./AWCC/UEC. All Rights Reserved.
-		</footer>	
-		<!--
-		<div style="text-align:center;">
-    		<p style="color: darkblue;"><b>Visitor</b>:</p>
-    		<a href="https://www.hitwebcounter.com" target="_blank">
-        		<img src="https://hitwebcounter.com/counter/counter.php?page=7174927&style=0006&nbdigits=5&type=page&initCount=0" title="Free Counter" alt="web counter" border="0">
-    		</a>
-		</div>
-		-->
+  </aside>
+
+  <!-- ---- MAIN CONTENT ---- -->
+  <main class="main-content">
+
+    <!-- Welcome Message -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2><span class="ja">応募者へのメッセージ</span> &nbsp;/&nbsp; Message for Applicants</h2>
+      </div>
+      <div class="section-body">
+        <div class="welcome-box">
+          We welcome applications from outstanding and highly motivated candidates for postdoctoral research positions, as well as Master and PhD degree programs.
+          We are also pleased to support exceptional candidates in applying for external fellowships.
+        </div>
+      </div>
+    </div>
+
+    <!-- Graduate Students -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2><span class="ja">研究室配属</span> &nbsp;/&nbsp; Graduate Students</h2>
+      </div>
+      <div class="section-body">
+        <p class="ja" style="font-size:13.5px; line-height:1.85; margin-bottom:16px;">
+          当研究室は2023年4月に新たに設立され、卒研生、博士前期課程と博士後期課程の学生を随時募集中です。
+          私たちの研究室は、研究課題の選択や研究室の生活スタイルに大きな自由度があります。
+          指導教員が外国出身であり、長年海外の大学や研究機関と密接に連携している経緯から、当研究室の雰囲気は時間効率、チームワークとライフワークバランスを重視しています。
+          卒業研究の配属については、教員との面談において示される研究テーマへの興味、熱意、そして将来のビジョンとの相性を基に決定します。
+          移動通信、アンテナ・電波伝搬、生体電磁工学、ヘルスケア・医療無線機器、マルチフィジックスアルゴリズムの開発等の研究テーマに興味がある方は、
+          どうぞお気軽にご連絡ください (<a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a>)。
+        </p>
+
+        <hr class="inner-divider" />
+
+        <!-- B4 Schedule -->
+        <div class="sub-heading"><span class="ja">卒業研究のスケジュール (B4)</span></div>
+        <p class="ja" style="font-size:13px; color:var(--clr-muted); margin-bottom:8px;">週1回ゼミ（研究の進捗状況報告）、日本語教科書輪読</p>
+        <ul class="schedule-list ja">
+          <li><strong>3月</strong>研究室集合、新B4・M1勉強会（AWCCイベント）</li>
+          <li><strong>4〜6月</strong>基礎ゼミ（AWCCイベント）</li>
+          <li><strong>7〜8月</strong>院試準備、就活期間、合宿（AWCCイベント）</li>
+          <li><strong>9月下旬</strong>中間発表（EIプログラムで）</li>
+          <li><strong>9〜1月</strong>卒業論文作成、発表練習</li>
+          <li><strong>2月上旬</strong>卒論発表（EIプログラムで）</li>
+          <li><strong>3月中旬</strong>学会発表（IEICE全国大会、大学院進学者必須）</li>
+        </ul>
+
+        <hr class="inner-divider" />
+
+        <!-- M1/M2 Schedule -->
+        <div class="sub-heading"><span class="ja">博士前期課程のスケジュール (M1/M2)</span></div>
+        <p class="ja" style="font-size:13px; color:var(--clr-muted); margin-bottom:8px;">週1回ゼミ（研究の進捗状況報告）、英語教科書輪読</p>
+
+        <p style="font-size:13.5px; font-weight:600; color:var(--clr-navy); margin-bottom:6px;"><span class="ja">国内学会発表</span></p>
+        <div class="link-chips">
+          <a class="chip" href="https://www.ieice.org/jpn_r/activities/taikai.html" target="_blank">IEICE ソサイエティ大会・全国大会</a>
+          <a class="chip" href="https://www.ieice.org/cs/rcs/jpn/" target="_blank">RCS 研</a>
+          <a class="chip" href="https://www.ieice.org/cs/ap/" target="_blank">AP 研</a>
+          <a class="chip" href="https://www.ieice.org/cs/emcj/jpn/index.html" target="_blank">EMCJ 研</a>
+          <a class="chip" href="https://www.ieice.org/cs/mict/index.php" target="_blank">MICT 研</a>
+        </div>
+
+        <p style="font-size:13.5px; font-weight:600; color:var(--clr-navy); margin-top:14px; margin-bottom:6px;">International Conferences</p>
+        <div class="link-chips">
+          <a class="chip" href="https://pimrc2024.ieee-pimrc.org/" target="_blank">PIMRC</a>
+          <a class="chip" href="https://events.vtsociety.org/vtc2023-spring/" target="_blank">VTC</a>
+          <a class="chip" href="https://ieeeaps.org/" target="_blank">AP-S</a>
+          <a class="chip" href="https://www.eucap.org/" target="_blank">EuCAP</a>
+          <a class="chip" href="https://www.ieice.org/cs/isap/" target="_blank">ISAP</a>
+          <a class="chip" href="https://bioem.org/" target="_blank">BioEM</a>
+          <a class="chip" href="https://www.ursi.org/events.php" target="_blank">URSI</a>
+        </div>
+
+        <p style="font-size:13.5px; font-weight:600; color:var(--clr-navy); margin-top:14px; margin-bottom:6px;">Journal Publications</p>
+        <div class="link-chips">
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7693" target="_blank">IEEE Trans. Wireless Commun.</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962382" target="_blank">IEEE Wireless Commun. Letters</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=25" target="_blank">IEEE Trans. Vehicular Tech.</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6488907" target="_blank">IEEE IoT Journal</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8" target="_blank">IEEE Trans. Antennas Propag.</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7727" target="_blank">IEEE AWPL</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=15" target="_blank">IEEE Trans. EMC</a>
+          <a class="chip" href="https://iopscience.iop.org/journal/0031-9155" target="_blank">Physics in Medicine &amp; Biology</a>
+          <a class="chip" href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7397573" target="_blank">IEEE J-ERM</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Master and PhD -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2><span class="ja">修士と博士</span> &nbsp;/&nbsp; Master and PhD Students</h2>
+      </div>
+      <div class="section-body">
+        <p class="ja" style="font-size:13.5px; line-height:1.85; margin-bottom:12px;">
+          博士前期課程および博士後期課程の学生を随時募集しています。他大学からの進学希望者、編入希望者、また留学生の方々は、以下に示す大学院入試スケジュールをご参考ください。
+        </p>
+        <p style="font-size:13.5px; line-height:1.75; margin-bottom:16px; color:var(--clr-muted);">
+          We are currently accepting applications for master's and PhD program students. Prospective students are encouraged to refer to the entrance examination schedule below.
+        </p>
+        <div class="link-chips" style="margin-bottom: 20px;">
+          <a class="chip" href="https://www.uec.ac.jp/education/graduate/admission/schedule.html" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+            </svg>
+            <span class="ja">情報理工学研究科 入試スケジュール</span>
+          </a>
+        </div>
+
+        <hr class="inner-divider" />
+
+        <p class="ja" style="font-size:13.5px; line-height:1.85; margin-bottom:12px;">
+          博士後期課程の留学生の皆様には、文部科学省（MEXT）などの国費奨学金の申請をご検討ください。
+        </p>
+        <p style="font-size:13.5px; color:var(--clr-muted); line-height:1.75; margin-bottom:16px;">
+          To PhD program international students, please consider applying for Japanese government scholarships (MEXT).
+        </p>
+        <div class="link-chips">
+          <a class="chip" href="https://www.fedu.uec.ac.jp/en/future_students/scholarship/japanese-government-mext-scholarship-students-1.html" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            MEXT Japanese Government Scholarship
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Postdoc -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2><span class="ja">ポスドク研究員</span> &nbsp;/&nbsp; Post-Doctoral Position</h2>
+      </div>
+      <div class="section-body">
+        <div class="sub-heading">Project Details</div>
+        <div class="req-grid">
+          <div class="rg-label">Project Title</div>
+          <div class="rg-val">Thermophysiological Responses to Radio Waves Toward Beyond 5G</div>
+          <div class="rg-label">Funding</div>
+          <div class="rg-val">National Commissioned Project (Ministry of Internal Affairs and Communications)</div>
+          <div class="rg-label">Duration</div>
+          <div class="rg-val">Accepting applications at any time; 12-month employment contract (extendable)</div>
+          <div class="rg-label">Research Focus</div>
+          <div class="rg-val">
+            Numerical analysis of a mmWave dosimetry system and associated methodology for near-field exposure assessment.
+            Based on vital signs from mmWave exposure experiments of laboratory animals, the project aims to develop a representative
+            thermophysiological model accounting for a potential increase of exposure levels due to presence of the human body.
+          </div>
+        </div>
+
+        <hr class="inner-divider" />
+
+        <div class="sub-heading">Candidate Requirements</div>
+        <div class="req-grid">
+          <div class="rg-label">Education</div>
+          <div class="rg-val">PhD degree or equivalent</div>
+          <div class="rg-label">Background</div>
+          <div class="rg-val">Bioelectromagnetics, numerical modeling, antennas and EMC</div>
+          <div class="rg-label">Required Skills</div>
+          <div class="rg-val">
+            Strong background in numerical simulation for dosimetry analysis using FDTD or other methods;
+            coding ability in C/C++; operation of workstation and GPU server
+          </div>
+          <div class="rg-label">Preferred</div>
+          <div class="rg-val">Experience with EM-simulation software such as CST STUDIO, FEKO, and Sim4life</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Apply -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2><span class="ja">応募方法</span> &nbsp;/&nbsp; How to Apply</h2>
+      </div>
+      <div class="section-body">
+        <div class="apply-box">
+          <div class="apply-title">Send your application to:</div>
+          <p>
+            Please send your <strong style="color:#93c5fd;">CV</strong>,
+            <strong style="color:#93c5fd;">publication list</strong>,
+            <strong style="color:#93c5fd;">motivation letter</strong>, and
+            <strong style="color:#93c5fd;">reference letters</strong> (optional) to:<br><br>
+            <strong>Email:</strong>
+            <a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a><br><br>
+            <span style="opacity:.75; font-size:13px;">
+              We welcome applications from all backgrounds. International applicants and students from other universities are strongly encouraged to apply.
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-nav');
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>
