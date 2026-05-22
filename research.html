@@ -1,316 +1,788 @@
 <!DOCTYPE html>
-<html>
-
-
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="UTF-8">
-	<title>電気通信大学・AWCC 李研究室</title>
-	<style>
-body {
-    background-color: #000033;  /* 浅灰色背景 */
-    font-family:'Georgia',Verdana, Geneva, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research | Li Laboratory | AWCC | UEC</title>
 
-header {
-    background-image: url('leadspace7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 30px 0;
-    text-align: center;
-    display: flex; /* 使用flex布局 */
-    justify-content: space-between; /* 分隔标题和导航 */
-    align-items: center; /* 垂直居中 */
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-footer {
-    background-image: url('leadspace7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 30px 0;
-    text-align: center;
-    height: 20px;           /* 调整为您希望的高度 */
-    color: white;           /* 文本颜色，根据背景调整 */
-    display: flex;
-    align-items: center;    /* 使文本垂直居中 */
-    justify-content: center;/* 使文本水平居中 */
-    font-size: 12px;        /* 调整为适合的字体大小 */
-}
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --clr-bg:        #f5f7fa;
+      --clr-surface:   #ffffff;
+      --clr-border:    #e2e8f0;
+      --clr-accent:    #2563eb;
+      --clr-accent-lt: #dbeafe;
+      --clr-navy:      #1e3a5f;
+      --clr-text:      #1a202c;
+      --clr-muted:     #64748b;
+      --radius:        8px;
+      --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
+      --font-sans:     'DM Sans', sans-serif;
+      --font-serif:    'DM Serif Display', serif;
+      --font-jp:       'Noto Sans JP', sans-serif;
+      --sidebar-w:     260px;
+    }
 
-.title-container {
-    display: block;
-    text-align: left;
-    padding-left: 20px;  /* 添加左边距 */
-}
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .ja { font-family: var(--font-jp); }
+    a { color: var(--clr-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    b, strong { font-weight: 600; }
 
-header h1 {
-    margin: 5px 0;
-    color: white;
-}
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      background: var(--clr-navy);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .site-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      letter-spacing: .3px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .site-title span {
+      color: #93c5fd;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 13px;
+      margin-left: 10px;
+      opacity: .9;
+    }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 5px;
+      transition: background .18s, color .18s;
+      letter-spacing: .3px;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(255,255,255,.13);
+      color: #fff;
+      text-decoration: none;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: .3s;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--clr-navy);
+      padding: 12px 24px 16px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .mobile-nav a {
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .mobile-nav.open { display: flex; }
 
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
+      color: #fff;
+      padding: 52px 24px 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 4vw, 34px);
+      margin-bottom: 10px;
+      letter-spacing: .3px;
+    }
+    .hero p {
+      font-size: 14.5px;
+      opacity: .88;
+      max-width: 680px;
+      margin: 0 auto;
+    }
 
-nav {
-    padding: 0px 5px;
-    font-weight: bold;
-    font-size: 80px;
-}
+    /* ============================================================
+       PAGE WRAPPER
+       ============================================================ */
+    .page-wrapper {
+      max-width: 1160px;
+      margin: 32px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: 28px;
+      align-items: start;
+    }
 
-nav a {
-    text-decoration: none;
-    font-size: 14px;
-    padding: 0 5px;      /* 调整后的padding值 */
-    margin: 0 2px;       /* 调整后的margin值 */
-    color: white;
-}
+    /* ============================================================
+       SIDEBAR
+       ============================================================ */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
 
+    .card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .card-head {
+      background: var(--clr-navy);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+    }
+    .card-body { padding: 16px; }
 
+    .research-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
 
-nav a:hover {
-    background-color: #003366;
-}
+    .info-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      color: var(--clr-text);
+    }
+    .info-item:last-child { margin-bottom: 0; }
+    .info-icon {
+      width: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--clr-accent);
+    }
 
+    /* Topic badges in sidebar */
+    .topic-list { display: flex; flex-direction: column; gap: 8px; }
+    .topic-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--clr-border);
+      font-size: 13px;
+      color: var(--clr-text);
+      background: var(--clr-bg);
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+      text-decoration: none;
+    }
+    .topic-badge:hover { background: var(--clr-accent-lt); border-color: #93c5fd; text-decoration: none; }
+    .topic-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-blue   { background: var(--clr-accent); }
+    .dot-green  { background: #16a34a; }
+    .dot-purple { background: #7c3aed; }
 
+    .quick-links { display: flex; flex-direction: column; gap: 6px; }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--clr-accent);
+      padding: 6px 10px;
+      border-radius: 5px;
+      transition: background .15s;
+    }
+    .quick-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
+    .quick-link svg { flex-shrink: 0; }
 
+    /* Joint group list */
+    .joint-list { display: flex; flex-direction: column; gap: 6px; }
+    .joint-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--clr-text);
+      line-height: 1.55;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .joint-item:last-child { border-bottom: none; }
+    .joint-item .jdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .joint-item a { color: var(--clr-accent); font-size: 12.5px; }
 
-		
-		.container {
-			
-    			margin-top: 60px;
-    			padding: 10px;
-			max-width: 50%; /* Half the screen width */
-			margin-left: auto;
-			margin: 0 auto;     /* This centers the content. */
-		    	background-color: #000033;  /* 白色背景 */
-    			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加一个轻微的阴影 */
-   		 	border-radius: 4px;  /* 轻微的边界半径 */
+    /* ============================================================
+       MAIN CONTENT
+       ============================================================ */
+    .main-content { display: flex; flex-direction: column; gap: 24px; }
 
-			display: flex;
-   			justify-content: space-between;  /* 分隔标题和导航栏 */
-    			align-items: center;  
-    			max-width: 1000px;  /* 或您正文页面的宽度 */
-    			width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
-    			padding: 0 30px;  /* 给两边加上一点内边距，以便有些空间 */
-		}
+    .section-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .section-head {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      color: var(--clr-navy);
+      font-weight: 400;
+    }
+    .section-head .accent-bar {
+      width: 3px;
+      height: 18px;
+      background: var(--clr-accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-body { padding: 20px 24px; font-size: 13.5px; line-height: 1.75; }
 
-		.header-container {
-    		max-width: 1100px;  /* 或您正文页面的宽度 */
-    		width: 100%; /* 使容器尽可能地撑满，但不超过max-width */
-    		padding: 0 20px;  /* 给两边加上一点内边距，以便有些空间 */
-    		margin: 0 auto;     /* 这使内容居中 */
-    		display: flex;
-    		justify-content: space-between;  /* 分隔标题和导航栏 */
-    		align-items: center;  
-		}
+    /* Overview box */
+    .overview-box {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--clr-accent);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: var(--clr-text);
+    }
 
-		
-		section {
-			margin-top: 30px;
-		}
-		
+    /* Section divider inside card */
+    .inner-divider {
+      border: none;
+      border-top: 1px solid var(--clr-border);
+      margin: 22px 0;
+    }
 
-		h1 {
-			font-size: 16px;
-			color: white;
-			margin-top: 0;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-			margin: 0; /* 去掉默认的外边距 */
-		}
+    /* Sub-section heading */
+    .sub-heading {
+      font-family: var(--font-serif);
+      font-size: 15.5px;
+      color: var(--clr-navy);
+      font-weight: 400;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-heading::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 14px;
+      background: var(--clr-accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .sub-heading.green::before  { background: #16a34a; }
+    .sub-heading.purple::before { background: #7c3aed; }
 
+    /* Research topic block */
+    .topic-block {
+      border: 1px solid var(--clr-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .topic-block-head {
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .topic-block-head.blue   { background: var(--clr-accent); }
+    .topic-block-head.green  { background: #16a34a; }
+    .topic-block-head.purple { background: #7c3aed; }
 
-		}
-		
-		h2 {
-			font-size: 16px;
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-		}
-		
-		p, ol li {
-			font-size: 16px;
-			line-height: 1.5;
-		}
+    .topic-block-body {
+      padding: 16px 18px;
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: var(--clr-text);
+    }
+    .topic-block-body p { margin-bottom: 10px; }
+    .topic-block-body p:last-child { margin-bottom: 0; }
 
-		/* 去掉新闻列表前的点 */
-		ul {
-    		list-style-type: none;
-    		padding-left: 0; /* 这将确保列表不会有额外的左侧缩进 */
-		}
+    /* Research image */
+    .topic-img-wrap {
+      margin: 14px 0 6px;
+      text-align: center;
+    }
+    .topic-img-wrap img {
+      max-width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--clr-border);
+    }
+    .topic-img-wrap .img-placeholder {
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      border: 1px dashed var(--clr-border);
+      border-radius: 4px;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--clr-muted);
+      font-size: 13px;
+    }
 
-		#news-list {
-   		 height: 200px; /* 或者您需要的高度 */
-  		  overflow-y: auto;
-		}
+    /* Collab tag */
+    .collab-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--clr-border);
+      background: #f8fafc;
+      color: var(--clr-muted);
+      margin-top: 10px;
+    }
+    .collab-tag strong { color: var(--clr-navy); }
 
-		.module h2 {
-    			font-size: 16px;  // 调整为所需的大小
-			line-height: 1.5;  /* 这表示行间距是字体大小的1.5倍。 */
-			color: darkblue;
-		}
+    /* Chip */
+    .link-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--clr-border);
+      color: var(--clr-accent);
+      background: var(--clr-surface);
+      transition: background .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .chip:hover { background: var(--clr-accent-lt); border-color: #93c5fd; text-decoration: none; }
 
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12.5px;
+      color: var(--clr-muted);
+      border-top: 1px solid var(--clr-border);
+      margin-top: 8px;
+    }
 
-
-
-
-
-
-#news-list {
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-#news-list ul li {
-  position: relative;
-  padding-left: 130px; /* 留出足够的空间给日期 */
-  margin-bottom: 10px;
-		    font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-.news-date {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 120px; /* 如果日期太长，可以适当调整 */
-  white-space: nowrap; /* 确保日期不会折行 */
-		    font-size: 14px;
-  font-family:'Georgia',Verdana, Geneva, sans-serif;
-}
-
-
-
-.module {
-    background-color: white;    /* 白色背景 */
-    margin: 20px 0;             /* 上下外边距，增加空隙 */
-    padding: 20px;              /* 内边距，使内容不会紧贴边界 */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* 添加轻微的阴影效果 */
-}
-
-
-
-
-
-
-	</style>
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 768px) {
+      .page-wrapper { grid-template-columns: 1fr; }
+      .hamburger { display: flex; }
+      nav { display: none; }
+      .site-title span { display: none; }
+    }
+  </style>
 </head>
 <body>
-	<div id="top"></div>
-<header>
-	<div class="header-container">
-    		<div class="title-container">
-        	<h1>電気通信大学 AWCC 李研究室</h1>
-        	<h1>Li Laboratory, AWCC, <br>The University of Electro-Communications (UEC)</h1>
-    	</div>
-    	<nav>
-        	<a href="index.html">HOME</a>
-        	<a href="people.html">PEOPLE</a>
-        	<a href="research.html">RESEARCH</a>
-        	<a href="publication.html">PUBLICATION</a>
-        	<a href="openings.html">OPENINGS</a>
-        	<a href="contact.html">CONTACT</a>
-    	</nav>
-	</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title">
+      Li Lab. / AWCC / UEC
+      <span>The University of Electro-Communications, Tokyo</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="publication.html">Publications</a>
+      <a href="openings.html">Openings</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="people.html">People</a>
+    <a href="research.html">Research</a>
+    <a href="publication.html">Publications</a>
+    <a href="openings.html">Openings</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </header>
-	<div class="container">
-		<section id="home">
-			<div class="module">
-			<h2>研究課題 (Research Topics)</h2>
-				
-			<p>次世代の無線IoT社会では、ビッグデータ分析技術などにより様々な社会サービスを提供するため、超高速・高信頼性・大容量の無線通信の実現が必要になっています。
-				携帯電話等の普及と共に、6GHz以下の周波数帯は過密状態にあるため、広帯域である準ミリ・ミリ波、テラヘルツ波帯の新たな電波利用が重要な課題となっています。
-				一方、電磁波の人体ばく露量評価と無線機器の放射規格に対する適合性評価などの課題があります。
-				本研究室では、次世代の無線通信を支える基盤技術を検討し、「<b>超高速・高信頼性通信</b>」と「<b>安全・安全な電波利用</b>」が両立することを目指しています。</p>
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="research.png" style="width: 80%;">		
-			</div>
-				<br>
-				<br>
 
-				
-			<p><b>MIMO-OTAとフェージングエミュレータに関する研究</b>
-			<br>携帯電話などの次世代無線端末に搭載されるMIMO（Multiple-Input Multiple-Output）アレーアンテナシステムの評価技術（Over-the-Air Testing）について研究開発を行っている。
-				システム化された端末アンテナの評価は、アンテナ単体の放射パターンやインピーダンス特性とは異なり、アンテナと伝搬特性から伝送特性（チャネル応答）を取得し、固有値や伝送容量が評価される点が特徴である。
-				MIMO-OTA測定の手法は大きく分けて、電波反射箱法と、端末周囲に仮想散乱体を配置してフェージング波を生成するフェージングエミュレータ法がある。
-				本研究室では富山大学と共同でフェージングエミュレータの研究開発を継続的に行い、ウェアラブルデバイスや車載アンテナの開発に資するOTA測定技術を提案している。
-			<br>共同研究機関：富山大 </p>	
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="ota.png" style="width: 75%;">		
-			</div>
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<div class="hero">
+  <h1>Research</h1>
+  <p>Smart Body-Centric Wireless Communications Laboratory &nbsp;|&nbsp;
+     AWCC, The University of Electro-Communications, Tokyo, Japan</p>
+</div>
 
-				<br>
-				<br>
-				
-			<p><b>電波ばく露安全性に関する研究（総務省委託研究）</b>
-			<br>携帯電話等の普及とともに，ミリ波（MMW: Millimeter Wave）帯電波の導入が予定されている。
-			一方、人体近傍に使用されているミリ波無線デバイスの拡大利用に従って，一般環境でのミリ波電磁界（EMF: Electromagnetic Field）による健康影響に対する懸念が高まっており、ミリ波帯電波ばく露による人体安全性について詳細な検討が求められている。
-			本研究では、皮膚組織を対象としてミリ波帯電波ばく露の及ぼす生体影響について調査し、ミリ波帯の電波ばく露の安全性に関する国際ガイドラインのエビデンスとなり得る知見を取得することを目的とする。
-			<br>共同研究機関：北大（代表）、電通大、愛知学院大、久留米大（分担）</p>	
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="mic.png" style="width: 75%;">		
-			</div>
+<!-- ============================================================
+     PAGE BODY
+     ============================================================ -->
+<div class="page-wrapper">
 
-				<br>
-				<br>
-				
-			<p><b>トンネル発破の⾃動化・無⼈化に関する研究（SIP委託研究）：</b>
-			<br>無線電子雷管システムの無線環境把握・解析・信頼性向上・通信方式の研究開発では、トンネル発破の省人化・無人化に向けたキーテクノロジとなる無線電子雷管の開発において、無線を利用することによる課題である信頼性向上を目指して、無線の電波伝搬状況や無線環境の把握技術の確立を行い、システム全体の信頼性に寄与する技術開発を行う。
-			<br>共同研究機関：電通大藤井研、李研（代表）、日油、施工総研、前田建設、大成建設、熊谷組（分担）</p>
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="sip.png" style="width: 75%;">		
-			</div>
-				
-				<br>
-				<br>
-				
-			</div>
-			
-			<!--
-			<div style="display: flex; flex-direction: column;align-items: center;">
-				<img src="Research2.png" style="width: 650px;">
-			</div>
-			-->
+  <!-- ---- SIDEBAR ---- -->
+  <aside class="sidebar">
 
-			<div class="module">
-			<h2>共同研究機関 (Joint Research Groups)</h2>
-			<ul style="line-height: 2.0;">
-				<li> <a href="http://www.awcc.uec.ac.jp/" target="_blank"><b>電気通信大学　先端ワイヤレス・コミュニケーション研究センター</b> (AWCC, UEC, Japan)</a></li>
-				<li> <a href="http://www3.u-toyama.ac.jp/comsys/Lab/index.html" target="_blank"><b>富山大学　本田研究室</b> (Communication System Lab, University of Toyama, Japan)</a></li>
-				<li> <a href="https://emc.nict.go.jp/general/general.html" target="_blank"><b>国立研究開発法人情報通信研究機構　電磁波研究所電磁環境研究室</b> (EMC Lab, NICT, Japan)</a></li>
-				<li> <a href="https://cem.web.nitech.ac.jp/hilab/" target="_blank"><b>名古屋工業大学　平田研究室</b> (Hirata Lab, NiTech, Japan)</a></li>
-				<li> <a href="https://wtemc.ist.hokudai.ac.jp/index.html" target="_blank"><b>北海道大学　日景研究室</b> (Wireless Technology and EMC Research Lab, Hokkaido University, Japan)</a></li>
-				<li> <a href="https://www.ietr.fr/en/ewaves-electromagnetic-waves-complex-media-team" target="_blank"><b>フランス・レンヌ大学　生体電磁研究室</b> (Bioelectromagnetics Lab, University of Rennes, France)</a></li>
-				<li> <a href="https://www.es.aau.dk/research/antennas" target="_blank"><b>デンマーク・オールボー大学　アンテナ研究室</b> (Antenna Lab, Aalborg University, Denmark)</a></li>
-			    <li> <a href="https://chairec2m.wp.imt.fr/en/accueil-english/" target="_blank"><b>フランス・テレコムパリ　EMF研究室</b> (EMF Lab, Télécom Paris, France)</a></li>
-			
-			</ul>
-			</div>
-			
-		</section>
+    <!-- Research image -->
+    <div class="card">
+      <img src="research.png" class="research-img" alt="Research Overview" />
+      <div class="card-body" style="padding:12px 16px; font-size:13px; color:var(--clr-muted); text-align:center; line-height:1.5;">
+        Li Laboratory<br>AWCC, UEC, Tokyo
+      </div>
+    </div>
 
-	</div>
+    <!-- Research topics -->
+    <div class="card">
+      <div class="card-head">Research Topics</div>
+      <div class="card-body">
+        <div class="topic-list">
+          <a class="topic-badge" href="#ota">
+            <span class="dot dot-blue"></span>
+            MIMO-OTA Testing
+          </a>
+          <a class="topic-badge" href="#emf">
+            <span class="dot dot-green"></span>
+            <span class="ja">電波ばく露安全性</span>
+          </a>
+          <a class="topic-badge" href="#sip">
+            <span class="dot dot-purple"></span>
+            <span class="ja">トンネル無線通信</span>
+          </a>
+        </div>
+        <p style="font-size:12.5px; color:var(--clr-muted); margin-top:12px; line-height:1.6;">
+          Toward the realization of ultra-high-speed, reliable, and safe next-generation wireless IoT.
+        </p>
+      </div>
+    </div>
 
+    <!-- Lab info -->
+    <div class="card">
+      <div class="card-head">Lab Information</div>
+      <div class="card-body">
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="ja" style="font-size:13.5px;">Chofu, Tokyo, Japan</span>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <a href="mailto:li.kun[at mark]awcc.uec.ac.jp" style="font-size:13.5px;">li.kun[at mark]awcc.uec.ac.jp</a>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          <span style="font-size:13.5px;">Established: April 2023</span>
+        </div>
+      </div>
+    </div>
 
-		
-		<div class="flag-counter-container">
-    			<a href="https://info.flagcounter.com/Vknb"><img src="https://s11.flagcounter.com/countxl/Vknb/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-		</div>
-		
-		<footer>
-    			© Since 2023 Li Lab./AWCC/UEC. All Rights Reserved.
-		</footer>	
-		<!--
-		<div style="text-align:center;">
-    		<p style="color: darkblue;"><b>Visitor</b>:</p>
-    		<a href="https://www.hitwebcounter.com" target="_blank">
-        		<img src="https://hitwebcounter.com/counter/counter.php?page=7174927&style=0006&nbdigits=5&type=page&initCount=0" title="Free Counter" alt="web counter" border="0">
-    		</a>
-		</div>
-		-->
-	
+    <!-- Joint Research Groups -->
+    <div class="card">
+      <div class="card-head">Joint Research Groups</div>
+      <div class="card-body" style="padding:12px 16px;">
+        <div class="joint-list">
+          <div class="joint-item">
+            <span class="jdot" style="background:#2563eb;"></span>
+            <a href="http://www.awcc.uec.ac.jp/" target="_blank">AWCC, UEC, Japan</a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#2563eb;"></span>
+            <a href="http://www3.u-toyama.ac.jp/comsys/Lab/index.html" target="_blank"><span class="ja">富山大学 本田研究室</span><br><span style="color:var(--clr-muted); font-size:12px;">University of Toyama</span></a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#16a34a;"></span>
+            <a href="https://emc.nict.go.jp/general/general.html" target="_blank"><span class="ja">NICT 電磁環境研究室</span><br><span style="color:var(--clr-muted); font-size:12px;">EMC Lab, NICT</span></a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#16a34a;"></span>
+            <a href="https://cem.web.nitech.ac.jp/hilab/" target="_blank"><span class="ja">名古屋工業大学 平田研究室</span><br><span style="color:var(--clr-muted); font-size:12px;">NiTech, Japan</span></a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#16a34a;"></span>
+            <a href="https://wtemc.ist.hokudai.ac.jp/index.html" target="_blank"><span class="ja">北海道大学 日景研究室</span><br><span style="color:var(--clr-muted); font-size:12px;">Hokkaido University</span></a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#7c3aed;"></span>
+            <a href="https://www.ietr.fr/en/ewaves-electromagnetic-waves-complex-media-team" target="_blank">Bioelectromagnetics Lab<br><span style="color:var(--clr-muted); font-size:12px;">University of Rennes, France</span></a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#7c3aed;"></span>
+            <a href="https://www.es.aau.dk/research/antennas" target="_blank">Antenna Lab<br><span style="color:var(--clr-muted); font-size:12px;">Aalborg University, Denmark</span></a>
+          </div>
+          <div class="joint-item">
+            <span class="jdot" style="background:#7c3aed;"></span>
+            <a href="https://chairec2m.wp.imt.fr/en/accueil-english/" target="_blank">EMF Lab<br><span style="color:var(--clr-muted); font-size:12px;">Telecom Paris, France</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="card">
+      <div class="card-head">Quick Links</div>
+      <div class="card-body">
+        <div class="quick-links">
+          <a class="quick-link" href="publication.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+            Publications
+          </a>
+          <a class="quick-link" href="people.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+            </svg>
+            Lab Members
+          </a>
+          <a class="quick-link" href="openings.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
+            </svg>
+            Openings
+          </a>
+          <a class="quick-link" href="contact.html">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+            </svg>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ---- MAIN CONTENT ---- -->
+  <main class="main-content">
+
+    <!-- Overview -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2><span class="ja">研究課題</span> &nbsp;/&nbsp; Research Topics</h2>
+      </div>
+      <div class="section-body">
+        <div class="overview-box ja">
+          次世代の無線IoT社会では、ビッグデータ分析技術などにより様々な社会サービスを提供するため、超高速・高信頼性・大容量の無線通信の実現が必要になっています。
+          携帯電話等の普及と共に、6GHz以下の周波数帯は過密状態にあるため、広帯域である準ミリ・ミリ波、テラヘルツ波帯の新たな電波利用が重要な課題となっています。
+          一方、電磁波の人体ばく露量評価と無線機器の放射規格に対する適合性評価などの課題があります。
+          本研究室では、次世代の無線通信を支える基盤技術を検討し、
+          <strong>超高速・高信頼性通信</strong>と<strong>安全な電波利用</strong>が両立することを目指しています。
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic 1: MIMO-OTA -->
+    <div class="section-card" id="ota">
+      <div class="section-head">
+        <div class="accent-bar"></div>
+        <h2>MIMO-OTA &amp; Fading Emulator Research</h2>
+      </div>
+      <div class="section-body">
+        <div class="topic-block">
+          <div class="topic-block-head blue">MIMO Over-The-Air Testing</div>
+          <div class="topic-block-body">
+            <p class="ja">
+              携帯電話などの次世代無線端末に搭載されるMIMO（Multiple-Input Multiple-Output）アレーアンテナシステムの評価技術（Over-the-Air Testing）について研究開発を行っている。
+              システム化された端末アンテナの評価は、アンテナ単体の放射パターンやインピーダンス特性とは異なり、アンテナと伝搬特性から伝送特性（チャネル応答）を取得し、固有値や伝送容量が評価される点が特徴である。
+            </p>
+            <p class="ja">
+              MIMO-OTA測定の手法は大きく分けて、電波反射箱法と、端末周囲に仮想散乱体を配置してフェージング波を生成するフェージングエミュレータ法がある。
+              本研究室では富山大学と共同でフェージングエミュレータの研究開発を継続的に行い、ウェアラブルデバイスや車載アンテナの開発に資するOTA測定技術を提案している。
+            </p>
+            <div class="topic-img-wrap">
+              <img src="ota.png" alt="MIMO-OTA system diagram" />
+            </div>
+            <div class="collab-tag">
+              <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" style="color:var(--clr-accent);">
+                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+              </svg>
+              <span class="ja"><strong>共同研究機関：</strong>富山大学</span>
+            </div>
+          </div>
+        </div>
+        <div class="link-chips" style="margin-top:14px;">
+          <span class="chip">MIMO-OTA</span>
+          <span class="chip">Fading Emulator</span>
+          <span class="chip">Wearable Antenna</span>
+          <span class="chip">BAN Channel</span>
+          <span class="chip">Channel Capacity</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic 2: EMF Safety -->
+    <div class="section-card" id="emf">
+      <div class="section-head">
+        <div class="accent-bar" style="background:#16a34a;"></div>
+        <h2><span class="ja">電波ばく露安全性に関する研究</span></h2>
+      </div>
+      <div class="section-body">
+        <div class="topic-block">
+          <div class="topic-block-head green">RF-EMF Safety Research (MIC Commissioned Project)</div>
+          <div class="topic-block-body">
+            <p class="ja">
+              携帯電話等の普及とともに、ミリ波（MMW: Millimeter Wave）帯電波の導入が予定されている。
+              一方、人体近傍に使用されているミリ波無線デバイスの拡大利用に従って、一般環境でのミリ波電磁界（EMF: Electromagnetic Field）による健康影響に対する懸念が高まっており、ミリ波帯電波ばく露による人体安全性について詳細な検討が求められている。
+            </p>
+            <p class="ja">
+              本研究では、皮膚組織を対象としてミリ波帯電波ばく露の及ぼす生体影響について調査し、ミリ波帯の電波ばく露の安全性に関する国際ガイドラインのエビデンスとなり得る知見を取得することを目的とする。
+            </p>
+            <div class="topic-img-wrap">
+              <img src="mic.png" alt="EMF safety exposure system" />
+            </div>
+            <div class="collab-tag">
+              <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" style="color:#16a34a;">
+                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+              </svg>
+              <span class="ja"><strong>共同研究機関：</strong>北大（代表）、電通大、愛知学院大、久留米大（分担）</span>
+            </div>
+          </div>
+        </div>
+        <div class="link-chips" style="margin-top:14px;">
+          <span class="chip">Millimeter Wave</span>
+          <span class="chip">Dosimetry</span>
+          <span class="chip">SAR / APD</span>
+          <span class="chip">FDTD</span>
+          <span class="chip">Bioelectromagnetics</span>
+          <span class="chip">Thermophysiology</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic 3: SIP Tunnel -->
+    <div class="section-card" id="sip">
+      <div class="section-head">
+        <div class="accent-bar" style="background:#7c3aed;"></div>
+        <h2><span class="ja">トンネル発破の自動化・無人化に関する研究</span></h2>
+      </div>
+      <div class="section-body">
+        <div class="topic-block">
+          <div class="topic-block-head purple">Tunnel Wireless Automation (SIP Commissioned Project)</div>
+          <div class="topic-block-body">
+            <p class="ja">
+              無線電子雷管システムの無線環境把握・解析・信頼性向上・通信方式の研究開発では、トンネル発破の省人化・無人化に向けたキーテクノロジとなる無線電子雷管の開発において、無線を利用することによる課題である信頼性向上を目指して、無線の電波伝搬状況や無線環境の把握技術の確立を行い、システム全体の信頼性に寄与する技術開発を行う。
+            </p>
+            <div class="topic-img-wrap">
+              <img src="sip.png" alt="SIP tunnel wireless system" />
+            </div>
+            <div class="collab-tag">
+              <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" style="color:#7c3aed;">
+                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+              </svg>
+              <span class="ja"><strong>共同研究機関：</strong>電通大藤井研、李研（代表）、日油、施工総研、前田建設、大成建設、熊谷組（分担）</span>
+            </div>
+          </div>
+        </div>
+        <div class="link-chips" style="margin-top:14px;">
+          <span class="chip">Tunnel Propagation</span>
+          <span class="chip">Low-Frequency Wireless</span>
+          <span class="chip">Radio Environment</span>
+          <span class="chip">Spectrum Database</span>
+          <span class="chip">Construction IoT</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-nav');
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>
