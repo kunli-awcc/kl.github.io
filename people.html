@@ -313,7 +313,7 @@
       align-items: flex-start;
     }
     .pi-photo {
-      width: 220px;
+      width: 150px;
       flex-shrink: 0;
       border-radius: var(--radius);
       overflow: hidden;
@@ -707,86 +707,91 @@
   <main class="main-content">
 
     <!-- ============================================================
-         SUPERVISOR
-         ============================================================ -->
-    <div class="section-card" id="supervisor">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Supervisor</h2>
-        <span class="badge">Principal Investigator</span>
+     SUPERVISOR
+     ============================================================ -->
+<div class="section-card" id="supervisor">
+  <div class="section-head">
+    <div class="accent-bar"></div>
+    <h2>Supervisor</h2>
+    <span class="badge">Principal Investigator</span>
+  </div>
+  <div class="section-body">
+    <div class="pi-card">
+
+      <!-- Photo: same pattern as member-card -->
+      <img class="pi-photo" src="Li3.jpg" alt="Prof. Kun Li"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="member-photo-placeholder" style="display:none;">
+        <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+        </svg>
       </div>
-      <div class="section-body">
-        <div class="pi-card">
 
-          <!-- Photo: replace src with Li3.jpg -->
-          <img class="pi-photo" src="Li3.jpg" alt="Prof. Kun Li"
-               onerror="this.outerHTML='<div class=\'pi-photo-placeholder\' style=\'width:150px;height:185px;\'>Photo</div>'">
-          <div class="pi-info">
-            <div class="pi-name">Kun Li (李 鯤)</div>
-            <div class="pi-title-label">Associate Professor, Ph.D.
-            <p>IEEE Senior Member, URSI Senior Member, IEICE Member.</p>
-            </div>
-       
+      <div class="pi-info">
+        <div class="pi-name">Kun Li (李 鯤)</div>
+        <div class="pi-title-label">Associate Professor, Ph.D.
+          <p>IEEE Senior Member, URSI Senior Member, IEICE Member.</p>
+        </div>
 
-            <div class="pi-meta">
-              <p><span>Affiliation:</span>Advanced Wireless and Communication Research Center (AWCC), UEC</p>
-              <p><span>Office:</span>Building East-10, Room 313, East Campus</p>
-              <p><span>Extension:</span>5870</p>
-              <p><span>E-mail:</span><a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a></p>
-            </div>
+        <div class="pi-meta">
+          <p><span>Affiliation:</span>Advanced Wireless and Communication Research Center (AWCC), UEC</p>
+          <p><span>Office:</span>Building East-10, Room 313, East Campus</p>
+          <p><span>Extension:</span>5870</p>
+          <p><span>E-mail:</span><a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a></p>
+        </div>
 
-            <!-- Academic profile links -->
-            <div class="profile-links">
-              <a class="profile-link" href="CV_Kun Li.pdf" target="_blank">
-                <i class="fas fa-file-pdf"></i> CV
-              </a>
-              <a class="profile-link" href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">
-                <i class="fas fa-graduation-cap"></i> Google Scholar
-              </a>
-              <a class="profile-link" href="https://www.researchgate.net/profile/Kun-Li-110" target="_blank">
-                <i class="fab fa-researchgate"></i> ResearchGate
-              </a>
-              <a class="profile-link" href="https://orcid.org/0000-0002-0013-045X" target="_blank">
-                <i class="fab fa-orcid"></i> ORCiD
-              </a>
-              <a class="profile-link" href="https://researchmap.jp/kunli" target="_blank">
-                <i class="fas fa-map-marker-alt"></i> Researchmap
-              </a>
-            </div>
+        <!-- Academic profile links -->
+        <div class="profile-links">
+          <a class="profile-link" href="CV_Kun Li.pdf" target="_blank">
+            <i class="fas fa-file-pdf"></i> CV
+          </a>
+          <a class="profile-link" href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">
+            <i class="fas fa-graduation-cap"></i> Google Scholar
+          </a>
+          <a class="profile-link" href="https://www.researchgate.net/profile/Kun-Li-110" target="_blank">
+            <i class="fab fa-researchgate"></i> ResearchGate
+          </a>
+          <a class="profile-link" href="https://orcid.org/0000-0002-0013-045X" target="_blank">
+            <i class="fab fa-orcid"></i> ORCiD
+          </a>
+          <a class="profile-link" href="https://researchmap.jp/kunli" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> Researchmap
+          </a>
+        </div>
 
-            <!-- Career timeline -->
-            <div class="timeline-item">
-                <span class="timeline-year">2023</span>
-                <span>Associate Professor, AWCC, The University of Electro-Communications, Tokyo</span>
-              </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2022</span>
-                <span>Visiting Researcher, eWAVES Group, CNRS/IETR, University of Rennes 1, France</span>
-              </div>    
-            <div class="timeline-item">
-                <span class="timeline-year">2020</span>
-                <span>Assistant Professor, Faculty of Engineering and Design, Kagawa University, Japan</span>
-              </div>     
-            <div class="timeline-item">
-                <span class="timeline-year">2017</span>
-                <span>Researcher, EMC Lab., NICT (National Institute of Information and Communications Technology), Tokyo</span>
-              </div>   
-             <div class="timeline-item">
-                <span class="timeline-year">2017</span>
-                <span>Ph.D. in Electrical &amp; Electronic Systems Engineering, University of Toyama, Japan</span>
-              </div>         
-            <div class="timeline">
-              <div class="timeline-item">
-                <span class="timeline-year">2011</span>
-                <span>B.E. in Communication Engineering, Nanjing University of Posts and Telecommunications, China</span>
-              </div>
+        <!-- Career timeline -->
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-year">2023</span>
+            <span>Associate Professor, AWCC, The University of Electro-Communications, Tokyo</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2022</span>
+            <span>Visiting Researcher, eWAVES Group, CNRS/IETR, University of Rennes 1, France</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2020</span>
+            <span>Assistant Professor, Faculty of Engineering and Design, Kagawa University, Japan</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2017</span>
+            <span>Researcher, EMC Lab., NICT (National Institute of Information and Communications Technology), Tokyo</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2017</span>
+            <span>Ph.D. in Electrical &amp; Electronic Systems Engineering, University of Toyama, Japan</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2011</span>
+            <span>B.E. in Communication Engineering, Nanjing University of Posts and Telecommunications, China</span>
+          </div>
+        </div>
 
-            </div>
-          </div><!-- /pi-info -->
+      </div><!-- /pi-info -->
 
-        </div><!-- /pi-card -->
-      </div>
-    </div>
+    </div><!-- /pi-card -->
+  </div>
+</div>
 
     <!-- ============================================================
          RESEARCHER
