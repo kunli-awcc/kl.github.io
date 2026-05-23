@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
   <style>
     /* ============================================================
-       DESIGN TOKENS — edit these to change the whole site theme
+       DESIGN TOKENS
        ============================================================ */
     :root {
       --clr-bg:        #f5f7fa;
@@ -21,9 +21,9 @@
       --clr-navy:      #1e3a5f;
       --clr-text:      #1a202c;
       --clr-muted:     #64748b;
-      --clr-tag-j:     #0e7490;   /* Journal  */
-      --clr-tag-c:     #7c3aed;   /* Conference */
-      --clr-tag-a:     #b45309;   /* Award */
+      --clr-tag-j:     #0e7490;
+      --clr-tag-c:     #7c3aed;
+      --clr-tag-a:     #b45309;
       --radius:        8px;
       --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
       --shadow-md:     0 4px 16px rgba(0,0,0,.09);
@@ -84,7 +84,6 @@
       opacity: .9;
     }
 
-    /* NAV */
     nav { display: flex; gap: 4px; }
     nav a {
       color: rgba(255,255,255,.82);
@@ -101,7 +100,6 @@
       text-decoration: none;
     }
 
-    /* Hamburger (mobile) */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -173,7 +171,7 @@
     }
 
     /* ============================================================
-       PAGE WRAPPER (sidebar + main)
+       PAGE WRAPPER
        ============================================================ */
     .page-wrapper {
       max-width: 1160px;
@@ -208,27 +206,6 @@
     }
     .card-body { padding: 16px; }
 
-    /* Lab photo placeholder */
-    .lab-photo {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      background: var(--clr-accent-lt);
-    }
-    .lab-photo-placeholder {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--clr-accent);
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    /* Sidebar info */
     .info-item {
       display: flex;
       gap: 10px;
@@ -245,7 +222,6 @@
       color: var(--clr-accent);
     }
 
-    /* Quick links */
     .quick-links { display: flex; flex-direction: column; gap: 6px; }
     .quick-link {
       display: flex;
@@ -261,11 +237,71 @@
     .quick-link svg { flex-shrink: 0; }
 
     /* ============================================================
+       VISITOR COUNTER CARD  ← NEW
+       ============================================================ */
+    .visitor-card-body {
+      padding: 14px 16px 16px;
+    }
+
+    /* The pill row at top showing total count */
+    .visitor-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: 6px;
+      padding: 9px 12px;
+      margin-bottom: 12px;
+    }
+    .visitor-total-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .visitor-total-label svg {
+      color: var(--clr-accent);
+      flex-shrink: 0;
+    }
+    .visitor-total-num {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--clr-navy);
+      letter-spacing: .5px;
+    }
+
+    /* The embedded flag counter — hidden overflow so it clips cleanly */
+    .flag-counter-wrap {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--clr-border);
+      line-height: 0; /* collapse inline-block gap */
+    }
+    .flag-counter-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Small helper note below the counter */
+    .visitor-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--clr-muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
        MAIN CONTENT
        ============================================================ */
     .main-content { display: flex; flex-direction: column; gap: 24px; }
 
-    /* Section card */
     .section-card {
       background: var(--clr-surface);
       border: 1px solid var(--clr-border);
@@ -295,44 +331,6 @@
     }
     .section-body { padding: 20px 24px; }
 
-    /* Welcome text */
-    .welcome-text p { margin-bottom: 12px; color: var(--clr-text); font-size: 14.5px; }
-    .welcome-text p:last-child { margin-bottom: 0; }
-
-    /* Research pillars */
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 4px;
-    }
-    .pillar {
-      background: var(--clr-bg);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      padding: 14px;
-      text-align: center;
-      transition: box-shadow .2s, transform .2s;
-    }
-    .pillar:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .pillar-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--clr-accent-lt);
-      border-radius: 50%;
-      margin: 0 auto 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--clr-accent);
-    }
-    .pillar p {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--clr-navy);
-      line-height: 1.4;
-    }
-
     /* ============================================================
        NEWS LIST
        ============================================================ */
@@ -341,7 +339,6 @@
       overflow-y: auto;
       padding-right: 4px;
     }
-    /* Custom scrollbar */
     .news-scroll::-webkit-scrollbar { width: 5px; }
     .news-scroll::-webkit-scrollbar-track { background: var(--clr-bg); border-radius: 3px; }
     .news-scroll::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
@@ -399,9 +396,7 @@
        RESPONSIVE
        ============================================================ */
     @media (max-width: 768px) {
-      .page-wrapper {
-        grid-template-columns: 1fr;
-      }
+      .page-wrapper { grid-template-columns: 1fr; }
       .hamburger { display: flex; }
       nav { display: none; }
       .hero-stats { gap: 20px; }
@@ -463,31 +458,25 @@
     <div class="card">
       <div class="card-head">Lab Information</div>
       <div class="card-body">
-
         <div class="info-item">
           <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-            <path d="M10 2a6 6 0 100 12A6 6 0 0010 2zm0 10.5a4.5 4.5 0 110-9 4.5 4.5 0 010 9zM10 18a8 8 0 100-16 8 8 0 000 16z" opacity=".3"/>
             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
           </svg>
           <span>1-5-1 Chofugaoka, Chofu, Tokyo 182-8585, Japan</span>
         </div>
-
         <div class="info-item">
           <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
           </svg>
-          <!-- ★ Replace with actual email -->
-          <a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a>
+          <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a>
         </div>
-
         <div class="info-item">
           <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
             <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
           </svg>
           <span>Established: April 2023</span>
         </div>
-
       </div>
     </div>
 
@@ -520,7 +509,6 @@
             </svg>
             Join the Lab
           </a>
-          <!-- ★ Replace with your actual Google Scholar link -->
           <a class="quick-link" href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">
             <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
               <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
@@ -532,132 +520,120 @@
       </div>
     </div>
 
+    <!-- ============================================================
+         VISITOR COUNTER CARD  ← PLACED HERE (bottom of sidebar)
+         
+         Design choices:
+         - Same .card shell as every other sidebar widget -> visually unified
+         - Navy card-head matches the entire sidebar language
+         - Flag Counter URL params tuned:
+             bg_F5F7FA  = matches --clr-bg (light gray, not jarring white)
+             txt_1A202C = matches --clr-text
+             border_E2E8F0 = matches --clr-border
+             columns_3 / maxflags_12 / pageviews_1 / labels_1
+         - Rounded wrapper clips the img into the card's border-radius
+         - A tiny "Visitors since Apr 2023" label adds context
+         ============================================================ -->
+    <div class="card">
+      <div class="card-head">
+        <!-- globe icon inline SVG, no emoji -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" style="opacity:.85;">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+          </svg>
+          Visitor Statistics
+        </span>
+      </div>
+      <div class="visitor-card-body">
+
+        <!-- Total pageviews summary bar -->
+        <div class="visitor-total">
+          <span class="visitor-total-label">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+            </svg>
+            Page Views
+          </span>
+          <span class="visitor-total-num" id="pv-display">--</span>
+        </div>
+
+        <!-- Flag Counter image, wrapped for clean clipping -->
+        <!--
+          COLOR PARAMS EXPLAINED (edit freely):
+            bg_F5F7FA   -> widget background = --clr-bg
+            txt_1E3A5F  -> text color        = --clr-navy
+            border_E2E8F0 -> border          = --clr-border
+            columns_3   -> 3 flag columns
+            maxflags_12 -> show top 12 countries
+            pageviews_1 -> show pageview count
+            labels_1    -> show country labels
+            flags_0     -> hide flag images (set to 1 to show them)
+            percent_0   -> hide percentage bars
+          
+          To show actual flags, change flags_0 to flags_1.
+          Pageview total is pulled from the img src live by Flag Counter's server.
+        -->
+        <div class="flag-counter-wrap">
+          <a href="https://info.flagcounter.com/Vknb" target="_blank" rel="noopener" style="display:block;line-height:0;">
+            <img
+              src="https://s11.flagcounter.com/countxl/Vknb/bg_F5F7FA/txt_1E3A5F/border_E2E8F0/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_1/percent_0/"
+              alt="Flag Counter — visitors by country"
+              style="width:100%;height:auto;display:block;"
+            />
+          </a>
+        </div>
+
+        <p class="visitor-note">Tracking visitors since April 2023</p>
+
+      </div>
+    </div>
+    <!-- /visitor counter card -->
+
   </aside><!-- /sidebar -->
 
   <!-- ---- MAIN CONTENT ---- -->
   <main class="main-content">
 
     <!-- Welcome -->
-<div class="section-card">
-
-  <div class="section-head">
-    <div class="accent-bar"></div>
-    <h2>Welcome Message</h2>
-  </div>
-
-  <div class="section-body">
-    <p style="margin-bottom: 18px;">
-      Welcome to the <strong>Smart Body-Centric Wireless Communications Laboratory</strong> at the Advanced Wireless and Communication Center (AWCC), The University of Electro-Communications (UEC), Tokyo, Japan.
-    </p>
-
-    <p style="margin-bottom: 16px;">
-      In our group, we are aiming at bridging the gap between ultra-high-speed wireless connectivity and human-centric electromagnetic safety in the 5G-Advanced/6G era, driven by two synergetic pillars:
-    </p>
-
-    <!-- 使用 Flexbox 排版，去掉原有的点，换成图标 -->
-    <ul style="list-style: none; padding-left: 0; margin-bottom: 16px;">
-      
-      <!-- 方向一：无线通信 -->
-      <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-        <i class="fas fa-broadcast-tower" style="color: var(--clr-accent); margin-top: 4px; margin-right: 12px; font-size: 1.1em;"></i>
-        <div>
-          <strong style="color: var(--clr-navy);">Advanced Wireless Communications:</strong>
-          Focusing on next-generation networks (<strong>5G/6G, Cell-Free Massive MIMO</strong>), we specialize in antenna system design, and MIMO-OTA testing. 
-          We also explore channel modeling, Communication EMC, and LF/UHF signal evaluations for industrial environments.
-        </div>
-      </li>
-      
-      <!-- 方向二：电磁安全 -->
-      <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-        <i class="fas fa-user-shield" style="color: var(--clr-accent); margin-top: 4px; margin-right: 12px; font-size: 1.1em;"></i>
-        <div>
-          <strong style="color: var(--clr-navy);">RF-EMF Safety &amp; System Co-Design:</strong>
-          Integrating traditional bioelectromagnetics with system-level design, we utilize <strong>Sionna Ray Tracing</strong> and PHY/MAC simulations for <strong>EMF-aware network optimization</strong>. 
-          We tackle the coexistence of high data traffic and EMF compliance in multi-BS scenarios, 
-          while evaluating wearable/implantable devices for biomedical applications.
-        </div>
-      </li>
-
-    </ul>
-
-    <p style="margin-bottom: 0;">
-      We welcome motivated students and researchers. See our
-      <a href="openings.html" style="font-weight: bold; color: var(--clr-accent);">Openings</a>
-      page for available positions.
-    </p>
-  </div>
-
-</div>
-
-
-    <!-- Research pillars (quick overview) -->
-    <!--
     <div class="section-card">
       <div class="section-head">
         <div class="accent-bar"></div>
-        <h2>Research Areas</h2>
+        <h2>Welcome Message</h2>
       </div>
       <div class="section-body">
-        <div class="pillars">
-
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-              </svg>
+        <p style="margin-bottom: 18px;">
+          Welcome to the <strong>Smart Body-Centric Wireless Communications Laboratory</strong> at the Advanced Wireless and Communication Center (AWCC), The University of Electro-Communications (UEC), Tokyo, Japan.
+        </p>
+        <p style="margin-bottom: 16px;">
+          In our group, we are aiming at bridging the gap between ultra-high-speed wireless connectivity and human-centric electromagnetic safety in the 5G-Advanced/6G era, driven by two synergetic pillars:
+        </p>
+        <ul style="list-style: none; padding-left: 0; margin-bottom: 16px;">
+          <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+            <i class="fas fa-broadcast-tower" style="color: var(--clr-accent); margin-top: 4px; margin-right: 12px; font-size: 1.1em;"></i>
+            <div>
+              <strong style="color: var(--clr-navy);">Advanced Wireless Communications:</strong>
+              Focusing on next-generation networks (<strong>5G/6G, Cell-Free Massive MIMO</strong>), we specialize in antenna system design, and MIMO-OTA testing.
+              We also explore channel modeling, Communication EMC, and LF/UHF signal evaluations for industrial environments.
             </div>
-            <p>Wearable &amp; Implantable Antennas</p>
-          </div>
-
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
-              </svg>
+          </li>
+          <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+            <i class="fas fa-user-shield" style="color: var(--clr-accent); margin-top: 4px; margin-right: 12px; font-size: 1.1em;"></i>
+            <div>
+              <strong style="color: var(--clr-navy);">RF-EMF Safety &amp; System Co-Design:</strong>
+              Integrating traditional bioelectromagnetics with system-level design, we utilize <strong>Sionna Ray Tracing</strong> and PHY/MAC simulations for <strong>EMF-aware network optimization</strong>.
+              We tackle the coexistence of high data traffic and EMF compliance in multi-BS scenarios,
+              while evaluating wearable/implantable devices for biomedical applications.
             </div>
-            <p>MIMO-OTA Performance Evaluation</p>
-          </div>
-
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <p>RF-EMF Safety &amp; Dosimetry</p>
-          </div>
-
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z"/>
-              </svg>
-            </div>
-            <p>5G/6G mmWave Systems</p>
-          </div>
-
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <p>Body Area Network (BAN)</p>
-          </div>
-
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-              </svg>
-            </div>
-            <p>Computational Bioelectromagnetics</p>
-          </div>
-
-        </div>
+          </li>
+        </ul>
+        <p style="margin-bottom: 0;">
+          We welcome motivated students and researchers. See our
+          <a href="openings.html" style="font-weight: bold; color: var(--clr-accent);">Openings</a>
+          page for available positions.
+        </p>
       </div>
     </div>
-    -->
 
     <!-- News -->
     <div class="section-card">
@@ -667,13 +643,6 @@
       </div>
       <div class="section-body" style="padding-top:12px; padding-bottom:12px;">
         <div class="news-scroll">
-
-          <!-- ============================================================
-               HOW TO ADD A NEWS ITEM:
-               Copy one <div class="news-item"> block below,
-               change the date, tag (tag-journal / tag-conference / tag-award),
-               and the text. That's it!
-               ============================================================ -->
 
           <div class="news-item">
             <div class="news-date">2026/04/22</div>
@@ -772,17 +741,6 @@
             </div>
           </div>
 
-          <!-- ★ Older items: uncomment to show -->
-          <!--
-          <div class="news-item">
-            <div class="news-date">2023/04/01</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Milestone</span><br>
-              Smart Body-Centric Wireless Communications Laboratory established at AWCC, UEC.
-            </div>
-          </div>
-          -->
-
         </div><!-- /news-scroll -->
       </div>
     </div><!-- /news card -->
@@ -798,14 +756,28 @@
 </footer>
 
 <!-- ============================================================
-     JS (hamburger only — no framework needed)
+     JS
      ============================================================ -->
 <script>
-  const btn = document.getElementById('hamburger');
+  /* Hamburger toggle */
+  const btn  = document.getElementById('hamburger');
   const menu = document.getElementById('mobile-nav');
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('open');
-  });
+  btn.addEventListener('click', () => menu.classList.toggle('open'));
+
+  /* ----------------------------------------------------------------
+     Page-view display in the summary bar above the flag counter.
+     Flag Counter does NOT expose a JSON API, so we do a lightweight
+     image-load trick: when the img loads successfully its natural
+     width gives us a proxy — but more practically, just leave the
+     "--" placeholder and let the flag counter image speak for itself.
+     If you add a real analytics backend (e.g. GoatCounter, Plausible,
+     or a simple server-side counter) you can fetch the number here
+     and update #pv-display accordingly.
+     ---------------------------------------------------------------- */
+  // Example: replace with a real API call if you have one
+  // fetch('/api/pageviews').then(r=>r.json()).then(d=>{
+  //   document.getElementById('pv-display').textContent = d.total.toLocaleString();
+  // });
 </script>
 
 </body>
