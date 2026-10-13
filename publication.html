@@ -4,517 +4,224 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Publications | Li Laboratory | AWCC | UEC</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* ============ Colors & sizes (same as index.html) ============ */
     :root {
-      --clr-bg:        #f5f7fa;
-      --clr-surface:   #ffffff;
-      --clr-border:    #e2e8f0;
-      --clr-accent:    #2563eb;
-      --clr-accent-lt: #dbeafe;
-      --clr-navy:      #1e3a5f;
-      --clr-text:      #1a202c;
-      --clr-muted:     #64748b;
-      --clr-tag-j:     #0e7490;
-      --clr-tag-c:     #7c3aed;
-      --clr-tag-t:     #b45309;
-      --clr-tag-d:     #16a34a;
-      --clr-tag-b:     #be185d;
-      --radius:        8px;
-      --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
-      --font-sans:     'DM Sans', sans-serif;
-      --font-serif:    'DM Serif Display', serif;
-      --font-jp:       'Noto Sans JP', sans-serif;
-      --sidebar-w:     240px;
+      --navy:   #1a2d4a;
+      --accent: #2563eb;
+      --text:   #222;
+      --heading: #111;
+      --muted:  #666;
+      --line:   #e3e3e3;
+      --bg-alt: #f6f7f9;
+      --width:  980px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-sans);
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      font-size: 14px;
+      font-family: 'Source Serif 4', 'Noto Serif JP', Georgia, serif;
+      font-size: 16px;
       line-height: 1.7;
+      color: var(--text);
+      background: #fff;
     }
-    .ja { font-family: var(--font-jp); }
-    a { color: var(--clr-accent); text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    b, strong { font-weight: 600; }
+    .container { max-width: var(--width); margin: 0 auto; padding: 0 24px; }
 
-    /* ── HEADER ── */
-    .site-header {
-      background: var(--clr-navy);
-      color: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
-    }
+    /* ============ Header (same as index.html) ============ */
+    .site-header { border-bottom: 1px solid var(--line); }
     .header-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: space-between;
-      height: 58px;
+      gap: 24px;
+      padding-top: 28px;
+      padding-bottom: 12px;
     }
-    .site-title {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      letter-spacing: .3px;
-      color: #fff;
+    .brand { margin-bottom: 14px; }
+    .brand h1 {
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1.3;
       white-space: nowrap;
     }
-    .site-title span {
-      color: #93c5fd;
-      font-family: var(--font-sans);
-      font-weight: 400;
-      font-size: 13px;
-      margin-left: 10px;
-      opacity: .9;
+    .brand p { font-size: 16px; color: var(--muted); margin-top: 4px; }
+    .logos {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
     }
-    nav { display: flex; gap: 4px; }
+    .logos img { height: auto; display: block; }
+    .logo-uec  { width: 70px; margin-top: 0px; }
+    .logo-awcc { width: 130px }
+
+    nav { display: flex; flex-wrap: wrap; gap: 4px; }
     nav a {
-      color: rgba(255,255,255,.82);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 5px 11px;
-      border-radius: 5px;
-      transition: background .18s, color .18s;
-      letter-spacing: .3px;
+      color: var(--heading);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 6px;
+      transition: background .2s, color .2s, transform .2s, box-shadow .2s;
     }
-    nav a:hover, nav a.active {
-      background: rgba(255,255,255,.13);
+    nav a:hover {
+      background: var(--navy);
       color: #fff;
       text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(26,45,74,.25);
     }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: #fff; border-radius: 2px;
-    }
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: var(--clr-navy);
-      padding: 12px 24px 16px;
-      border-top: 1px solid rgba(255,255,255,.1);
-    }
-    .mobile-nav a {
-      color: rgba(255,255,255,.85);
-      font-size: 14px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .mobile-nav.open { display: flex; }
+    nav a.active { background: var(--navy); color: #fff; }
 
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
-      color: #fff;
-      padding: 52px 24px 48px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 4vw, 34px);
-      margin-bottom: 10px;
-    }
-    .hero p { font-size: 14.5px; opacity: .88; max-width: 680px; margin: 0 auto; }
-
-    /* ── PAGE WRAPPER ── */
-    .page-wrapper {
-      max-width: 1160px;
-      margin: 32px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: var(--sidebar-w) 1fr;
-      gap: 28px;
-      align-items: start;
-    }
-
-    /* ── SIDEBAR ── */
-    .sidebar { display: flex; flex-direction: column; gap: 20px; }
-    .card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .card-head {
-      background: var(--clr-navy);
-      color: #fff;
-      font-size: 11.5px;
+    /* ============ Sections ============ */
+    section { padding: 22px 0; scroll-margin-top: 12px; }
+    section:first-of-type { padding-top: 30px; }
+    section:last-of-type { padding-bottom: 40px; }
+    h2 {
+      font-size: 24px;
       font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 8px 16px;
+      color: var(--heading);
+      margin-bottom: 12px;
     }
-    .card-body { padding: 16px; }
+    h2 .count { font-size: 16px; font-weight: 400; color: var(--muted); margin-left: 6px; }
 
-    /* Stats grid */
-    .stats-grid {
+    /* ============ Stats (numbers filled in automatically) ============ */
+    .stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(5, 1fr);
       gap: 10px;
     }
-    .stat-item {
-      background: var(--clr-bg);
+    .stat {
+      background: var(--bg-alt);
       border-radius: 6px;
-      padding: 10px 8px;
+      padding: 6px 8px;
       text-align: center;
+      color: var(--text);
+      transition: transform .2s, box-shadow .2s;
     }
-    .stat-num {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      color: var(--clr-navy);
-      line-height: 1.1;
-    }
-    .stat-label {
-      font-size: 10.5px;
-      color: var(--clr-muted);
-      margin-top: 2px;
-      line-height: 1.3;
-    }
+    .stat:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08); }
+    .stat-num { display: block; font-size: 18px; font-weight: 600; color: var(--heading); line-height: 1.3; }
+    .stat-label { display: block; font-size: 13px; color: var(--muted); }
 
-    /* Anchor nav links */
-    .anchor-links { display: flex; flex-direction: column; gap: 4px; }
-    .anchor-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      padding: 6px 10px;
-      border-radius: 5px;
-      transition: background .15s;
-      font-weight: 500;
-    }
-    .anchor-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
-    .anchor-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* ── MAIN CONTENT ── */
-    .main-content { display: flex; flex-direction: column; gap: 28px; }
-
-    .section-card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .section-head {
-      padding: 13px 24px;
-      border-bottom: 1px solid var(--clr-border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-head h2 {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      color: var(--clr-navy);
-      font-weight: 400;
-      flex: 1;
-    }
-    .section-head .accent-bar {
-      width: 3px; height: 18px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .accent-bar-j  { background: var(--clr-tag-j); }
-    .accent-bar-c  { background: var(--clr-tag-c); }
-    .accent-bar-t  { background: var(--clr-tag-t); }
-    .accent-bar-d  { background: var(--clr-tag-d); }
-    .accent-bar-b  { background: var(--clr-tag-b); }
-
-    .section-count {
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 12px;
-      color: #fff;
-    }
-    .count-j { background: var(--clr-tag-j); }
-    .count-c { background: var(--clr-tag-c); }
-    .count-t { background: var(--clr-tag-t); }
-    .count-d { background: var(--clr-tag-d); }
-    .count-b { background: var(--clr-tag-b); }
-
-    .section-body { padding: 20px 24px; }
-
-    /* Publication list */
-    .pub-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      counter-reset: pub-counter;
-    }
-    /* NOTE: 'reversed' counter is handled via CSS for display only.
-       The actual reversed numbering uses the HTML 'reversed' attribute. */
-    .pub-list li {
-      display: flex;
-      gap: 14px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--clr-border);
-      font-size: 13.5px;
-      line-height: 1.7;
-      color: var(--clr-text);
-      align-items: flex-start;
-    }
-    .pub-list li:last-child { border-bottom: none; padding-bottom: 0; }
-
-    /* Use the browser's built-in <ol reversed> counter */
-    .pub-list { list-style-position: outside; padding-left: 0; }
+    /* ============ Publication list ============ */
+    .pub-list { list-style: none; }
+    .pub-list li { display: flex; gap: 12px; margin-bottom: 10px; }
     .pub-num {
-      min-width: 28px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--clr-muted);
-      padding-top: 3px;
+      min-width: 44px;
       text-align: right;
+      color: var(--heading);
       flex-shrink: 0;
-      user-select: none;
     }
     .pub-content { flex: 1; }
+    /* Journal / conference names upright, not italic */
+    .pub-content em, .pub-content .italic { font-style: normal; }
 
-    /* DOI badge */
+    /* DOI link */
     .doi-badge {
       display: inline-block;
-      font-size: 10.5px;
+      font-size: 12px;
       font-weight: 600;
-      background: var(--clr-accent-lt);
-      color: var(--clr-accent);
-      border: 1px solid #bfdbfe;
-      padding: 1px 7px;
+      padding: 0 7px;
       border-radius: 4px;
       margin-left: 4px;
-      letter-spacing: .3px;
-      transition: background .15s;
+      line-height: 1.6;
+      background: #dbeafe;
+      color: var(--accent);
     }
-    .doi-badge:hover {
-      background: var(--clr-accent);
-      color: #fff;
-      text-decoration: none;
-    }
+    .doi-badge:hover { background: var(--accent); color: #fff; text-decoration: none; }
 
-    /* Invited / Award badges */
-    .badge-invited {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      background: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fcd34d;
-      padding: 1px 7px;
-      border-radius: 4px;
-      margin-left: 4px;
+    /* ============ Footer (same as index.html) ============ */
+    footer { background: var(--navy); color: rgba(255,255,255,.85); font-size: 15px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      padding: 36px 24px 28px;
     }
-    .badge-award {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      background: #fce7f3;
-      color: #be185d;
-      border: 1px solid #fbcfe8;
-      padding: 1px 7px;
-      border-radius: 4px;
-      margin-left: 4px;
-    }
-    .badge-accepted {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      background: #dcfce7;
-      color: #16a34a;
-      border: 1px solid #bbf7d0;
-      padding: 1px 7px;
-      border-radius: 4px;
-      margin-left: 4px;
-    }
-
-    .italic { font-style: italic; }
-
-    /* ── FOOTER ── */
-    footer {
+    footer h3 { font-size: 16px; color: #fff; margin-bottom: 10px; }
+    footer a { color: #bcd4ff; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 4px; }
+    .flag-counter img { width: 100%; max-width: 280px; height: auto; display: block; border-radius: 4px; }
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding: 14px 0;
+      font-size: 13px;
       text-align: center;
-      padding: 24px;
-      font-size: 12.5px;
-      color: var(--clr-muted);
-      border-top: 1px solid var(--clr-border);
-      margin-top: 8px;
+      color: rgba(255,255,255,.6);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .page-wrapper { grid-template-columns: 1fr; }
-      .hamburger { display: flex; }
-      nav { display: none; }
-      .site-title span { display: none; }
+    /* ============ Mobile ============ */
+    @media (max-width: 720px) {
+      .brand h1 { font-size: 24px; white-space: normal; }
+      .header-inner { flex-direction: column; }
+      .logos { flex-direction: row; align-items: center; order: -1; }
+      .logo-uec  { width: 60px; }
+      .logo-awcc { width: 110px; }
+      nav a { padding: 10px 12px; font-size: 15px; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .pub-num { min-width: 36px; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
+<!-- ============ HEADER ============ -->
 <header class="site-header">
-  <div class="header-inner">
-    <div class="site-title">
-      Li Lab. / AWCC / UEC
-      <span>The University of Electro-Communications, Tokyo</span>
+  <div class="container header-inner">
+    <div class="header-left">
+      <div class="brand">
+        <h1>Smart Body-Centric Wireless Communications Lab.</h1>
+        <p>Li Laboratory, The University of Electro-Communications, Tokyo</p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="people.html">People</a>
+        <a href="research.html">Research</a>
+        <a href="publication.html" class="active">Publications</a>
+        <a href="openings.html">Openings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="people.html">People</a>
-      <a href="research.html">Research</a>
-      <a href="publication.html" class="active">Publications</a>
-      <a href="openings.html">Openings</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
+    <div class="logos">
+      <img class="logo-uec" src="images/uec_logo.png" alt="UEC" onerror="this.style.display='none'" />
+      <img class="logo-awcc" src="images/awcc_logo.png" alt="AWCC" onerror="this.style.display='none'" />
     </div>
-  </div>
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="people.html">People</a>
-    <a href="research.html">Research</a>
-    <a href="publication.html">Publications</a>
-    <a href="openings.html">Openings</a>
-    <a href="contact.html">Contact</a>
   </div>
 </header>
 
-<!-- ── HERO ── -->
-<div class="hero">
-  <h1>Publications</h1>
-  <p>Smart Body-Centric Wireless Communications Laboratory &nbsp;|&nbsp;
-     AWCC, The University of Electro-Communications, Tokyo, Japan</p>
-</div>
+<main class="container">
 
-<!-- ── PAGE BODY ── -->
-<div class="page-wrapper">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <!-- Stats -->
-    <div class="card">
-      <div class="card-head">Publication Stats</div>
-      <div class="card-body">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <!-- UPDATE these numbers manually -->
-            <div class="stat-num">56</div>
-            <div class="stat-label">Journal Papers</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">113</div>
-            <div class="stat-label">Int'l Conf.</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">59</div>
-            <div class="stat-label">Tech. Reports</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">71</div>
-            <div class="stat-label">Domes. Conf.</div>
-          </div>
-        </div>
-      </div>
+  <!-- ============ STATS ============
+       The numbers are counted automatically from the lists below.
+       Click a box to jump to that section. -->
+  <section>
+    <h2>Publications</h2>
+    <div class="stats">
+      <a class="stat" href="#journal"><span class="stat-num" data-count="journal">–</span><span class="stat-label">Journal Papers</span></a>
+      <a class="stat" href="#conference"><span class="stat-num" data-count="conference">–</span><span class="stat-label">Int'l Conf.</span></a>
+      <a class="stat" href="#technical"><span class="stat-num" data-count="technical">–</span><span class="stat-label">Tech. Reports</span></a>
+      <a class="stat" href="#domestic"><span class="stat-num" data-count="domestic">–</span><span class="stat-label">Domes. Conf.</span></a>
+      <a class="stat" href="#books"><span class="stat-num" data-count="books">–</span><span class="stat-label">Books</span></a>
     </div>
+  </section>
 
-    <!-- Jump-to anchors -->
-    <div class="card">
-      <div class="card-head">Jump to Section</div>
-      <div class="card-body">
-        <div class="anchor-links">
-          <a class="anchor-link" href="#journal" style="color: var(--clr-tag-j);">
-            <span class="anchor-dot" style="background: var(--clr-tag-j);"></span>
-            Journal Papers
-          </a>
-          <a class="anchor-link" href="#conference" style="color: var(--clr-tag-c);">
-            <span class="anchor-dot" style="background: var(--clr-tag-c);"></span>
-            International Conference
-          </a>
-          <a class="anchor-link" href="#technical" style="color: var(--clr-tag-t);">
-            <span class="anchor-dot" style="background: var(--clr-tag-t);"></span>
-            Technical Reports
-          </a>
-          <a class="anchor-link" href="#domestic" style="color: var(--clr-tag-d);">
-            <span class="anchor-dot" style="background: var(--clr-tag-d);"></span>
-            Domestic Conference
-          </a>
-          <a class="anchor-link" href="#books" style="color: var(--clr-tag-b);">
-            <span class="anchor-dot" style="background: var(--clr-tag-b);"></span>
-            Books
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Legend -->
-    <div class="card">
-      <div class="card-head">Legend</div>
-      <div class="card-body" style="display:flex; flex-direction:column; gap:8px;">
-        <span class="badge-accepted">Accepted / To appear</span>
-        <span class="badge-invited">Invited Paper / Talk</span>
-        <span class="badge-award">Award</span>
-		   <!--
-        <div style="margin-top:4px; font-size:12.5px; color:var(--clr-muted);">
-          <u><b>Underline bold</b></u> = corresponding / presenting author
-        </div>
-		  -->
-      </div>
-    </div>
-
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
-
-    <!-- ============================================================
-         1. JOURNAL PAPERS
-         ============================================================ -->
-    <div class="section-card" id="journal">
-      <div class="section-head">
-        <div class="accent-bar accent-bar-j"></div>
-        <h2><span class="ja">学術論文</span> &nbsp;(Journal Papers)</h2>
-        <!-- UPDATE the number below -->
-        <span class="section-count count-j">56</span>
-      </div>
-      <div class="section-body">
-        <!--
-          HOW TO USE:
-          - Copy the <ol> structure below.
-          - Paste your entries as <li> items inside .pub-content.
-          - Add the following OPTIONAL badges where needed:
-              <span class="badge-accepted">Accepted</span>
-              <span class="badge-invited">Invited</span>
-              <span class="badge-award">Award</span>
-          - Add DOI links using:
-              <a href="https://doi.org/..." class="doi-badge" target="_blank">DOI</a>
-          - For Japanese author names, wrap in <span class="ja">...</span>
-          - The 'reversed' attribute on <ol> makes numbers count DOWN automatically.
-          - Update 'start' attribute on <ol> to the total number of papers in this section.
-        -->
-        <ol class="pub-list" reversed start="56">
+  <!-- ============ JOURNAL PAPERS ============
+       To add a paper: copy one <li> ... </li> block and paste it at the top of this list.
+       Numbers and totals update automatically. -->
+  <section id="journal">
+    <h2><span class="ja">学術論文</span> (Journal Papers) <span class="count" data-count="journal">–</span></h2>
+    <ol class="pub-list" data-section="journal">
 
           <!-- EXAMPLE ENTRY 1 (most recent) -->
 
@@ -523,7 +230,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Chunxiao Li, Wenfu Fu, and <u><b>Kun Li</b></u>,
-    "Joint Exposure-Constrained Resource Allocation for Uplink Throughput Maximization in 6G Dual-Band FR1/FR3 User Equipment,"
+    “Joint Exposure-Constrained Resource Allocation for Uplink Throughput Maximization in 6G Dual-Band FR1/FR3 User Equipment,”
     <em>IEEE Transactions on Antennas and Propagation</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (under review)
 	  <!--
@@ -536,7 +243,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hongda Xu, Wenfu Fu, and <u><b>Kun Li</b></u>,
-    "Allocating EMF Compliance Boundary for Co-Located Multi-Band Base Station Deployment: From Constraint to Resource,"
+    “Allocating EMF Compliance Boundary for Co-Located Multi-Band Base Station Deployment: From Constraint to Resource,”
     <em>IEEE Transactions on Antennas and Propagation</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (under review)
 	  <!--
@@ -549,7 +256,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Wenfu Fu, Shoki Enomoto, Sailing He, and <u><b>Kun Li</b></u>,
-    "EMF Compliance Boundaries for Base Stations Using Obstacle-Avoiding Near-Field Beams,"
+    “EMF Compliance Boundaries for Base Stations Using Obstacle-Avoiding Near-Field Beams,”
     <em>IEEE Transactions on Antennas and Propagation</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (major revision)
 	  <!--
@@ -562,7 +269,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Maoyuan Li, <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Akiko Nagai, Kenji Taguchi, and Akimasa Hirata,
-    "Efficient Dosimetry Assessment for Electromagnetic Field Exposure at FR3 Bands: Bridging 2D and 3D Thermal Models,"
+    “Efficient Dosimetry Assessment for Electromagnetic Field Exposure at FR3 Bands: Bridging 2D and 3D Thermal Models,”
     <em>IEEE Transactions on Electromagnetic Compatibility</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (under review)
 	  <!--
@@ -576,7 +283,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Wenfu Fu, Bo Xu, Stanislav Stefanov Zhekov, <u><b>Kun Li</b></u>, and Sailing He,
-    "A Review of EMF Exposure Assessment for 5G/6G Handsets above 6 GHz – Part II: APD Assessment and System Design Implications,"
+    “A Review of EMF Exposure Assessment for 5G/6G Handsets above 6 GHz – Part II: APD Assessment and System Design Implications,”
    <em>IEEE Antennas and Propagation Magazine</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (major revision)
 	  <!--
@@ -589,7 +296,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Wenfu Fu, Bo Xu, Stanislav Stefanov Zhekov, <u><b>Kun Li</b></u>, and Sailing He,
-    "A Review of EMF Exposure Assessment for 5G/6G Handsets above 6 GHz – Part I: Standardizations and IPD assessment,"
+    “A Review of EMF Exposure Assessment for 5G/6G Handsets above 6 GHz – Part I: Standardizations and IPD assessment,”
     <em>IEEE Antennas and Propagation Magazine</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (accepted for publication)
 	  <!--
@@ -605,7 +312,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuma Ueda, <u><b>Kun Li</b></u>, Haruto Utsushigawa, Maoyuan Li, Takashi Hikage, Hiroshi Masuda, Akiko Nagai, Kenji Taguchi, and Akimasa Hirata,
-    "A Comprehensive Electromagnetic and Thermal Modeling Framework for Highly Focused Millimeter-Wave Beam Exposure on Rat Dorsal Skin,"
+    “A Comprehensive Electromagnetic and Thermal Modeling Framework for Highly Focused Millimeter-Wave Beam Exposure on Rat Dorsal Skin,”
     <em>IEEE Transactions on Electromagnetic Compatibility</em>,
     vol. **, no. *, pp. ***-***, ***. 2026. (accepted for publication)
     <a href="https://doi.org/10.1109/TEMC.2026.3717201" class="doi-badge" target="_blank">DOI</a>
@@ -616,7 +323,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "温熱生理閾値評価のための60GHz帯ミリ波ばく露のドシメトリ推定,"
+    “温熱生理閾値評価のための60GHz帯ミリ波ばく露のドシメトリ推定,”
     <em><span class="ja">電子情報通信学会論文誌C</span></em>,
      Vol. J109-C, No. 3, pp. 151-158, Jul. 2026.
 	  <a href="https://doi.org/10.14923/transelej.2025STP0010" class="doi-badge" target="_blank">DOI</a>
@@ -629,7 +336,7 @@
     Akimasa Hirata, Ilkka Laakso, Francesca Apollonio, Sachiko Kodera, Yoshiki Kubota,
     Junqing Lan, <u><b>Kun Li</b></u>, Micaela Liberti, Maxim Zhadobov, Dragan Poljak,
     Kensuke Sasaki, and Yinliang Diao,
-    "Model Variability in Assessment of Human Exposure to Radio-Frequency Fields,"
+    “Model Variability in Assessment of Human Exposure to Radio-Frequency Fields,”
     <em>IEEE Journal of Microwaves</em>,
     vol. 6, no. 2, pp. 502-518, Mar. 2026.
     <a href="https://doi.org/10.1109/JMW.2025.3628902" class="doi-badge" target="_blank">DOI</a>
@@ -642,8 +349,8 @@
     <u><b>Kun Li</b></u>, Sachiko Kodera, Dragan Poljak, Alexander Prokop, Yinliang Diao,
     Shuai Zhang, Ming Yao, Congsheng Li, Tongning Wu, Thorsten Liebig, Winfried Simon,
     Maja Skiljo, and Akimasa Hirata,
-    "Intercomparisons of computed epithelial/absorbed power density and temperature rise
-    in anatomical human face models under localized exposures at 10 GHz and 30 GHz,"
+    “Intercomparisons of computed epithelial/absorbed power density and temperature rise
+    in anatomical human face models under localized exposures at 10 GHz and 30 GHz,”
     <em>Physics in Medicine &amp; Biology</em>,
     vol. 71, no. 1, pp. 01NT02, Jan. 2026.
     <a href="https://doi.org/10.1088/1361-6560/ae2ce1" class="doi-badge" target="_blank">DOI</a>
@@ -654,8 +361,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Zhengpeng Wang, Wei Fan, Xiaobang Shang, Lars Foged, Benoit Derat, and <u><b>Kun Li</b></u>,
-    "Guest Editorial: Special Cluster on Measurement and Metrology Theory and Technologies
-    for Future 6G Wireless,"
+    “Guest Editorial: Special Cluster on Measurement and Metrology Theory and Technologies
+    for Future 6G Wireless,”
     <em>IEEE Antennas and Wireless Propagation Letters</em>,
     vol. 24, no. 11, pp. 3876-3879, Nov. 2025.
     <a href="https://doi.org/10.1109/LAWP.2025.3623256" class="doi-badge" target="_blank">DOI</a>
@@ -666,8 +373,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hongda Xu, <u><b>Kun Li</b></u>, Xiaolong Wang, Yuto Sekino, Kazuhiro Honda, and Geyu Lu,
-    "Beyond 20 Bits/s/Hz Channel Capacity Realization with Compact MIMO Antennas
-    for Human-Centric IoT Devices,"
+    “Beyond 20 Bits/s/Hz Channel Capacity Realization with Compact MIMO Antennas
+    for Human-Centric IoT Devices,”
     <em>IEEE Internet of Things Journal</em>,
     vol. 12, no. 11, pp. 15807-15817, Jun. 2025.
     <a href="https://doi.org/10.1109/JIOT.2025.3531730" class="doi-badge" target="_blank">DOI</a>
@@ -679,7 +386,7 @@
   <span class="pub-content">
     Etsuko Ijima, Akiko Nagai, <u><b>Kun Li</b></u>, Takashi Hikage, Naomi Kamizawa,
     Emi Hidaka, Yukina Tsuruta, Tatsuya Ishitake, and Hiroshi Masuda,
-    "Histological and Inflammatory Effects of 26.5 GHz Millimeter-Wave Exposure on Rat Skin,"
+    “Histological and Inflammatory Effects of 26.5 GHz Millimeter-Wave Exposure on Rat Skin,”
     <em>Frontiers in Public Health - Radiation and Health</em>,
     vol. 13, Art. no. 1580155, Jun. 2025.
     <a href="https://doi.org/10.3389/fpubh.2025.1580155" class="doi-badge" target="_blank">DOI</a>
@@ -690,7 +397,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuhang Gu, Jialin Huang, Ruiya Shi, Taiyang Xie, <u><b>Kun Li</b></u>, and Xiaolong Wang,
-    "SAR Evaluation of MIMO Antennas With a Wide Tunable Range Power Divider,"
+    “SAR Evaluation of MIMO Antennas With a Wide Tunable Range Power Divider,”
     <em>Scientific Reports</em>,
     vol. 15, Apr. 2025, Art. no. 11895.
     <a href="https://doi.org/10.1038/s41598-025-96025-3" class="doi-badge" target="_blank">DOI</a>
@@ -706,8 +413,8 @@
     Anna Susnjara Nejasmić, Thomas Tarnaud, Vitas Anderson, Kenneth R. Foster,
     Niels Kuster, Theodoros Samaras, Richard A. Tell, Soichi Watanabe,
     Chung-Kwang Chou, and Akimasa Hirata,
-    "Recent advances and future perspective in computational bioelectromagnetics
-    for exposure assessments,"
+    “Recent advances and future perspective in computational bioelectromagnetics
+    for exposure assessments,”
     <em>Bioelectromagnetics</em>,
     vol. 46, no. 3, e0002, Apr. 2025.
     <a href="https://doi.org/10.1002/bem.70002" class="doi-badge" target="_blank">DOI</a>
@@ -718,8 +425,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Chunxiao Li, Hongda Xu, <u><b>Kun Li</b></u>, Xiaolong Wang, and Geyu Lu,
-    "A Novel Method for Evaluating 5G Handset Array Antenna Exposure Applied
-    to Irregular Human Body Models,"
+    “A Novel Method for Evaluating 5G Handset Array Antenna Exposure Applied
+    to Irregular Human Body Models,”
     <em>IEEE Transactions on Antennas and Propagation</em>,
     vol. 73, no. 1, pp. 677-682, Jan. 2025.
     <a href="https://doi.org/10.1109/TAP.2024.3490035" class="doi-badge" target="_blank">DOI</a>
@@ -731,9 +438,9 @@
   <span class="pub-content">
     Sakura Tsuruga, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake,
     <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Novel 60 GHz Band Spatial Synthetic Exposure System for Investigating Thermal
+    “Novel 60 GHz Band Spatial Synthetic Exposure System for Investigating Thermal
     Physiological Responses to Simultaneous Localized Millimeter-Wave Exposure
-    at Multiple Skin Points,"
+    at Multiple Skin Points,”
     <em>URSI Radio Science Letters</em>,
     vol. 6, 2024.
     <a href="https://doi.org/10.46620/24-0013" class="doi-badge" target="_blank">DOI</a>
@@ -744,9 +451,9 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ming Yao, Zhaohui Wei, <u><b>Kun Li</b></u>, Shuai Zhang, and Gert Frolund Pedersen,
-    "Prediction of Electromagnetic Field Exposure at 20-100 GHz for Clothed Human Body
+    “Prediction of Electromagnetic Field Exposure at 20-100 GHz for Clothed Human Body
     Using An Adaptively Reconfigurable Architecture Neural Network with Weight-Analysis
-    (RAWA-NN) Framework,"
+    (RAWA-NN) Framework,”
     <em>IEEE Transactions on Antennas and Propagation</em>,
     vol. 72, no. 12, pp. 9286-9300, Dec. 2024.
     <a href="https://doi.org/10.1109/TAP.2024.3474913" class="doi-badge" target="_blank">DOI</a>
@@ -757,8 +464,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yinliang Diao, Sachiko Kodera, <u><b>Kun Li</b></u>, and Akimasa Hirata,
-    "Assessment of Whole-Body-Average SAR for Exposure to Electromagnetic Fields
-    up to 30 GHz Using Body Model with Scaled Dielectric Parameters,"
+    “Assessment of Whole-Body-Average SAR for Exposure to Electromagnetic Fields
+    up to 30 GHz Using Body Model with Scaled Dielectric Parameters,”
     <em>IEEE Transactions on Electromagnetic Compatibility</em>,
     vol. 66, no. 5, pp. 1351-1360, Jul. 2024.
     <a href="https://doi.org/10.1109/TEMC.2024.3421521" class="doi-badge" target="_blank">DOI</a>
@@ -770,8 +477,8 @@
   <span class="pub-content">
     Chang Xu, Xiaolong Wang, Lei Zhu, Wenzhong Sun, <u><b>Kun Li</b></u>,
     Gennadi Milinevsky, and Geyu Lu,
-    "A wideband dual-band bandstop filter with independent control of stopband rejection,
-    bandwidth and center frequency ratio,"
+    “A wideband dual-band bandstop filter with independent control of stopband rejection,
+    bandwidth and center frequency ratio,”
     <em>IET Microwaves, Antennas &amp; Propagation</em>,
     vol. 18, no. 5, pp. 308-316, May. 2024.
     <a href="https://doi.org/10.1049/mia2.12451" class="doi-badge" target="_blank">DOI</a>
@@ -784,8 +491,8 @@
     <u><b>Kun Li</b></u>, Sachiko Kodera, Dragan Poljak, Yinliang Diao, Kensuke Sasaki,
     Shuai Zhang, Ming Yao, Ante Lojic Kapetanovic, Congsheng Li, Tongning Wu,
     Thorsten Liebig, Winfried Simon, and Akimasa Hirata,
-    "Spatially Averaged Epithelial/Absorbed Power Density for Non-Planar Skin Models
-    Exposed to Antenna at 10-90 GHz,"
+    “Spatially Averaged Epithelial/Absorbed Power Density for Non-Planar Skin Models
+    Exposed to Antenna at 10-90 GHz,”
     <em>IEEE Access</em>,
     vol. 12, pp. 15379-15389, Jan. 2024.
     <a href="https://doi.org/10.1109/access.2024.3358109" class="doi-badge" target="_blank">DOI</a>
@@ -796,7 +503,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Giulia Sacco, and Maxim Zhadobov,
-    "Clothing Effect on Multilayered Skin Model Exposure from 20 GHz to 100 GHz,"
+    “Clothing Effect on Multilayered Skin Model Exposure from 20 GHz to 100 GHz,”
     <em>IEEE Journal of Electromagnetics, RF and Microwaves in Medicine and Biology</em>,
     vol. 7, no. 4, pp. 408-415, Dec. 2023.
     <a href="https://doi.org/10.1109/JERM.2023.3309935" class="doi-badge" target="_blank">DOI</a>
@@ -808,8 +515,8 @@
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai,
     and Kenji Taguchi,
-    "Parameter variation effects on millimeter wave dosimetry based on precise skin
-    thickness in real rats,"
+    “Parameter variation effects on millimeter wave dosimetry based on precise skin
+    thickness in real rats,”
     <em>Scientific Reports</em>,
     vol. 13, Oct. 2023, Art. no. 17397.
     <a href="https://doi.org/10.1038/s41598-023-44572-y" class="doi-badge" target="_blank">DOI</a>
@@ -820,8 +527,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ming Yao, Stanislav Stefanov Zhekov, Bo Xu, <u><b>Kun Li</b></u>, and Shuai Zhang,
-    "A Study on Exposure to Electromagnetic Fields From User Equipment Antennas
-    above 100 GHz,"
+    “A Study on Exposure to Electromagnetic Fields From User Equipment Antennas
+    above 100 GHz,”
     <em>IEEE Transactions on Electromagnetic Compatibility</em>,
     vol. 65, no. 5, pp. 1292-1299, Oct. 2023.
     <a href="https://doi.org/10.1109/TEMC.2023.3262322" class="doi-badge" target="_blank">DOI</a>
@@ -833,8 +540,8 @@
   <span class="pub-content">
     Shuo Yang, Xiaolong Wang, Lei Zhu, Xin Gao, <u><b>Kun Li</b></u>,
     Valerii Shulga, and Geyu Lu,
-    "A Novel Ring Type Power Divider With Arbitrary Power Division, Arbitrary Phase
-    Difference and Controllable Bandwidths,"
+    “A Novel Ring Type Power Divider With Arbitrary Power Division, Arbitrary Phase
+    Difference and Controllable Bandwidths,”
     <em>AEU - International Journal of Electronics and Communications</em>,
     vol. 170, no. 7, pp. 154773, Oct. 2023.
     <a href="https://doi.org/10.1016/j.aeue.2023.154773" class="doi-badge" target="_blank">DOI</a>
@@ -846,8 +553,8 @@
   <span class="pub-content">
     Etsuko Ijima, <u><b>Kun Li</b></u>, Takashi Hikage, Akiko Nagai, Murakami Yasutaka,
     Arima Takuji, Ishitake Tatsuya, and Hiroshi Masuda,
-    "Intensity-dependent temperature rise induced by local exposure to 26.5 GHz
-    quasi-millimeter-wave in rat,"
+    “Intensity-dependent temperature rise induced by local exposure to 26.5 GHz
+    quasi-millimeter-wave in rat,”
     <em>in vivo</em>,
     vol. 37, no. 5, pp. 2092-2099, Sep. 2023.
     <a href="https://doi.org/10.21873/invivo.13306" class="doi-badge" target="_blank">DOI</a>
@@ -860,8 +567,8 @@
     <u><b>Kun Li</b></u>, Sachiko Kodera, Dragan Poljak, Yinliang Diao, Kensuke Sasaki,
     Anna Susnjara, Alexander Prokop, Kenji Taguchi, Jingtian Xi, Shuai Zhang, Ming Yao,
     Giulia Sacco, Maxim Zhadobov, Walid El Hajj, and Akimasa Hirata,
-    "Calculated Epithelial/Absorbed Power Density for Exposure from Antennas at 10-90 GHz:
-    Intercomparison Study using Planar Skin Model,"
+    “Calculated Epithelial/Absorbed Power Density for Exposure from Antennas at 10-90 GHz:
+    Intercomparison Study using Planar Skin Model,”
     <em>IEEE Access</em>,
     vol. 11, pp. 7420-7435, Jan. 2023.
     <a href="https://doi.org/10.1109/ACCESS.2023.3238582" class="doi-badge" target="_blank">DOI</a>
@@ -872,7 +579,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Zizhuo Sun, Xiaolong Wang, and <u><b>Kun Li</b></u>,
-    "A Switchable Bandpass Filter for Broadband, Dual-Band and Tri-Band Operations,"
+    “A Switchable Bandpass Filter for Broadband, Dual-Band and Tri-Band Operations,”
     <em>IEEE Transactions on Circuits and Systems II: Express Briefs</em>,
     vol. 70, no. 1, pp. 111-115, Aug. 2022.
     <a href="https://doi.org/10.1109/TCSII.2022.3203129" class="doi-badge" target="_blank">DOI</a>
@@ -883,7 +590,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "Multivariate Regression Analysis of Skin Temperature Rises for Millimeter-Wave Dosimetry,"
+    “Multivariate Regression Analysis of Skin Temperature Rises for Millimeter-Wave Dosimetry,”
     <em>IEEE Transactions on Electromagnetic Compatibility</em>,
     vol. 64, no. 4, pp. 941-950, Aug. 2022.
     <a href="https://doi.org/10.1109/temc.2022.3166787" class="doi-badge" target="_blank">DOI</a>
@@ -895,8 +602,8 @@
   <span class="pub-content">
     Taiyang Xie, Ruiya Shi, Shuai Wang, Xiaolong Wang, Kazuhiro Honda,
     <u><b>Kun Li</b></u>, and Geyu Lu,
-    "Two-Way Power Divider With Wide Tunable Power Ratio Range for Weighted-Polarization
-    MIMO Antenna in BAN Radios at 2.45 GHz,"
+    “Two-Way Power Divider With Wide Tunable Power Ratio Range for Weighted-Polarization
+    MIMO Antenna in BAN Radios at 2.45 GHz,”
     <em>IEEE Antennas and Wireless Propagation Letters</em>,
     vol. 21, no. 7, pp. 1333-1337, Jul. 2022.
     <a href="https://doi.org/10.1109/lawp.2022.3167099" class="doi-badge" target="_blank">DOI</a>
@@ -907,7 +614,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Tongning Wu, Ruiyun Peng, Lei Zhang, and <u><b>Kun Li</b></u>,
-    "Editorial: Human Exposure to New-Emerging Electric, Magnetic and Electromagnetic Fields,"
+    “Editorial: Human Exposure to New-Emerging Electric, Magnetic and Electromagnetic Fields,”
     <em>Frontiers in Public Health - Radiation and Health</em>,
     vol. 10, Art. no. 894624, Apr. 2022.
     <a href="https://doi.org/10.3389/fpubh.2022.894624" class="doi-badge" target="_blank">DOI</a>
@@ -918,8 +625,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u> and Kensuke Sasaki,
-    "Monte Carlo Simulation of Clothed Skin Exposure to Electromagnetic Field with
-    Oblique Incidence Angles at 60 GHz,"
+    “Monte Carlo Simulation of Clothed Skin Exposure to Electromagnetic Field with
+    Oblique Incidence Angles at 60 GHz,”
     <em>Frontiers in Public Health - Radiation and Health</em>,
     vol. 10, Art. no. 795414, Feb. 2022.
     <a href="https://doi.org/10.3389/fpubh.2022.795414" class="doi-badge" target="_blank">DOI</a>
@@ -931,8 +638,8 @@
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Yinliang Diao, Kensuke Sasaki, Alexander Prokop, Dragan Poljak,
     Vicko Doric, Jingtian Xi, Sachiko Kodera, Akimasa Hirata, and Walid El Hajj,
-    "Intercomparison of Calculated Incident Power Density and Temperature Rise for Exposure
-    from Different Antennas at 10-90 GHz,"
+    “Intercomparison of Calculated Incident Power Density and Temperature Rise for Exposure
+    from Different Antennas at 10-90 GHz,”
     <em>IEEE Access</em>,
     vol. 9, pp. 151654-151666, Nov. 2021.
     <a href="https://doi.org/10.1109/access.2021.3126738" class="doi-badge" target="_blank">DOI</a>
@@ -943,8 +650,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Kanako Wake, Teruo Onishi, and Soichi Watanabe,
-    "Quantitative Comparison of Power Densities Related to Electromagnetic Near-Field
-    Exposures with Safety Guidelines from 6 to 100 GHz,"
+    “Quantitative Comparison of Power Densities Related to Electromagnetic Near-Field
+    Exposures with Safety Guidelines from 6 to 100 GHz,”
     <em>IEEE Access</em>,
     vol. 9, pp. 115801-115812, Aug. 2021.
     <a href="https://doi.org/10.1109/access.2021.3105608" class="doi-badge" target="_blank">DOI</a>
@@ -956,8 +663,8 @@
   <span class="pub-content">
     Yinliang Diao, <u><b>Kun Li</b></u>, Kensuke Sasaki, Sachiko Kodera, Ilkka Laakso,
     Walid El Hajj, and Akimasa Hirata,
-    "Effect of Incidence Angle on the Incident Power Density Definition to Correlate
-    Skin Temperature Rise for Millimeter Wave Exposures,"
+    “Effect of Incidence Angle on the Incident Power Density Definition to Correlate
+    Skin Temperature Rise for Millimeter Wave Exposures,”
     <em>IEEE Transactions on Electromagnetic Compatibility</em>,
     vol. 63, no. 5, pp. 1709-1716, Aug. 2021.
     <a href="https://doi.org/10.1109/temc.2021.3098594" class="doi-badge" target="_blank">DOI</a>
@@ -968,8 +675,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, Soichi Watanabe, Teruo Onishi, and Yoshio Karasawa,
-    "K-Order Estimation Technique for Determining the Maximum Electric Fields of
-    Multiple-Antenna Transmitters in Compliance Tests,"
+    “K-Order Estimation Technique for Determining the Maximum Electric Fields of
+    Multiple-Antenna Transmitters in Compliance Tests,”
     <em>IEEE Transactions on Antennas and Propagation</em>,
     vol. 67, no. 8, pp. 5602-5613, May. 2019.
     <a href="https://doi.org/10.1109/tap.2019.2913794" class="doi-badge" target="_blank">DOI</a>
@@ -980,8 +687,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Soichi Watanabe, and Hiroshi Shirai,
-    "Relationship between power density and surface temperature elevation for human skin
-    exposure to electromagnetic waves with oblique incidence angle from 6 GHz to 1 THz,"
+    “Relationship between power density and surface temperature elevation for human skin
+    exposure to electromagnetic waves with oblique incidence angle from 6 GHz to 1 THz,”
     <em>Physics in Medicine &amp; Biology</em>,
     vol. 64, no. 6, pp. 065016, Mar. 2019.
     <a href="https://doi.org/10.1088/1361-6560/ab057a" class="doi-badge" target="_blank">DOI</a>
@@ -993,8 +700,8 @@
   <span class="pub-content">
     Kensuke Sasaki, <u><b>Kun Li</b></u>, Jerdvisanop Chakarothai, Takahiro Iyama,
     Teruo Onishi, and Soichi Watanabe,
-    "Error Analysis of a Near-Field Reconstruction Technique Based on Plane Wave
-    Spectrum Expansion for Power Density Assessment above 6 GHz,"
+    “Error Analysis of a Near-Field Reconstruction Technique Based on Plane Wave
+    Spectrum Expansion for Power Density Assessment above 6 GHz,”
     <em>IEEE Access</em>,
     vol. 7, pp. 11591-11598, Jan. 2019.
     <a href="https://doi.org/10.1109/access.2019.2891939" class="doi-badge" target="_blank">DOI</a>
@@ -1005,8 +712,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hideki Kirino, Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "A Waffle-Iron Ridge Guide with Combined Fast- and Slow-Wave Modes for
-    Array Antenna Applications,"
+    “A Waffle-Iron Ridge Guide with Combined Fast- and Slow-Wave Modes for
+    Array Antenna Applications,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E101-B, No. 2, pp. 349-356, Feb. 2018.
     <a href="https://doi.org/10.1587/transcom.2017isp0013" class="doi-badge" target="_blank">DOI</a>
@@ -1017,7 +724,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">前川智哉，本田和博，<u><b>李鯤</b></u>，小川晃一，
-    "減結合技術によるイントラEMC内部干渉ノイズ低減法,"</span>
+    “減結合技術によるイントラEMC内部干渉ノイズ低減法,”</span>
     <em><span class="ja">電子情報通信学会</span></em>,
     Vol. J100-B, No. 8, pp. 575-579, Aug. 2017.
   </span>
@@ -1027,8 +734,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hideki Kirino, Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "A Phase Shifter using Waffle-iron Ridge Guides and its Application to a
-    Beam Steering Antenna,"
+    “A Phase Shifter using Waffle-iron Ridge Guides and its Application to a
+    Beam Steering Antenna,”
     <em>IEICE Communications Express</em>,
     Vol. 6, No. 5, pp. 188-193, May. 2017.
   </span>
@@ -1038,7 +745,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kohei Omote, Kazuhiro Honda, and <u><b>Kun Li</b></u>,
-    "Decoupling stub-loaded parallel dipole array with orthogonal polarization,"
+    “Decoupling stub-loaded parallel dipole array with orthogonal polarization,”
     <em>IEICE Communications Express</em>,
     Vol. 6, No. 2, pp. 97-102, Feb. 2017.
   </span>
@@ -1048,7 +755,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, Takeshi Kitamura, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "Regression-Based Channel Capacity for the Evaluation of 2 x 2 MIMO Antennas,"
+    “Regression-Based Channel Capacity for the Evaluation of 2 x 2 MIMO Antennas,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E100-B, No. 2, pp. 323-335, Feb. 2017.
     <a href="https://doi.org/10.1587/transcom.2016ebp3107" class="doi-badge" target="_blank">DOI</a>
@@ -1059,8 +766,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hideki Kirino, Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "Wavelength Analysis Using Equivalent Circuits in a Fast and Slow Wave
-    Waffle-Iron Ridge Guide,"
+    “Wavelength Analysis Using Equivalent Circuits in a Fast and Slow Wave
+    Waffle-Iron Ridge Guide,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E100-B, No. 2, pp. 219-226, Feb. 2017.
     <a href="https://doi.org/10.1587/transcom.2016wsp0003" class="doi-badge" target="_blank">DOI</a>
@@ -1071,8 +778,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Dual-Discrete Processing for Bit-Error-Rate OTA Testing in Shadowing-Fading
-    BAN Channel,"
+    “Dual-Discrete Processing for Bit-Error-Rate OTA Testing in Shadowing-Fading
+    BAN Channel,”
     <em>IEEE Antennas and Wireless Propagation Letters</em>,
     vol. 16, pp. 1200-1204, Nov. 2016.
     <a href="https://doi.org/10.1109/lawp.2016.2628028" class="doi-badge" target="_blank">DOI</a>
@@ -1083,8 +790,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda and <u><b>Kun Li</b></u>,
-    "Three-dimensional MIMO-OTA calibration to achieve the Gaussian angular power
-    spectra in elevation,"
+    “Three-dimensional MIMO-OTA calibration to achieve the Gaussian angular power
+    spectra in elevation,”
     <em>IEICE Communications Express</em>,
     Vol. 5, No. 10, pp. 394-400, Oct. 2016.
   </span>
@@ -1094,11 +801,11 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda and <u><b>Kun Li</b></u>,
-    "A method of controlling the base station correlation for MIMO-OTA based on
-    Jakes model,"
+    “A method of controlling the base station correlation for MIMO-OTA based on
+    Jakes model,”
     <em>IEICE Communications Express</em>,
     Vol. 5, No. 9, pp. 297-302, Sep. 2016.
-    <span class="badge-award">IEICE ComEX Best Letter Award</span>
+    (IEICE ComEX Best Letter Award)
   </span>
 </li>
 
@@ -1106,8 +813,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda and <u><b>Kun Li</b></u>,
-    "Optimum phase shift applied to weighted-polarization MIMO antenna in various
-    use scenarios,"
+    “Optimum phase shift applied to weighted-polarization MIMO antenna in various
+    use scenarios,”
     <em>IEICE Communications Express</em>,
     Vol. 5, No. 8, pp. 266-271, Aug. 2016.
   </span>
@@ -1117,7 +824,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, Tomohiro Yamashita, and <u><b>Kun Li</b></u>,
-    "High efficiency mw-band dielectric resonator rectenna using distributed capacitors,"
+    “High efficiency mw-band dielectric resonator rectenna using distributed capacitors,”
     <em>IEICE Communications Express</em>,
     Vol. 5, No. 8, pp. 254-259, Aug. 2016.
   </span>
@@ -1127,7 +834,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u>，本田和博，小川晃一，
-    "歩行動作を考慮した人体近傍交差偏波電力比の解析,"</span>
+    “歩行動作を考慮した人体近傍交差偏波電力比の解析,”</span>
     <em><span class="ja">電子情報通信学会</span></em>,
     Vol. J99-B, No. 7, pp. 544-547, Jul. 2016.
   </span>
@@ -1137,7 +844,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Weighted-polarization wearable antenna for on-body dynamic channels,"
+    “Weighted-polarization wearable antenna for on-body dynamic channels,”
     <em>IEICE Communications Express</em>,
     Vol. 5, No. 6, pp. 189-194, Jun. 2016.
   </span>
@@ -1147,8 +854,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Three-Dimensional Over-The-Air Assessment for Vertically Arranged MIMO
-    Array Antennas,"
+    “Three-Dimensional Over-The-Air Assessment for Vertically Arranged MIMO
+    Array Antennas,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E99-B, No. 1, pp. 167-176, Jan. 2016.
     <a href="https://doi.org/10.1587/transcom.2015EBP3148" class="doi-badge" target="_blank">DOI</a>
@@ -1159,8 +866,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "Weighted-Polarization Wearable MIMO Antenna with Three Orthogonally Arranged
-    Dipoles Based on RF Signal Processing,"
+    “Weighted-Polarization Wearable MIMO Antenna with Three Orthogonally Arranged
+    Dipoles Based on RF Signal Processing,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E99-B, No. 1, pp. 58-68, Jan. 2016.
     <a href="https://doi.org/10.1587/transcom.2015isp0015" class="doi-badge" target="_blank">DOI</a>
@@ -1171,7 +878,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, Kazuki Kaga, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "A simultaneous conjugate-matching algorithm for N-element array antennas,"
+    “A simultaneous conjugate-matching algorithm for N-element array antennas,”
     <em>IEICE Communications Express</em>,
     Vol. 4, No. 11, pp. 327-332, Nov. 2015.
   </span>
@@ -1181,8 +888,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Rice Channel Realization for BAN Over-The-Air Testing Using a Fading Emulator
-    with an Arm-Swinging Dynamic Phantom,"
+    “Rice Channel Realization for BAN Over-The-Air Testing Using a Fading Emulator
+    with an Arm-Swinging Dynamic Phantom,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E98-B, No. 4, pp. 543-553, Apr. 2015.
     <a href="https://doi.org/10.1587/transcom.e98.b.543" class="doi-badge" target="_blank">DOI</a>
@@ -1193,8 +900,8 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "Shadowing-Fading BER Characterization of a BAN Diversity Antenna Based on
-    Statistical Measurements of the Human Walking Motion,"
+    “Shadowing-Fading BER Characterization of a BAN Diversity Antenna Based on
+    Statistical Measurements of the Human Walking Motion,”
     <em>IEICE Transactions on Communications</em>,
     Vol. E96-B, No. 10, pp. 2530-2541, Oct. 2013.
     <a href="https://doi.org/10.1587/transcom.e96.b.2530" class="doi-badge" target="_blank">DOI</a>
@@ -1212,32 +919,23 @@
           -->
 
         </ol>
-      </div>
-    </div><!-- /journal -->
+  </section>
 
-
-    <!-- ============================================================
-         2. INTERNATIONAL CONFERENCE
-         ============================================================ -->
-    <div class="section-card" id="conference">
-      <div class="section-head">
-        <div class="accent-bar accent-bar-c"></div>
-        <h2><span class="ja">国際会議</span> &nbsp;(International Conference)</h2>
-        <!-- UPDATE the number below -->
-        <span class="section-count count-c">113</span>
-      </div>
-      <div class="section-body">
-        <!-- ==================== INTERNATIONAL CONFERENCE PAPERS ==================== -->
-		   <ol class="pub-list" reversed start="113">
+  <!-- ============ INTERNATIONAL CONFERENCE ============
+       To add a paper: copy one <li> ... </li> block and paste it at the top of this list.
+       Numbers and totals update automatically. -->
+  <section id="conference">
+    <h2><span class="ja">国際会議</span> (International Conference) <span class="count" data-count="conference">–</span></h2>
+    <ol class="pub-list" data-section="conference">
 
 <li>
   <span class="pub-num"></span>
   <span class="pub-content">
     Shota Suzuki, Takashi Hikage, Hiroshi Masuda, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Distance Dependence of Incident and Absorbed Power Density for a 7-GHz Lens-Antenna Exposure System,"
+    “Distance Dependence of Incident and Absorbed Power Density for a 7-GHz Lens-Antenna Exposure System,”
     <em>2026 IEEE Conference on Antenna Measurements and Applications (CAMA)</em>,
     Chiba, Japan, Oct. 2026.
-    <span class="badge-accepted">To be presented</span>
+    (to be presented)
   </span>
 </li>
 
@@ -1245,10 +943,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ziheng Zhou, Maoyuan Li, and <u><b>Kun Li</b></u>,
-    "SDR-Based OTA Testing for BER Evaluation Using USRP and a 2-D Spatial Fading Emulator,"
+    “SDR-Based OTA Testing for BER Evaluation Using USRP and a 2-D Spatial Fading Emulator,”
     <em>Proceedings of 2026 International Symposium on Antennas and Propagation (ISAP)</em>,
     Chengdu, China, Oct. 2026.
-    <span class="badge-accepted">To be presented</span>
+    (to be presented)
   </span>
 </li>
 
@@ -1257,10 +955,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Takumi Omoto, Kazuhiro Honda, and <u><b>Kun Li</b></u>,
-    "Analytical Verification of a Test Zone Expansion Method in Dual-Polarized Environments,"
+    “Analytical Verification of a Test Zone Expansion Method in Dual-Polarized Environments,”
     <em>Proceedings of 2026 International Workshop on Electromagnetics: Applications and Student Innovation Competition (iWEM 2026)</em>,
     Tokyo, Japan, pp. **-**, Aug. 2026.
-    <span class="badge-accepted">To be presented</span>
+    (to be presented)
   </span>
 </li>
 
@@ -1268,7 +966,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuma Ueda, <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Akiko Nagai, and Kenji Taguchi,
-    "Estimation of Absorbed Power Density at 7 GHz via PWS-based Inverse Reconstruction,"
+    “Estimation of Absorbed Power Density at 7 GHz via PWS-based Inverse Reconstruction,”
     <em>Proceedings of 2026 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science (URSI GASS)</em>,
     Session KA, Krakow, Poland, Aug. 2026.
   </span>
@@ -1278,7 +976,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Haruto Tanaka, and <u><b>Kun Li</b></u>,
-    "A Study on RF-EMF Assessment of 5G Shared Base Stations in Subway Tunnels using Ray-Tracing Simulation,"
+    “A Study on RF-EMF Assessment of 5G Shared Base Stations in Subway Tunnels using Ray-Tracing Simulation,”
     <em>Proceedings of 2026 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science (URSI GASS)</em>,
     Session K07, Krakow, Poland, Aug. 2026.
   </span>
@@ -1288,7 +986,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Shoki Enomoto, and <u><b>Kun Li</b></u>,
-    "EMF Compliance Boundary Assessment Based on Near-Field Power Density for Airy Beam Antennas,"
+    “EMF Compliance Boundary Assessment Based on Near-Field Power Density for Airy Beam Antennas,”
     <em>Proceedings of 2026 IEEE Asia Pacific Wireless Communications Symposium (APWCS 2026)</em>, 
 	  B2-6, Seoul, Korea, Aug. 2026. 
   </span>
@@ -1298,7 +996,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuhei Oda, Kazuhiro Honda, and <u><b>Kun Li</b></u>,
-    "Numerical Assessment of Quiet-Zone Formation in a Phantom-Free BAN-OTA Fading Emulator Using Vivaldi Scatterer Antennas,"
+    “Numerical Assessment of Quiet-Zone Formation in a Phantom-Free BAN-OTA Fading Emulator Using Vivaldi Scatterer Antennas,”
     <em>Proceedings of 2026 IEEE Asia Pacific Wireless Communications Symposium (APWCS 2026)</em>, 
 	  B2-5, Seoul, Korea, Aug. 2026. 
   </span>
@@ -1308,7 +1006,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Shota Suzuki, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Development of a Numerical Model for a 7-GHz Lens Antenna For the Study of Thermo-physiological and Cellular Function Changes Induced by Localized RF Exposure in the 5G FR3 Band,"
+    “Development of a Numerical Model for a 7-GHz Lens Antenna For the Study of Thermo-physiological and Cellular Function Changes Induced by Localized RF Exposure in the 5G FR3 Band,”
     <em>The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2026)</em>,
     PA-15, Cairns, Australia, Jun. 2026.
   </span>
@@ -1318,7 +1016,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Itsuki Goto, Yuma Ueda, <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Akiko Nagai, and Kenji Taguchi,
-    "Field Reconstruction for Power Density Assessment on Curved Surfaces for EMF Exposure in the FR3 Band,"
+    “Field Reconstruction for Power Density Assessment on Curved Surfaces for EMF Exposure in the FR3 Band,”
     <em>The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2026)</em>,
     PA-23, Cairns, Australia, Jun. 2026.
   </span>
@@ -1328,7 +1026,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hiroshi Masuda, Jing Chen, Tatsuya Ishitake, Akiko Nagai, <u><b>Kun Li</b></u>, and Takashi Hikage,
-    "Dose-dependent changes in skin temperature and blood flow induced by local 60 GHz millimeter-wave exposure in rats,"
+    “Dose-dependent changes in skin temperature and blood flow induced by local 60 GHz millimeter-wave exposure in rats,”
     <em>The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2026)</em>,
     PA-30, Cairns, Australia, Jun. 2026.
   </span>
@@ -1338,7 +1036,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Maoyuan Li, <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Akiko Nagai, and Kenji Taguchi,
-    "Two-Dimensional Simulation for Electromagnetic Field Exposure Based on Computed Tomography Scan Data and Canonical Slab Models,"
+    “Two-Dimensional Simulation for Electromagnetic Field Exposure Based on Computed Tomography Scan Data and Canonical Slab Models,”
     <em>Proceedings of IEEE MTT-S International Wireless Symposium (IEEE IWS 2026)</em>,
     Shenzhen, China, May. 2026.
   </span>
@@ -1348,7 +1046,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Haruto Utsushigawa, Yuma Ueda, and <u><b>Kun Li</b></u>,
-    "Estimation of Thermal Physiological Parameters due to EMF Exposure Using a Weibull Model with Response Surface Methodology,"
+    “Estimation of Thermal Physiological Parameters due to EMF Exposure Using a Weibull Model with Response Surface Methodology,”
     <em>URSI-France 2026 Workshop</em>,
     Paris, France, May. 2026.
   </span>
@@ -1358,7 +1056,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Chunxiao Li, and <u><b>Kun Li</b></u>,
-    "RF-EMF and EIRP Trade-Off in 6G Handset Multi-Antenna Systems at FR1 and FR3 Bands,"
+    “RF-EMF and EIRP Trade-Off in 6G Handset Multi-Antenna Systems at FR1 and FR3 Bands,”
     <em>Proceedings of 20th European Conference on Antennas and Propagation (EuCAP)</em>,
     Session T06, Dublin, Ireland, Apr. 2026.
   </span>
@@ -1368,7 +1066,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hongda Xu, and <u><b>Kun Li</b></u>,
-    "Sionna Ray-Tracing-Driven Analysis of RF-EMF and MIMO Channel Capacity in FR3 mmWave LOS Scenarios,"
+    “Sionna Ray-Tracing-Driven Analysis of RF-EMF and MIMO Channel Capacity in FR3 mmWave LOS Scenarios,”
     <em>Proceedings of 20th European Conference on Antennas and Propagation (EuCAP)</em>,
     Session T06, Dublin, Ireland, Apr. 2026.
   </span>
@@ -1378,7 +1076,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ming Yao, Gert Frolund Pedersen, <u><b>Kun Li</b></u>, and Shuai Zhang,
-    "A Comparison of EMF Exposure Prediction in mmWave to sub-THz Using XGBoost with SHAP and Deep Feedforward Neural Networks,"
+    “A Comparison of EMF Exposure Prediction in mmWave to sub-THz Using XGBoost with SHAP and Deep Feedforward Neural Networks,”
     <em>Proceedings of 20th European Conference on Antennas and Propagation (EuCAP)</em>,
     Session T02, Dublin, Ireland, Apr. 2026.
   </span>
@@ -1388,7 +1086,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Maoyuan Li, Yumiao He, <u><b>Kun Li</b></u>, Takahiro Aoyagi, and Ilangko Balasingham,
-    "Inductive Coupling Wireless Power Transfer for Implantable Devices: Impact of Eddy Current,"
+    “Inductive Coupling Wireless Power Transfer for Implantable Devices: Impact of Eddy Current,”
     <em>Proceedings of 20th European Conference on Antennas and Propagation (EuCAP)</em>,
     Session T06, Dublin, Ireland, Apr. 2026.
   </span>
@@ -1398,7 +1096,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Maoyuan Li, <u><b>Kun Li</b></u>, and Takahiro Aoyagi,
-    "Safety Assessment of a Metasurface-Enhanced Near-Field Magnetic Wireless Power Transfer System for Deep Implantable Medical Devices,"
+    “Safety Assessment of a Metasurface-Enhanced Near-Field Magnetic Wireless Power Transfer System for Deep Implantable Medical Devices,”
     <em>Proceedings of 2026 URSI-Japan Radio Science Meeting (URSI-JRSM 2026)</em>,
     Tokyo, Japan, Mar. 2026.
   </span>
@@ -1408,7 +1106,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Fumie Nonaka, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Age- and sex-related differences in skin temperature response to 60 GHz millimeter-wave exposure in humans,"
+    “Age- and sex-related differences in skin temperature response to 60 GHz millimeter-wave exposure in humans,”
     <em>The 6th IEICE-CS International Conference on Emerging Technologies for Communications</em>,
     P1-28, Osaka, Nov. 2025.
   </span>
@@ -1418,7 +1116,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Naomi Kamizawa, Naoko Terada, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Localized 60 GHz exposure induces skin necrosis without Iba1 expression in rat dorsal tissue,"
+    “Localized 60 GHz exposure induces skin necrosis without Iba1 expression in rat dorsal tissue,”
     <em>The 6th IEICE-CS International Conference on Emerging Technologies for Communications</em>,
     P1-26, Osaka, Nov. 2025.
   </span>
@@ -1428,7 +1126,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yukina Tsuruta, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Mast cell degranulation induced by local exposure to 60 GHz millimeter waves in rat skin,"
+    “Mast cell degranulation induced by local exposure to 60 GHz millimeter waves in rat skin,”
     <em>The 6th IEICE-CS International Conference on Emerging Technologies for Communications</em>,
     P1-24, Osaka, Nov. 2025.
   </span>
@@ -1438,7 +1136,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ziheng Zhou, <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "BER Enhancement of Maximum Acceptable Power under SAR Constraints for Implanted Biomedical Telemetry,"
+    “BER Enhancement of Maximum Acceptable Power under SAR Constraints for Implanted Biomedical Telemetry,”
     <em>The 6th IEICE-CS International Conference on Emerging Technologies for Communications</em>,
     P1-21, Osaka, Nov. 2025.
   </span>
@@ -1448,7 +1146,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuma Ueda, <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "Averaging of Absorbed Power Density for Forearm Skin Exposure at Millimeter-Wave Frequencies,"
+    “Averaging of Absorbed Power Density for Forearm Skin Exposure at Millimeter-Wave Frequencies,”
     <em>The 6th IEICE-CS International Conference on Emerging Technologies for Communications</em>,
     P1-20, Osaka, Nov. 2025.
   </span>
@@ -1458,7 +1156,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Haruto Utsushigawa, Yuma Ueda, <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "Weibull Distribution-Based Approximation of Skin Temperature Rise Due to MMW Beam Exposure,"
+    “Weibull Distribution-Based Approximation of Skin Temperature Rise Due to MMW Beam Exposure,”
     <em>The 6th IEICE-CS International Conference on Emerging Technologies for Communications</em>,
     P1-18, Osaka, Nov. 2025.
   </span>
@@ -1468,7 +1166,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "Channel Capacity Analysis for Cell-free Massive MIMO System,"
+    “Channel Capacity Analysis for Cell-free Massive MIMO System,”
     <em>Progress in Electromagnetic Research Symposium (PIERS 2025)</em>,
     PIERS Proceedings, 3P2a, Chiba, Japan, Nov. 2025.
   </span>
@@ -1478,7 +1176,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuhei Oda, Haruto Utsushigawa, Takumi Omoto, Kazuhiro Honda, and <u><b>Kun Li</b></u>,
-    "Over-the-Air Testing of BAN Diversity Antennas in 4G Downlink Frequency Band,"
+    “Over-the-Air Testing of BAN Diversity Antennas in 4G Downlink Frequency Band,”
     <em>Proceedings of 2025 International Symposium on Antennas and Propagation (ISAP)</em>,
     Fukuoka, Japan, Oct. 2025.
   </span>
@@ -1488,7 +1186,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Takumi Omoto, Kazuhiro Honda, and <u><b>Kun Li</b></u>,
-    "Experimental Verification of OTA Testing Method for Test Zone Extension,"
+    “Experimental Verification of OTA Testing Method for Test Zone Extension,”
     <em>Proceedings of 2025 International Symposium on Antennas and Propagation (ISAP)</em>,
     Fukuoka, Japan, Oct. 2025.
   </span>
@@ -1498,7 +1196,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Takashi Hikage, Shota Suzuki, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Exposure Characterization of a Spatially Synthesized 60 GHz System for Localized Millimeter-Wave Irradiation at Multiple Points on Human Skin,"
+    “Exposure Characterization of a Spatially Synthesized 60 GHz System for Localized Millimeter-Wave Irradiation at Multiple Points on Human Skin,”
     <em>2025 International Conference on Electromagnetics in Advanced Applications (ICEAA)</em>,
     Palermo, Italy, Sep. 2025.
   </span>
@@ -1508,7 +1206,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Shota Suzuki, Takashi Hikage, Hiroshi Masuda, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Numerical Dosimetric Evaluation of a 60-GHz Spatially Synthesized Localized Exposure System for Assessing Thermal Physiological Thresholds,"
+    “Numerical Dosimetric Evaluation of a 60-GHz Spatially Synthesized Localized Exposure System for Assessing Thermal Physiological Thresholds,”
     <em>The Philippines-Japan Workshop on Wireless, Radio and Antenna Technologies (PJWWRAT) 2025</em>,
     Sep. 2025.
   </span>
@@ -1518,7 +1216,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuma Ueda, <u><b>Kun Li</b></u>, Haruto Utsushigawa, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "A Machine Learning-Based Method for Thermal Parameter Estimation in MMW Exposure,"
+    “A Machine Learning-Based Method for Thermal Parameter Estimation in MMW Exposure,”
     <em>Proceedings of 2025 URSI Asia-Pacific Radio Science Conference (AP-RASC)</em>,
     Session F11, Sydney, Australia, Aug. 2025.
   </span>
@@ -1528,7 +1226,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Haruto Utsushigawa, <u><b>Kun Li</b></u>, Takuma Matsumoto, Shota Yamada, and Takeo Fujii,
-    "Characterization of LF Band Underground Wireless Communication Using Principal Component Analysis Method,"
+    “Characterization of LF Band Underground Wireless Communication Using Principal Component Analysis Method,”
     <em>Proceedings of 2025 URSI Asia-Pacific Radio Science Conference (AP-RASC)</em>,
     Session K05, Sydney, Australia, Aug. 2025.
   </span>
@@ -1538,7 +1236,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "BER Performance Analysis of Implantable Antennas in a Dynamic WBAN Channel,"
+    “BER Performance Analysis of Implantable Antennas in a Dynamic WBAN Channel,”
     <em>Proceedings of 2025 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 3432-3433, Ottawa, Canada, Jul. 2025.
   </span>
@@ -1548,7 +1246,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Chunxiao Li, Hongda Xu, <u><b>Kun Li</b></u>, and Xiaolong Wang,
-    "Averaging Method for Epithelial/Absorbed Power Density in Irregular Skin Models for 5G Antennas,"
+    “Averaging Method for Epithelial/Absorbed Power Density in Irregular Skin Models for 5G Antennas,”
     <em>Proceedings of 2025 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 3436-3437, Ottawa, Canada, Jul. 2025.
   </span>
@@ -1558,7 +1256,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Etsuko Ijima, Naomi Kamizawa, Yukina Tsuruta, Emi Hidaka, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Local exposure to 26.5 GHz-millimeter waves induces inflammatory protein expression in rat dorsal skin,"
+    “Local exposure to 26.5 GHz-millimeter waves induces inflammatory protein expression in rat dorsal skin,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2025)</em>,
     PA-36, Rennes, France, Jun. 2025.
   </span>
@@ -1568,7 +1266,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Etsuko Ijima, Naomi Kamizawa, Yukina Tsuruta, Emi Hidaka, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Histological changes in the rat dorsal skin after the high intensity local exposure to 26.5 GHz-millimeter waves,"
+    “Histological changes in the rat dorsal skin after the high intensity local exposure to 26.5 GHz-millimeter waves,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2025)</em>,
     PA-32, Rennes, France, Jun. 2025.
   </span>
@@ -1578,7 +1276,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "Thermal Modeling of Rat Dorsal Skin Based on a 60 GHz MMW Exposure System,"
+    “Thermal Modeling of Rat Dorsal Skin Based on a 60 GHz MMW Exposure System,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2025)</em>,
     PA-45, Rennes, France, Jun. 2025.
   </span>
@@ -1588,7 +1286,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hongda Xu, <u><b>Kun Li</b></u>, and Xiaolong Wang,
-    "A Miniaturized Patch Antenna Designed for Weighted-Polarization MIMO System Used for Human-Centric Communication,"
+    “A Miniaturized Patch Antenna Designed for Weighted-Polarization MIMO System Used for Human-Centric Communication,”
     <em>Proceedings of IEEE MTT-S International Wireless Symposium (IEEE IWS 2025)</em>,
     Xi'an, China, May. 2025.
   </span>
@@ -1598,10 +1296,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "Evaluation Technology for Skin Exposure to Electromagnetic Fields Above 6 GHz: Establishing from Theory, Simulation, and Experimental Approaches,"
+    “Evaluation Technology for Skin Exposure to Electromagnetic Fields Above 6 GHz: Establishing from Theory, Simulation, and Experimental Approaches,”
     <em>Proceedings of IEEE MTT-S International Wireless Symposium (IEEE IWS 2025)</em>,
     Xi'an, China, May. 2025.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -1609,7 +1307,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "Skin Dosimetry Analysis Based on a Spatial Synthetic Exposure Equipment at 60 GHz,"
+    “Skin Dosimetry Analysis Based on a Spatial Synthetic Exposure Equipment at 60 GHz,”
     <em>Proceedings of 19th European Conference on Antennas and Propagation (EuCAP)</em>,
     Session PM-2, Stockholm, Sweden, Mar. 2025.
   </span>
@@ -1619,7 +1317,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hongda Xu, <u><b>Kun Li</b></u>, He Liu, Yanfeng Sun, Chunxiao Li, and Xiaolong Wang,
-    "MIMO Capacity Analysis of Wearable Antennas in FR3 Lower Band,"
+    “MIMO Capacity Analysis of Wearable Antennas in FR3 Lower Band,”
     <em>Proceedings of 2024 IEEE 10th International Symposium on Microwave, Antenna, Propagation and EMC Technologies for Wireless Communications (IEEE MAPE 2024)</em>,
     Session-FP1P, Guangzhou, Nov. 2024.
   </span>
@@ -1629,7 +1327,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Haruto Utsushigawa, <u><b>Kun Li</b></u>, Takuma Matsumoto, Shota Yamada, and Takeo Fujii,
-    "Field Strength Assessment for Underground Wireless Communication at LF Bands,"
+    “Field Strength Assessment for Underground Wireless Communication at LF Bands,”
     <em>Proceedings of 2024 IEEE International Workshop on Wireless Sensing Technologies and Applications (IWSA 2024)</em>,
     Session 1, Macau, China, Nov. 2024.
   </span>
@@ -1639,7 +1337,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Hongda Xu, Xiaolong Wang, and Koji Ishibashi,
-    "Human Blockage Analysis at 5G Millimeter Wave Frequencies Using a High-Resolution Voxel Model,"
+    “Human Blockage Analysis at 5G Millimeter Wave Frequencies Using a High-Resolution Voxel Model,”
     <em>Proceedings of 2024 21th IEEE Asia Pacific Wireless Communications Symposium (APWCS 2024)</em>,
     Singapore, Aug. 2024.
   </span>
@@ -1649,7 +1347,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "Error Analysis of APD Calculations Using High-Resolution Anatomical Rat Head Models for Millimeter-Wave Antenna Exposure,"
+    “Error Analysis of APD Calculations Using High-Resolution Anatomical Rat Head Models for Millimeter-Wave Antenna Exposure,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2024)</em>,
     WS3-04, Crete, Greece, Jun. 2024.
   </span>
@@ -1659,7 +1357,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Takashi Hikage, Hiroshi Masuda, Etsuko Ijima, Akiko Nagai, and Kenji Taguchi,
-    "Comparison of Calculated APD Between 1-D and 3-D Rat Head Skin Models,"
+    “Comparison of Calculated APD Between 1-D and 3-D Rat Head Skin Models,”
     <em>2024 Joint International Symposium on Electromagnetic Compatibility and Asia-Pacific International Symposium on Electromagnetic Compatibility (EMC Japan &amp; APEMC Okinawa)</em>,
     WedAM2B.2, p. 292, Okinawa, May. 2024.
   </span>
@@ -1669,7 +1367,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Tsuruga Sakura, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "60 GHz Spatial Synthetic High-Localized Exposure System for Investigating Thermo-Physiology,"
+    “60 GHz Spatial Synthetic High-Localized Exposure System for Investigating Thermo-Physiology,”
     <em>2024 Joint International Symposium on Electromagnetic Compatibility and Asia-Pacific International Symposium on Electromagnetic Compatibility (EMC Japan &amp; APEMC Okinawa)</em>,
     ThuAM2D.2, p. 522, Okinawa, May. 2024.
   </span>
@@ -1679,7 +1377,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "A Statistical Analysis for Predicting Human Skin Exposure Level in Millimeter Wave Wireless Systems,"
+    “A Statistical Analysis for Predicting Human Skin Exposure Level in Millimeter Wave Wireless Systems,”
     <em>Progress in Electromagnetic Research Symposium (PIERS 2024)</em>,
     PIERS Proceedings, 4A2a, Chengdu, China, Apr. 2024.
   </span>
@@ -1689,7 +1387,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kaito Sugimura, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Novel Exposure Setup Using Spatial Synthetic Antennas for Investigation of Thermal Physiology and Cellular Function Changes Induced by Highly Localized Millimeter-Wave Exposure,"
+    “Novel Exposure Setup Using Spatial Synthetic Antennas for Investigation of Thermal Physiology and Cellular Function Changes Induced by Highly Localized Millimeter-Wave Exposure,”
     <em>Proceedings of 2023 International Conference on Emerging Technologies for Communications</em>,
     Session P2, No. 21, Sapporo, Nov. 2023.
   </span>
@@ -1699,7 +1397,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kaito Sugimura, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Novel Vertically Exposure System Using Spatial Synthetic Antennas to Investigate Thermo-Physiological and Cellular Function Changes Induced by Millimeter-Wave Exposure,"
+    “Novel Vertically Exposure System Using Spatial Synthetic Antennas to Investigate Thermo-Physiological and Cellular Function Changes Induced by Millimeter-Wave Exposure,”
     <em>Proceedings of 2023 International Symposium on Antennas and Propagation (ISAP)</em>,
     RS2.5, Kuala Lumpur, Malaysia, Oct. 2023.
   </span>
@@ -1709,10 +1407,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "Method of Power Density and Temperature Elevation Analysis for Skin Exposure to Electromagnetic Fields above 6 GHz,"
+    “Method of Power Density and Temperature Elevation Analysis for Skin Exposure to Electromagnetic Fields above 6 GHz,”
     <em>The 31st International Conference on Software, Telecommunications and Computer Networks (SoftCOM 2023)</em>,
     Split, Croatia, Sep. 2023.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -1720,7 +1418,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hiroshi Masuda, Etsuko Ijima, Takashi Hikage, <u><b>Kun Li</b></u>, Sachiko Kodera, Akimasa Hirata, and Tatsuya Ishitake,
-    "Effects of high intensity local exposure to 26.5 GHz-millimeter-waves on glial cells in rat brain,"
+    “Effects of high intensity local exposure to 26.5 GHz-millimeter-waves on glial cells in rat brain,”
     <em>Proceedings of 2023 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K01, Sapporo, Japan, Aug. 2023.
   </span>
@@ -1730,7 +1428,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Naomi Kamizawa, Etsuko Ijima, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Histological effects of high intensity local exposure to 26.5 GHz-millimeter waves on dorsal skin in rat,"
+    “Histological effects of high intensity local exposure to 26.5 GHz-millimeter waves on dorsal skin in rat,”
     <em>Proceedings of 2023 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K01, Sapporo, Japan, Aug. 2023.
   </span>
@@ -1740,7 +1438,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Emi Hidaka, Etsuko Ijima, Yukina Tsuruta, Tatsuya Ishitake, Akiko Nagai, Takashi Hikage, <u><b>Kun Li</b></u>, and Hiroshi Masuda,
-    "Effects of local exposure to 26.5 GHz-millimeter wave on neuronal cells in rat brain,"
+    “Effects of local exposure to 26.5 GHz-millimeter wave on neuronal cells in rat brain,”
     <em>Proceedings of 2023 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K01, Sapporo, Japan, Aug. 2023.
   </span>
@@ -1750,7 +1448,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ante Kapetanovic, Dragan Poljak, and <u><b>Kun Li</b></u>,
-    "Prediction of Maximum Temperature Rise on Skin Surface for Local Exposure at 10-90 GHz,"
+    “Prediction of Maximum Temperature Rise on Skin Surface for Local Exposure at 10-90 GHz,”
     <em>Proceedings of 2023 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K07, Sapporo, Japan, Aug. 2023.
   </span>
@@ -1760,7 +1458,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Sachiko Kodera, Dragan Poljak, Yinliang Diao, Kensuke Sasaki, Anna Susnjara, Alexander Prokop, Kenji Taguchi, Jingtian Xi, Shuai Zhang, Ming Yao, Giulia Sacco, Maxim Zhadobov, Walid El Hajj, and Akimasa Hirata,
-    "Intercomparison of Spatially Averaged Absorbed Power Density above 10 GHz,"
+    “Intercomparison of Spatially Averaged Absorbed Power Density above 10 GHz,”
     <em>Proceedings of 2023 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K07, Sapporo, Japan, Aug. 2023.
   </span>
@@ -1770,7 +1468,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Giulia Sacco, Bernard Uguen, and Maxim Zhadobov,
-    "Analytical Channel Model for On-Body Antenna at 60 GHz,"
+    “Analytical Channel Model for On-Body Antenna at 60 GHz,”
     <em>Proceedings of 2023 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session KD, Sapporo, Japan, Aug. 2023.
   </span>
@@ -1780,7 +1478,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "Frequency Dependence Analysis of MMW Human-Skin Exposure using Regression Algorithm,"
+    “Frequency Dependence Analysis of MMW Human-Skin Exposure using Regression Algorithm,”
     <em>Proceedings of 2023 International Workshop on Electromagnetics: Applications and Student Innovation Competition (iWEM 2023)</em>,
     Harbin, China, pp. 29-30, Jul. 2023.
   </span>
@@ -1790,7 +1488,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Yuetian Wang, Zizhuo Sun, Xianwang Yang, <u><b>Kun Li</b></u>, Xiaolong Wang, Gennadi Milinevsky, and Geyu Lu,
-    "A Ring Type Bandpass Filtering Impedance Transformer With Complex Load,"
+    “A Ring Type Bandpass Filtering Impedance Transformer With Complex Load,”
     <em>Proceedings of 2023 International Workshop on Electromagnetics: Applications and Student Innovation Competition (iWEM 2023)</em>,
     Harbin, China, pp. 101-104, Jul. 2023.
   </span>
@@ -1800,7 +1498,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ante Kapetanovic, Dragan Poljak, and <u><b>Kun Li</b></u>,
-    "Standardized benchmark dataset for localized exposure to a realistic source at 10-90 GHz,"
+    “Standardized benchmark dataset for localized exposure to a realistic source at 10-90 GHz,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2023)</em>,
     Oxford, England, Jun. 2023.
   </span>
@@ -1810,7 +1508,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kaito Sugimura, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Development of a 60 GHz Band Lens Antenna for The Study of Thermo-physiological and Cellular Function Changes Induced by Millimeter-wave Exposure,"
+    “Development of a 60 GHz Band Lens Antenna for The Study of Thermo-physiological and Cellular Function Changes Induced by Millimeter-wave Exposure,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2023)</em>,
     Oxford, England, Jun. 2023.
   </span>
@@ -1820,7 +1518,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ming Yao, <u><b>Kun Li</b></u>, and Shuai Zhang,
-    "Comparisons of Absorbed Power Density and Incident Power Density for EMF exposure in the near-field at 10-90 GHz,"
+    “Comparisons of Absorbed Power Density and Incident Power Density for EMF exposure in the near-field at 10-90 GHz,”
     <em>Swedish Microwave Days 2023</em>,
     Stockholm, Sweden, May. 2023.
   </span>
@@ -1830,7 +1528,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "Experimental Study of Intra-Vehicle Ultra-Wideband Propagation Channels with Human Body Effects,"
+    “Experimental Study of Intra-Vehicle Ultra-Wideband Propagation Channels with Human Body Effects,”
     <em>Proceedings of 2022 International Applied Computational Electromagnetics Society (ACES-China) Symposium</em>,
     Xuzhou, China, Dec. 2022.
   </span>
@@ -1840,10 +1538,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Xiaolong Wang,
-    "Design Concept and Implementation of Weighted-Polarization Antennas for Body-Centric Networks,"
+    “Design Concept and Implementation of Weighted-Polarization Antennas for Body-Centric Networks,”
     <em>Proceedings of 2022 International Applied Computational Electromagnetics Society (ACES-China) Symposium</em>,
     Xuzhou, China, Dec. 2022.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -1851,7 +1549,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kohei Yamamoto, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "Development of 60 GHz Focus Lens Antenna for Investigation of Effect of Localized Millimeter-Waves Exposure on Thermal Physiology and Cellular Functions,"
+    “Development of 60 GHz Focus Lens Antenna for Investigation of Effect of Localized Millimeter-Waves Exposure on Thermal Physiology and Cellular Functions,”
     <em>Proceedings of 2022 International Symposium on Antennas and Propagation (ISAP)</em>,
     pp. 277-278, Sydney, Australia, Oct. 2022.
   </span>
@@ -1861,7 +1559,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kohei Yamamoto, Takashi Hikage, Hiroshi Masuda, Tatsuya Ishitake, <u><b>Kun Li</b></u>, and Akiko Nagai,
-    "A Novel 60 GHz Spatial Synthetic Exposure Set-up for the Study of Thermal Perception Thresholds for Biological Effects of 5G and Beyond Wireless Systems,"
+    “A Novel 60 GHz Spatial Synthetic Exposure Set-up for the Study of Thermal Perception Thresholds for Biological Effects of 5G and Beyond Wireless Systems,”
     <em>Proceedings of 2022 International Workshop on Electromagnetics: Applications and Student Innovation Competition (iWEM 2022)</em>,
     pp. 37-38, Narashino, Japan, Aug. 2022.
   </span>
@@ -1871,7 +1569,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Zizhuo Sun, Huixin Zhang, Shaojun Zhang, Nan Zhang, <u><b>Kun Li</b></u>, and Xiaolong Wang,
-    "A Microwave CSRR Sensor for Non-Invasive Glucose-Level Detection,"
+    “A Microwave CSRR Sensor for Non-Invasive Glucose-Level Detection,”
     <em>Proceedings of the 5th IEEE International Conference on Electronic Information and Communication Technology (ICEICT 2022)</em>,
     pp. 872-874, Hefei, China, Aug. 2022.
   </span>
@@ -1881,10 +1579,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kensuke Sasaki, <u><b>Kun Li</b></u>, and Tomoaki Nagaoka,
-    "Human Skin Exposure to Terahertz Wave from 0.1 to 1 THz: Statistical Assessments Using Multilayered Plane Models,"
+    “Human Skin Exposure to Terahertz Wave from 0.1 to 1 THz: Statistical Assessments Using Multilayered Plane Models,”
     <em>Proceedings of 2022 International Microwave Biomedical Conference (IMBioC 2022)</em>,
     pp. 25-27, Suzhou, China, May. 2022.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -1892,7 +1590,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "Relationship between Local Peak SAR and MIMO Performance for 5G Sub-6GHz Antennas,"
+    “Relationship between Local Peak SAR and MIMO Performance for 5G Sub-6GHz Antennas,”
     <em>Proceedings of 2021 International Symposium on Antennas and Propagation (ISAP)</em>,
     pp. 1-2, Taipei, Taiwan, Dec. 2021.
   </span>
@@ -1902,7 +1600,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ryushun Oka, <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "Measurement of Rice factor for In-Body Radios at 950 MHz in Indoor Environment,"
+    “Measurement of Rice factor for In-Body Radios at 950 MHz in Indoor Environment,”
     <em>Proceedings of 2021 International Symposium on Antennas and Propagation (ISAP)</em>,
     pp. 1-2, Taipei, Taiwan, Dec. 2021.
   </span>
@@ -1912,7 +1610,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Kanako Wake,
-    "Analysis of MMW Exposure of a Clothed Skin with Oblique Incidence Angles,"
+    “Analysis of MMW Exposure of a Clothed Skin with Oblique Incidence Angles,”
     <em>Proceedings of 2021 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K05, Roma, Aug. 2021.
   </span>
@@ -1922,7 +1620,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "A Novel Estimation Method of Local Peak SAR for 5G Sub-6GHz Antennas using MIMO-OTA,"
+    “A Novel Estimation Method of Local Peak SAR for 5G Sub-6GHz Antennas using MIMO-OTA,”
     <em>Proceedings of 15th European Conference on Antennas and Propagation (EuCAP)</em>,
     Session T05-M01, Dusseldorf, Germany, Mar. 2021.
   </span>
@@ -1932,7 +1630,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Jerdvisanop Chakarothai, and Katsumi Fujii,
-    "FDTD analysis of pulsed electromagnetic fields for intra-vehicle UWB radios using a voxel human head model,"
+    “FDTD analysis of pulsed electromagnetic fields for intra-vehicle UWB radios using a voxel human head model,”
     <em>Proceedings of 2020 International Conference on Emerging Technologies for Communications</em>,
     Session H1-1, Tokyo, Dec. 2020.
   </span>
@@ -1942,11 +1640,11 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Kanako Wake, Teruo Onishi, and Soichi Watanabe,
-    "Computational Comparison of Power Density Definitions in the Proximity of Antennas for the Assessment of Human Exposure to EMF above 6 GHz,"
+    “Computational Comparison of Power Density Definitions in the Proximity of Antennas for the Assessment of Human Exposure to EMF above 6 GHz,”
     <em>Proceedings of 2020 XXXIIIrd General Assembly and Scientific Symposium of the International Union of Radio Science</em>,
     Session K05, Rome, Aug. 2020.
-    <span class="badge-invited">Invited</span>
-    <span class="badge-award">Young Scientists Award</span>
+    (Invited)
+    (Young Scientists Award)
   </span>
 </li>
 
@@ -1954,7 +1652,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, and Soichi Watanabe,
-    "Advanced Techniques for Electric Field Measurements of Multi-Antenna Transmitters in Compliance Tests,"
+    “Advanced Techniques for Electric Field Measurements of Multi-Antenna Transmitters in Compliance Tests,”
     <em>Proceedings of 2019 URSI-Japan Radio Science Meeting (URSI-JRSM 2019)</em>,
     K1-3, pp. 116, Tokyo, Sep. 2019.
   </span>
@@ -1964,7 +1662,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Ryo Matsumoto, <u><b>Kun Li</b></u>, Kensuke Sasaki, Soichi Watanabe, Kanako Wake, and Ryosuke Suga,
-    "A Preliminary Study on Assessment of Absorbed Power Density inside a Human Body Based on Measurement of Reflection of Electromagnetic Wave,"
+    “A Preliminary Study on Assessment of Absorbed Power Density inside a Human Body Based on Measurement of Reflection of Electromagnetic Wave,”
     <em>Proceedings of 2019 URSI-Japan Radio Science Meeting (URSI-JRSM 2019)</em>,
     KP-1, pp. 196, Tokyo, Sep. 2019.
   </span>
@@ -1974,7 +1672,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kensuke Sasaki, <u><b>Kun Li</b></u>, Kanako Wake, and Soichi Watanabe,
-    "An Assessment of Incident Power Density Using Near-Field Reconstruction Algorithm at Millimeter-Wave Frequencies,"
+    “An Assessment of Incident Power Density Using Near-Field Reconstruction Algorithm at Millimeter-Wave Frequencies,”
     <em>Proceedings of 2019 URSI-Japan Radio Science Meeting (URSI-JRSM 2019)</em>,
     K1-4, pp. 117, Tokyo, Sep. 2019.
   </span>
@@ -1984,7 +1682,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, and Soichi Watanabe,
-    "Experimental Validations on Low-Error Estimation Models in Determining the Maximum Specific Absorption Rate of Multi-Antenna Mobile Handsets,"
+    “Experimental Validations on Low-Error Estimation Models in Determining the Maximum Specific Absorption Rate of Multi-Antenna Mobile Handsets,”
     <em>Proceedings of 2019 16th IEEE Asia Pacific Wireless Communications Symposium (APWCS 2019)</em>,
     Session D3, Singapore, Aug. 2019.
   </span>
@@ -1994,7 +1692,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, Soichi Watanabe, and Teruo Onishi,
-    "Determination the Maximum Local Specific Absorption Rate of Multiple-Antenna Transmitters Using K-Order Electric Field Models,"
+    “Determination the Maximum Local Specific Absorption Rate of Multiple-Antenna Transmitters Using K-Order Electric Field Models,”
     <em>Proceedings of 2019 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 523-524, Atlanta, USA, Jul. 2019.
   </span>
@@ -2004,7 +1702,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Soichi Watanabe, Kanako Wake, Junji Higashiyama, and Teruo Onishi,
-    "Measurement Scheme Consideration for Near-Field Reconstruction Based on Plane Wave Spectrum Expansion Using a Phased Array Antenna at 28 GHz,"
+    “Measurement Scheme Consideration for Near-Field Reconstruction Based on Plane Wave Spectrum Expansion Using a Phased Array Antenna at 28 GHz,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2019)</em>,
     S13-2, pp. 244-246, Montpellier, France, Jun. 2019.
   </span>
@@ -2014,7 +1712,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Soichi Watanabe, and Kanako Wake,
-    "An Effective Exposure Area of Power Density for a Dosimetric Study using 60-GHz Antennas,"
+    “An Effective Exposure Area of Power Density for a Dosimetric Study using 60-GHz Antennas,”
     <em>2019 Joint International Symposium on Electromagnetic Compatibility and Asia-Pacific International Symposium on Electromagnetic Compatibility (EMC Sapporo &amp; APEMC 2019)</em>,
     ThuPM2Po.15, pp. 741, Sapporo, Jun. 2019.
   </span>
@@ -2024,10 +1722,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, Soichi Watanabe, and Teruo Onishi,
-    "A Novel Estimation Technique using K-Order Models to Evaluate the Maximum Electric Field of Multiple-Antenna Transmitters,"
+    “A Novel Estimation Technique using K-Order Models to Evaluate the Maximum Electric Field of Multiple-Antenna Transmitters,”
     <em>2019 Joint International Symposium on Electromagnetic Compatibility and Asia-Pacific International Symposium on Electromagnetic Compatibility (EMC Sapporo &amp; APEMC 2019)</em>,
     TuePM1A.2, pp. 78-81, Sapporo, Jun. 2019.
-    <span class="badge-award">The Risaburo Sato Award</span>
+    (The Risaburo Sato Award)
   </span>
 </li>
 
@@ -2035,7 +1733,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kensuke Sasaki, <u><b>Kun Li</b></u>, Kanako Wake, Soichi Watanabe, Junji Higashiyama, and Teruo Onishi,
-    "Near-Field Accuracy of Incident Power Density Measured Using Reconstructing Algorithm for Compliance Assessment of Devices at Millimeterwave Frequencies,"
+    “Near-Field Accuracy of Incident Power Density Measured Using Reconstructing Algorithm for Compliance Assessment of Devices at Millimeterwave Frequencies,”
     <em>2019 Joint International Symposium on Electromagnetic Compatibility and Asia-Pacific International Symposium on Electromagnetic Compatibility (EMC Sapporo &amp; APEMC 2019)</em>,
     TueAM1A.2, pp. 43-46, Sapporo, Jun. 2019.
   </span>
@@ -2045,7 +1743,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "Averaging Area for Transmitted Power Density Correlated to Temperature Elevation on Human Skin Surface due to RF Exposure at 60 GHz,"
+    “Averaging Area for Transmitted Power Density Correlated to Temperature Elevation on Human Skin Surface due to RF Exposure at 60 GHz,”
     <em>Proceedings of 2019 International Microwave Biomedical Conference (IMBioC 2019)</em>,
     TA1B-23, Nanjing, China, May. 2019.
   </span>
@@ -2055,7 +1753,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, Soichi Watanabe, and Yoshio Karasawa,
-    "A New Measurement Technique to Determinate the Maximum SAR of Multiple-Antenna Transmitters Using K-Order Models and Scalar E-Field Probes,"
+    “A New Measurement Technique to Determinate the Maximum SAR of Multiple-Antenna Transmitters Using K-Order Models and Scalar E-Field Probes,”
     <em>26th International Conference on Telecommunications (ICT 2019)</em>,
     Session 13, Ha Noi, Vietnam, Apr. 2019.
   </span>
@@ -2065,7 +1763,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kengo Kawabata, Kensuke Sasaki, Ryosuke Suga, Soichi Watanabe, and Osamu Hashimoto,
-    "Estimation of Transmitted Power Density from Temperature Experiment for EMF Exposure Assessment at 60 GHz,"
+    “Estimation of Transmitted Power Density from Temperature Experiment for EMF Exposure Assessment at 60 GHz,”
     <em>URSI AP-RASC 2019</em>,
     PO-K-7, New Delhi, India, Mar. 2019.
   </span>
@@ -2075,7 +1773,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kengo Kawabata, Kensuke Sasaki, <u><b>Kun Li</b></u>, Ryosuke Suga, Soichi Watanabe, and Osamu Hashimoto,
-    "Design of Human-Skin Equivalent Phantom for Evaluating the Surface Temperature Elevation due to Millimeter Wave Exposure,"
+    “Design of Human-Skin Equivalent Phantom for Evaluating the Surface Temperature Elevation due to Millimeter Wave Exposure,”
     <em>URSI AP-RASC 2019</em>,
     PO-K-22, New Delhi, India, Mar. 2019.
   </span>
@@ -2085,7 +1783,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kengo Kawabata, <u><b>Kun Li</b></u>, Kensuke Sasaki, Ryosuke Suga, Soichi Watanabe, and Osamu Hashimoto,
-    "Exposure Assessment of Surface Temperature Elevation at Millimeter Wave Frequencies using a Designed Phantom,"
+    “Exposure Assessment of Surface Temperature Elevation at Millimeter Wave Frequencies using a Designed Phantom,”
     <em>6th International SmartCity Symposium 2018</em>,
     Putrajaya, Malaysia, Oct. 2018.
   </span>
@@ -2095,10 +1793,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "EMF exposure from 5G equipment at millimeter wave frequencies,"
+    “EMF exposure from 5G equipment at millimeter wave frequencies,”
     <em>Proceedings of 2018 International Workshop on Electromagnetics: Applications and Student Innovation Competition (iWEM 2018)</em>,
     p. 175, Nagoya, Japan, Aug. 2018.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -2106,7 +1804,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "Heat Potential of Power Density for MMW Exposure Assessment from 6 GHz to 1 THz,"
+    “Heat Potential of Power Density for MMW Exposure Assessment from 6 GHz to 1 THz,”
     <em>Progress in Electromagnetic Research Symposium (PIERS 2018)</em>,
     PIERS Proceedings, p. 222, Toyama, Japan, Aug. 2018.
   </span>
@@ -2116,7 +1814,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "Evaluation of Heating Effects to Millimeter Wave Exposure in Oblique Incidence,"
+    “Evaluation of Heating Effects to Millimeter Wave Exposure in Oblique Incidence,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2018)</em>,
     pp. 593-595, Piran &amp; Portoroz, Slovenia, Jun. 2018.
   </span>
@@ -2126,10 +1824,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "Human-skin temperature elevation by EMF exposure at MMW and THz frequencies,"
+    “Human-skin temperature elevation by EMF exposure at MMW and THz frequencies,”
     <em>The Joint Annual Meeting of The Bioelectromagnetics Society and the European BioElectromagnetics Association (BioEM2018)</em>,
     MWF 5G Workshop, Piran &amp; Portoroz, Slovenia, Jun. 2018.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -2137,7 +1835,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kensuke Sasaki, <u><b>Kun Li</b></u>, Jerdvisanop Chakarothai, Takahiro Iyama, Teruo Onishi, and Soichi Watanabe,
-    "Power Density Estimation Using Back-Projection Technique for Compliance Assessment of Wireless Communication Technologies Operating above 6 GHz,"
+    “Power Density Estimation Using Back-Projection Technique for Compliance Assessment of Wireless Communication Technologies Operating above 6 GHz,”
     <em>2nd URSI Atlantic Radio Science Conference (2018 URSI AT-RASC)</em>,
     K02-01, Gran Canaria, Spain, May. 2018.
   </span>
@@ -2147,7 +1845,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>,
-    "High Reliable Wireless Biosensor for Advanced Medical ICT in Aging Society,"
+    “High Reliable Wireless Biosensor for Advanced Medical ICT in Aging Society,”
     <em>The 13th IEEE Transdisciplinary-Oriented Workshop for Emerging Researchers</em>,
     Tokyo, Japan, Dec. 2016.
   </span>
@@ -2157,7 +1855,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Tomoya Maekawa, <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Proposal of Decoupling Technique for Intra-EMC,"
+    “Proposal of Decoupling Technique for Intra-EMC,”
     <em>2016 Asia-Pacific International Symposium on Electromagnetic Compatibility (APEMC)</em>,
     TC13 Wireless Communication EMC, SA-PM-I-TC13-1, p. 702, Shenzhen, China, May. 2016.
   </span>
@@ -2167,10 +1865,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Keisuke Murata, Kazuhiro Honda, and Koichi Ogawa,
-    "Bit-Error-Rate OTA Testing of BAN Antennas Based on Shadowing-Fading Hybrid Effects,"
+    “Bit-Error-Rate OTA Testing of BAN Antennas Based on Shadowing-Fading Hybrid Effects,”
     <em>Proceedings of 2016 10th International Symposium on Medical Information and Communication Technology (ISMICT)</em>,
     pp. 56-60, Worcester, USA, Mar. 2016.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -2178,7 +1876,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,"
+    “Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,”
     <em>Proceedings of 2015 Asia-Pacific Microwave Conference (APMC)</em>,
     Session TU4F, vol. 2, pp. 1-3, Nanjing, China, Dec. 2015.
   </span>
@@ -2188,7 +1886,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hiroshi Sato, Kohei Omote, <u><b>Kun Li</b></u>, Kazuhiro Honda, Yoshio Koyanagi, and Koichi Ogawa,
-    "The 3-axis polarization antenna using Disk-Loaded Monopole stacked with Patch Antenna in PCB,"
+    “The 3-axis polarization antenna using Disk-Loaded Monopole stacked with Patch Antenna in PCB,”
     <em>Proceedings of 2015 Asia-Pacific Microwave Conference (APMC)</em>,
     Session MO1D, vol. 1, pp. 1-3, Nanjing, China, Dec. 2015.
   </span>
@@ -2198,7 +1896,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kohei Omote, Hiroshi Sato, <u><b>Kun Li</b></u>, Kazuhiro Honda, Yoshio Koyanagi, and Koichi Ogawa,
-    "Three-Axis Decoupling Stub-Loaded Parallel Dipole Array with Tri-Orthogonal Polarization Directivity,"
+    “Three-Axis Decoupling Stub-Loaded Parallel Dipole Array with Tri-Orthogonal Polarization Directivity,”
     <em>Proceedings of International Workshop on Electromagnetics (iWEM)</em>,
     PO1.19, pp. 1-2, Hsinchu, Taiwan, Nov. 2015.
   </span>
@@ -2208,7 +1906,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,"
+    “Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,”
     <em>Proceedings of International Workshop on Electromagnetics (iWEM)</em>,
     PO1.12, pp. 1-2, Hsinchu, Taiwan, Nov. 2015.
   </span>
@@ -2218,7 +1916,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, Toshihiko Kabeya, Kento Karitani, <u><b>Kun Li</b></u>, Koichi Ogawa, Yoshio Koyanagi, Hiroshi Sato, and Ritsu Miura,
-    "A Polarization-Controlled MIMO Antenna with an Optimum Phase Shift in Accordance with Various Use Scenarios,"
+    “A Polarization-Controlled MIMO Antenna with an Optimum Phase Shift in Accordance with Various Use Scenarios,”
     <em>Proceedings of 2015 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 1234-1235, Vancouver, Canada, Jul. 2015.
   </span>
@@ -2228,7 +1926,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kohei Omote, Hiroshi Sato, <u><b>Kun Li</b></u>, Kazuhiro Honda, Yoshio Koyanagi, and Koichi Ogawa,
-    "Disk-Loaded Monopole Stacked with Patch Antenna,"
+    “Disk-Loaded Monopole Stacked with Patch Antenna,”
     <em>Proceedings of 2015 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 709-710, Vancouver, Canada, Jul. 2015.
   </span>
@@ -2238,7 +1936,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Yuta Ishisaka, Kazuhiro Honda, and Koichi Ogawa,
-    "Dual-Polarized Turn-Style Patch Antenna for Wearable Applications,"
+    “Dual-Polarized Turn-Style Patch Antenna for Wearable Applications,”
     <em>Proceedings of 2015 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 641-642, Vancouver, Canada, Jul. 2015.
   </span>
@@ -2248,7 +1946,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, Toshihiko Kabeya, Kento Karitani, <u><b>Kun Li</b></u>, Koichi Ogawa, Yoshio Koyanagi, Hiroshi Sato, and Ritsu Miura,
-    "A Base Station Correlation-Controlled Bilateral Emulator for MIMO-OTA,"
+    “A Base Station Correlation-Controlled Bilateral Emulator for MIMO-OTA,”
     <em>2015 IEEE International Symposium on Antennas and Propagation &amp; USNC/URSI National Radio Science Meeting</em>,
     pp. 294-295, Vancouver, Canada, Jul. 2015.
   </span>
@@ -2258,7 +1956,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Experiments of a Polarization-controlled Active Antenna to Enhance BAN On-body Link in Human Dynamic Channels,"
+    “Experiments of a Polarization-controlled Active Antenna to Enhance BAN On-body Link in Human Dynamic Channels,”
     <em>Proceedings of 2015 9th International Symposium on Medical Information and Communication Technology (ISMICT)</em>,
     Session THA2, pp. 117-120, Kamakura, Japan, Mar. 2015.
   </span>
@@ -2268,7 +1966,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "On-body Polarization-controlled Active Antenna to Enhance Signal Power in Human Dynamic Channels,"
+    “On-body Polarization-controlled Active Antenna to Enhance Signal Power in Human Dynamic Channels,”
     <em>Proceedings of 2014 International Symposium on Antennas and Propagation (ISAP)</em>,
     WE3A_01, pp. 93-94, Kaohsiung, Taiwan, Dec. 2014.
   </span>
@@ -2278,7 +1976,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Channel Capacity Experiment of a Polarization Controlled MIMO Antenna for Wearable Applications,"
+    “Channel Capacity Experiment of a Polarization Controlled MIMO Antenna for Wearable Applications,”
     <em>IEEE Progress in Electromagnetic Research Symposium Proceedings (PIERS 2014)</em>,
     pp. 2139-2143, Guangzhou, China, Aug. 2014.
   </span>
@@ -2288,7 +1986,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "An 8x8 MIMO 3-axis Weighted Polarization Active Antenna for Wearable Radio Applications,"
+    “An 8x8 MIMO 3-axis Weighted Polarization Active Antenna for Wearable Radio Applications,”
     <em>Proceedings of 2014 31th URSI General Assembly and Scientific Symposium (URSI GASS 2014)</em>,
     BP1.17, Topics on Antennas: Recent Advances and Future Outlook, pp. 1-4, Beijing, China, Aug. 2014.
   </span>
@@ -2298,7 +1996,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Over-The-Air Assessment for 2-dimensional Arrangement MIMO Array Antennas,"
+    “Over-The-Air Assessment for 2-dimensional Arrangement MIMO Array Antennas,”
     <em>Proceedings of 2014 31th URSI General Assembly and Scientific Symposium (URSI GASS 2014)</em>,
     AB01.3, Topics on Recent Advances in Antenna Measurement Techniques, pp. 1-4, Beijing, China, Aug. 2014.
   </span>
@@ -2308,7 +2006,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Three-dimensional OTA Design Considerations Based on MIMO Antenna Radiation and Multipath Interactions,"
+    “Three-dimensional OTA Design Considerations Based on MIMO Antenna Radiation and Multipath Interactions,”
     <em>Proceedings of 2014 IEEE International Workshop on Electromagnetics (iWEM 2014)</em>,
     PO2.42, pp. 215-216, Sapporo, Japan, Aug. 2014.
   </span>
@@ -2318,10 +2016,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuki Kaga, <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "A Sequential Automatic Impedance-Matching Algorithm to Achieve Simultaneous Complex-Conjugate Condition in Multi-element Antennas,"
+    “A Sequential Automatic Impedance-Matching Algorithm to Achieve Simultaneous Complex-Conjugate Condition in Multi-element Antennas,”
     <em>Proceedings of 2014 IEEE International Workshop on Electromagnetics (iWEM 2014)</em>,
     PO1.12, pp. 24-25, Sapporo, Japan, Aug. 2014.
-    <span class="badge-award">Student Innovation Competition Award Finalist</span>
+    (Student Innovation Competition Award Finalist)
   </span>
 </li>
 
@@ -2329,10 +2027,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Koichi Ogawa, <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "BAN-OTA Testing Using an Arm-Swinging Dynamic Phantom,"
+    “BAN-OTA Testing Using an Arm-Swinging Dynamic Phantom,”
     <em>2013 IEEE MTT-S International Microwave Workshop Series on RF and Wireless Technologies for Biomedical and Healthcare Applications (IMWS-Bio 2013)</em>,
     TP2-1, pp. 1-3, Singapore, Dec. 2013.
-    <span class="badge-invited">Invited</span>
+    (Invited)
   </span>
 </li>
 
@@ -2340,7 +2038,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "K-factor Dependent Multipath Characterization for BAN-OTA Testing Using a Fading Emulator,"
+    “K-factor Dependent Multipath Characterization for BAN-OTA Testing Using a Fading Emulator,”
     <em>Proceedings of 2013 Antennas and Propagation (ISAP 2013)</em>,
     vol. 1, pp. 580-583, Nanjing, China, Oct. 2013.
   </span>
@@ -2350,7 +2048,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Koichi Ogawa, <u><b>Kun Li</b></u>, and Kazuhiro Honda,
-    "BAN-OTA Testing Using a Fading Emulator with an Arm-Swinging Dynamic Phantom,"
+    “BAN-OTA Testing Using a Fading Emulator with an Arm-Swinging Dynamic Phantom,”
     <em>Proceedings of 2013 IEEE Antennas and Propagation Society International Symposium (APSURSI)</em>,
     pp. 2187-2188, Orlando, USA, Jul. 2013.
   </span>
@@ -2360,7 +2058,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Kazuhiro Honda, <u><b>Kun Li</b></u>, and Koichi Ogawa,
-    "Impact of the Human Walking Motion on BAN Diversity Effects,"
+    “Impact of the Human Walking Motion on BAN Diversity Effects,”
     <em>Proceedings of 2013 URSI International Symposium on Electromagnetic Theory (URSI-EMTS 2013)</em>,
     24PM2F-02, pp. 1136-1139, Hiroshima, Japan, May. 2013.
   </span>
@@ -2370,7 +2068,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Shadowing-Fading BER Characterization of BAN Antennas Based on Realistic Walking Models,"
+    “Shadowing-Fading BER Characterization of BAN Antennas Based on Realistic Walking Models,”
     <em>2013 7th International Symposium on Medical Information and Communication Technology (ISMICT 2013)</em>,
     Session FA3, pp. 183-187, Tokyo, Japan, Mar. 2013.
   </span>
@@ -2381,32 +2079,24 @@
           -->
 
         </ol>
-      </div>
-    </div><!-- /conference -->
+  </section>
 
-
-    <!-- ============================================================
-         3. TECHNICAL REPORTS / WORKSHOPS
-         ============================================================ -->
-    <div class="section-card" id="technical">
-      <div class="section-head">
-        <div class="accent-bar accent-bar-t"></div>
-        <h2><span class="ja">研究会等</span> &nbsp;(Technical Reports / Workshops)</h2>
-        <!-- UPDATE the number below -->
-        <span class="section-count count-t">59</span>
-      </div>
-      <div class="section-body">
-        <ol class="pub-list" reversed start="59">
+  <!-- ============ TECHNICAL REPORTS / WORKSHOPS ============
+       To add a paper: copy one <li> ... </li> block and paste it at the top of this list.
+       Numbers and totals update automatically. -->
+  <section id="technical">
+    <h2><span class="ja">研究会等</span> (Technical Reports / Workshops) <span class="count" data-count="technical">–</span></h2>
+    <ol class="pub-list" data-section="technical">
 
 
 <li>
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">Shota Suzuki, Takashi Hikage, Hiroshi Masuda, <u><b>Kun Li</b></u>, Akiko Nagai</span>,
-    "<span class="ja">Near-Field Measurement and FDTD Validation of a 7 GHz Dielectric Lens Antenna for Localized Exposure Studies</span>,"
+    “<span class="ja">Near-Field Measurement and FDTD Validation of a 7 GHz Dielectric Lens Antenna for Localized Exposure Studies</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
    vol. **, no.**, EMCJ2026-**, pp. **-**, 2026年11月.
-	  <span class="badge-accepted">To be presented</span>
+	  (to be presented)
   </span>
 </li>
 			
@@ -2414,10 +2104,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">移川春音，<u><b>李鯤</b></u>，藤井威生</span>,
-    "<span class="ja">実測に基づく地下鉄トンネルにおけるデュアルバンドCoMPのスループットと電磁界ばく露の評価</span>,"
+    “<span class="ja">実測に基づく地下鉄トンネルにおけるデュアルバンドCoMPのスループットと電磁界ばく露の評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
    vol. ***, no. ***, RCS2026-***, pp. ***-***, 2026年11月.
-	  <span class="badge-accepted">To be presented</span>
+	  (to be presented)
   </span>
 </li>	
 
@@ -2425,10 +2115,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">Manato Nishi, Takeo Fujii, <u><b>Kun Li</b></u></span>,
-    "<span class="ja">Service-Aware Channel Selection Using Short-Term Passive Spectrum Observation</span>,"
+    “<span class="ja">Service-Aware Channel Selection Using Short-Term Passive Spectrum Observation</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
    vol. ***, no. ***, SR2026-***, pp. ***-***, 2026年10月.
-	  <span class="badge-accepted">To be presented</span>
+	  (to be presented)
   </span>
 </li>	
 			
@@ -2436,10 +2126,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">小田祐平，<u><b>李鯤</b></u>，本田和博</span>,
-    "<span class="ja">ファントムフリーBAN-OTA評価に向けたQuiet Zone形成の基礎検討</span>,"
+    “<span class="ja">ファントムフリーBAN-OTA評価に向けたQuiet Zone形成の基礎検討</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
    vol. ***, no. ***, MICT2026-***, pp. ***-***, 2026年10月.
-	  <span class="badge-accepted">To be presented</span>
+	  (to be presented)
   </span>
 </li>			
 			
@@ -2447,7 +2137,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">榎本翔希，<u><b>李鯤</b></u></span>,
-    "<span class="ja">エアリービームアンテナにおける近傍界電力密度に基づくEMF適合境界評価</span>,"
+    “<span class="ja">エアリービームアンテナにおける近傍界電力密度に基づくEMF適合境界評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 126, no. 114, EMCJ2026-22, pp. 35-40, 2026年7月.
   </span>
@@ -2458,7 +2148,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">7 GHz 帯局所ばく露用レンズアンテナのFDTD 法による詳細解析</span>,"
+    “<span class="ja">7 GHz 帯局所ばく露用レンズアンテナのFDTD 法による詳細解析</span>,”
     <span class="ja">第18回医用生体電磁気学シンポジウム</span>,
     2026年7月.
   </span>
@@ -2468,7 +2158,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">酒井優弥，移川春音，<u><b>李鯤</b></u></span>,
-    "<span class="ja">高齢者転倒見守りに向けた屋内NLOS環境下での姿勢変化推定</span>,"
+    “<span class="ja">高齢者転倒見守りに向けた屋内NLOS環境下での姿勢変化推定</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
    vol. 126, no. 48, MICT2026-1, pp. 1-4, 2026年6月.
   </span>
@@ -2478,7 +2168,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，石竹達也，<u><b>Kun Li</b></u>，永井亜希子</span>,
-    "<span class="ja">7 GHz帯局所電波ばく露による温熱生理反応評価を目的としたレンズアンテナの開発および特性解析</span>,"
+    “<span class="ja">7 GHz帯局所電波ばく露による温熱生理反応評価を目的としたレンズアンテナの開発および特性解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 126, no. 41, EMCJ2026-4, pp. 15-19, 2026年5月.
   </span>
@@ -2488,7 +2178,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Hongda Xu, and <u><b>Kun Li</b></u>,
-    "Precoding Optimization for FR3 Downlink Transmission Considering RF-EMF Exposure Based on Sionna Ray-Tracing,"
+    “Precoding Optimization for FR3 Downlink Transmission Considering RF-EMF Exposure Based on Sionna Ray-Tracing,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 125, no. 387, RCS2025-299, pp. 233-237, 2026年3月.
   </span>
@@ -2498,7 +2188,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，石竹達也，<u><b>Kun Li</b></u>，永井亜希子</span>,
-    "<span class="ja">局所ばく露による温熱生理および細胞機構への影響の調査を目的としたばく露装置の開発</span>,"
+    “<span class="ja">局所ばく露による温熱生理および細胞機構への影響の調査を目的としたばく露装置の開発</span>,”
     <span class="ja">第17回医用生体電磁気学シンポジウム</span>,
     2025年9月.
   </span>
@@ -2508,7 +2198,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">上田有真，移川春音，<u><b>李鯤</b></u>，日景隆，増田宏，石竹達也，永井亜希子，田口健治</span>,
-    "<span class="ja">ミリ波局所ばく露時の温熱応答推定におけるワイブル分布の適用と精度評価</span>,"
+    “<span class="ja">ミリ波局所ばく露時の温熱応答推定におけるワイブル分布の適用と精度評価</span>,”
     <span class="ja">第17回医用生体電磁気学シンポジウム</span>,
     2025年9月.
   </span>
@@ -2518,7 +2208,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">上田有真，<u><b>李鯤</b></u>，日景隆，増田宏，井島悦子，永井亜希子，田口健治</span>,
-    "<span class="ja">空間合成型ミリ波ばく露装置を用いたヒト前腕モデルに対するドシメトリ評価</span>,"
+    “<span class="ja">空間合成型ミリ波ばく露装置を用いたヒト前腕モデルに対するドシメトリ評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 125, no. 117, EMCJ2025-26, pp. 10-13, 2025年7月.
   </span>
@@ -2528,7 +2218,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">移川春音，<u><b>李鯤</b></u>，松本拓真，中村賢斗，藤井威生</span>,
-    "<span class="ja">機械学習を活用したトンネル内低周波無線通信ヌル方向の傾向可視化</span>,"
+    “<span class="ja">機械学習を活用したトンネル内低周波無線通信ヌル方向の傾向可視化</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 125, no. 117, EMCJ2025-25, pp. 5-9, 2025年7月.
   </span>
@@ -2538,7 +2228,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">温熱生理閾値評価を目的とした60 GHz帯局所ばく露装置のドシメトリ特性解析</span>,"
+    “<span class="ja">温熱生理閾値評価を目的とした60 GHz帯局所ばく露装置のドシメトリ特性解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 125, no. 117, EMCJ2025-27, pp. 14-18, 2025年7月.
   </span>
@@ -2548,7 +2238,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">温熱生理閾値評価のための60GHz帯ミリ波ばく露のドシメトリ推定</span>,"
+    “<span class="ja">温熱生理閾値評価のための60GHz帯ミリ波ばく露のドシメトリ推定</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 125, no. 27, EST2025-4, pp. 18-23, 2025年5月.
   </span>
@@ -2558,7 +2248,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">上田有真，<u><b>李鯤</b></u>，日景隆，増田宏，井島悦子，永井亜希子，田口健治</span>,
-    "<span class="ja">60 GHz空間合成型ばく露装置に基づくラットモデルのドシメトリ解析に関する研究</span>,"
+    “<span class="ja">60 GHz空間合成型ばく露装置に基づくラットモデルのドシメトリ解析に関する研究</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 436, EMCJ2024-106, pp. 15-18, 2025年3月.
   </span>
@@ -2568,7 +2258,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">移川春音，<u><b>李鯤</b></u>，松本拓真，山田翔大，藤井威生</span>,
-    "<span class="ja">トンネル工事に用いる低周波アンテナの近距離無線特性に関する研究</span>,"
+    “<span class="ja">トンネル工事に用いる低周波アンテナの近距離無線特性に関する研究</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 436, EMCJ2024-113, pp. 52-55, 2025年3月.
   </span>
@@ -2578,7 +2268,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">榎本翔希，<u><b>李鯤</b></u></span>,
-    "<span class="ja">歩行姿勢モデルを用いたミリ波周波数における人体遮蔽効果の一検討</span>,"
+    “<span class="ja">歩行姿勢モデルを用いたミリ波周波数における人体遮蔽効果の一検討</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 410, SR2024-122, pp. 108-110, 2025年3月.
   </span>
@@ -2588,7 +2278,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">小田祐平，<u><b>李鯤</b></u>，本田和博</span>,
-    "<span class="ja">リアルな人体歩行動作を考慮したウェアラブル端末の無線性能評価</span>,"
+    “<span class="ja">リアルな人体歩行動作を考慮したウェアラブル端末の無線性能評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 410, SR2024-123, pp. 111-113, 2025年3月.
   </span>
@@ -2598,7 +2288,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u></span>,
-    "<span class="ja">大型MIMOアンテナのOTA評価方法の実験的検証</span>,"
+    “<span class="ja">大型MIMOアンテナのOTA評価方法の実験的検証</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 252, AP2024-150, pp. 81-86, 2024年11月.
   </span>
@@ -2608,7 +2298,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Shota Yamada, Takeo Fujii, and <u><b>Kun Li</b></u>,
-    "Designing Spectrum Database for the Radio Environment Recognition in Tunneling Construction,"
+    “Designing Spectrum Database for the Radio Environment Recognition in Tunneling Construction,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 233, SR2024-53, pp. 15-16, 2024年11月.
   </span>
@@ -2618,7 +2308,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">杉村海渡，敦賀桜，日景隆，増田宏，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">ミリ波局所ばく露が温熱生理および細胞機構へ与える影響調査を目的とした60GHz空間合成型ばく露装置の特性評価</span>,"
+    “<span class="ja">ミリ波局所ばく露が温熱生理および細胞機構へ与える影響調査を目的とした60GHz空間合成型ばく露装置の特性評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 114, EMCJ2024-22, pp. 1-4, 2024年7月.
   </span>
@@ -2628,7 +2318,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">杉村海渡，敦賀桜，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">複数箇所に対するミリ波局所ばく露の温熱生理反応調査を目的とした60GHz空間合成ばく露装置の開発</span>,"
+    “<span class="ja">複数箇所に対するミリ波局所ばく露の温熱生理反応調査を目的とした60GHz空間合成ばく露装置の開発</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 124, no. 92, EMCJ2024-14, pp. 37-40, 2024年6月.
   </span>
@@ -2638,7 +2328,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">敦賀桜，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">ミリ波局所ばく露による温熱生理および細胞機構への影響の調査を目的とした60 GHz空間合成型ばく露装置の特性解析</span>,"
+    “<span class="ja">ミリ波局所ばく露による温熱生理および細胞機構への影響の調査を目的とした60 GHz空間合成型ばく露装置の特性解析</span>,”
     <span class="ja">第16回医用生体電磁気学シンポジウム</span>,
     2024年4月.
   </span>
@@ -2648,7 +2338,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">杉村海渡，敦賀桜，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">ミリ波局所ばく露による温熱生理および細胞機構への影響の調査を目的とした60GHz空間合成型ばく露装置の特性解析</span>,"
+    “<span class="ja">ミリ波局所ばく露による温熱生理および細胞機構への影響の調査を目的とした60GHz空間合成型ばく露装置の特性解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 123, no. 72, EMCJ2023-14, pp. 9-12, 2023年6月.
   </span>
@@ -2658,7 +2348,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">杉村海渡，敦賀桜，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">ミリ波局所ばく露が温熱生理や細胞機能にもたらす影響に関する調査を目的とした60 GHzばく露装置の特性解析</span>,"
+    “<span class="ja">ミリ波局所ばく露が温熱生理や細胞機能にもたらす影響に関する調査を目的とした60 GHzばく露装置の特性解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 123, no. 10, EMCJ2023-2, pp. 5-8, 2023年4月.
   </span>
@@ -2668,7 +2358,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">山本康平，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>,
-    "<span class="ja">ミリ波局所ばく露による温熱生理および細胞機構の変化に関する研究に向けた60GHzばく露装置の特性評価</span>,"
+    “<span class="ja">ミリ波局所ばく露による温熱生理および細胞機構の変化に関する研究に向けた60GHzばく露装置の特性評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 122, no. 372, EMCJ2022-75, pp. 17-20, 2023年1月.
   </span>
@@ -2678,7 +2368,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u></span>,
-    "<span class="ja">多変量回帰法を用いたミリ波ばく露による温度上昇の推定</span>,"
+    “<span class="ja">多変量回帰法を用いたミリ波ばく露による温度上昇の推定</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 121, no. 403, EMCJ2021-79, pp. 33-36, 2022年3月.
   </span>
@@ -2688,7 +2378,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，関野湧斗，<u><b>李鯤</b></u></span>,
-    "<span class="ja">クラスター伝搬環境におけるアンテナ傾き角を考慮した3軸偏波制御アンテナの重み関数</span>,"
+    “<span class="ja">クラスター伝搬環境におけるアンテナ傾き角を考慮した3軸偏波制御アンテナの重み関数</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 121, no. 233, AP2021-109, pp. 50-55, Nov. 2021.
   </span>
@@ -2698,7 +2388,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u>，本田和博</span>,
-    "<span class="ja">MIMOチャネル容量を用いた5G端末アンテナ局所SARの推定</span>,"
+    “<span class="ja">MIMOチャネル容量を用いた5G端末アンテナ局所SARの推定</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 120, no. 219, MICT2020-14, pp. 30-35, Nov. 2020.
   </span>
@@ -2708,7 +2398,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Soichi Watanabe, Kanako Wake, and Hiroshi Shirai,
-    "Monte Carlo Simulation of Temperature Elevation due to Electromagnetic Waves Exposure using a Multi-Layer Human Skin Model with Oblique Incidence Angles at Millimeter-Wave Frequencies,"
+    “Monte Carlo Simulation of Temperature Elevation due to Electromagnetic Waves Exposure using a Multi-Layer Human Skin Model with Oblique Incidence Angles at Millimeter-Wave Frequencies,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     EMCJ2019-10, vol. 119, no. 1, pp. 51-54, Apr. 2019.
   </span>
@@ -2718,7 +2408,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, and Soichi Watanabe,
-    "A New Technique in Point-Based Estimations to Determine the Maximum Specific Absorption Rate of Multiple-Antenna Transmitters Using Vector,"
+    “A New Technique in Point-Based Estimations to Determine the Maximum Specific Absorption Rate of Multiple-Antenna Transmitters Using Vector,”
     IEICE Technical Report, AP2018-182, vol. 118, no. 451, pp. 71-76, Feb. 2019.
   </span>
 </li>
@@ -2727,7 +2417,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kengo Kawabata, Kensuke Sasaki, Ryosuke Suga, Soichi Watanabe, and Osamu Hashimoto,
-    "A Study of Power Density in Human Body Evaluated by Temperature Experiment in Millimeter Wave Band,"
+    “A Study of Power Density in Human Body Evaluated by Temperature Experiment in Millimeter Wave Band,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 118, no. 54, MICT2018-12, pp. 57-59, May. 2018.
   </span>
@@ -2737,10 +2427,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "Theoretical Analysis of Human Exposure to Electromagnetic Waves from 6 GHz to 1 THz,"
+    “Theoretical Analysis of Human Exposure to Electromagnetic Waves from 6 GHz to 1 THz,”
     <span class="ja">第10回医用生体電磁気学シンポジウム</span>,
     Mar. 2018.
-    <span class="badge-award">若手優秀発表賞</span>
+    (若手優秀発表賞)
   </span>
 </li>
 
@@ -2748,10 +2438,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, Kensuke Sasaki, Soichi Watanabe, and Koichi Ogawa,
-    "OTA Testing for Medical ICT Antennas -- Implementation on Dynamic BAN Channel,"
+    “OTA Testing for Medical ICT Antennas -- Implementation on Dynamic BAN Channel,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     vol. 117, no. 419, MICT2017-46, pp. 27-32, Jan. 2018.
-    <span class="badge-invited">奨励講演</span>
+    (奨励講演)
   </span>
 </li>
 
@@ -2759,7 +2449,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">川畑拳吾，<u><b>李鯤</b></u>，佐々木謙介，須賀良介，渡辺聡一，橋本修</span>,
-    "<span class="ja">60 GHz電波ばく露によるファントムの表面温度上昇評価に関する検討</span>,"
+    “<span class="ja">60 GHz電波ばく露によるファントムの表面温度上昇評価に関する検討</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     EMCJ2017-82, vol. 117, no. 357, pp. 35-40, Dec. 2017.
   </span>
@@ -2769,7 +2459,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, and Soichi Watanabe,
-    "Assessment of Temperature Elevation in Millimeter Wave Exposure at Oblique Incident into the Skin,"
+    “Assessment of Temperature Elevation in Millimeter Wave Exposure at Oblique Incident into the Skin,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     EMCJ2017-81, vol. 117, no. 357, pp. 31-34, Dec. 2017.
   </span>
@@ -2779,7 +2469,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">岩本大史，本田和博，<u><b>李鯤</b></u>，小川晃一</span>,
-    "<span class="ja">スロットアンテナを用いた3次元OTA装置内の到来波XPR精度改善</span>,"
+    “<span class="ja">スロットアンテナを用いた3次元OTA装置内の到来波XPR精度改善</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2017-1, vol. 117, no. 2, pp. 1-6, Apr. 2017.
   </span>
@@ -2789,7 +2479,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>,
-    "<span class="ja">バイラテラルOTAのための基地局MIMOアンテナ4×4相関行列の実装方法</span>,"
+    “<span class="ja">バイラテラルOTAのための基地局MIMOアンテナ4×4相関行列の実装方法</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2016-164, vol. 116, no. 454, pp. 43-48, Feb. 2017.
   </span>
@@ -2799,7 +2489,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，武林龍太，小川晃一</span>,
-    "<span class="ja">歩行動作の統計データを用いたOn-Body通信における受信電力解析</span>,"
+    “<span class="ja">歩行動作の統計データを用いたOn-Body通信における受信電力解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     MICT2016-71, vol. 116, no. 408, pp. 35-40, Jan. 2017.
   </span>
@@ -2809,7 +2499,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "OTA Assessment of BAN Diversity Antenna Using a Bias Switch,"
+    “OTA Assessment of BAN Diversity Antenna Using a Bias Switch,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2016-79, vol. 116, no. 186, pp. 63-68, Aug. 2016.
   </span>
@@ -2819,7 +2509,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "OTA Assessment for BAN Diversity Antennas in Human Dynamic Channel,"
+    “OTA Assessment for BAN Diversity Antennas in Human Dynamic Channel,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     MICT2016-14, vol. 116, no. 141, pp. 13-18, Jul. 2016.
   </span>
@@ -2829,7 +2519,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">前川智哉，本田和博，<u><b>李鯤</b></u>，小川晃一</span>,
-    "<span class="ja">減結合技術によるイントラEMC内部干渉ノイズ低減法</span>,"
+    “<span class="ja">減結合技術によるイントラEMC内部干渉ノイズ低減法</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     EMCJ2016-45, vol. 116, no. 135, pp. 7-12, Jul. 2016.
   </span>
@@ -2839,7 +2529,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，表航平，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>,
-    "<span class="ja">3次元MIMO-OTA評価装置を用いたMIMO伝送容量を測定するためのキャリブレーション方法</span>,"
+    “<span class="ja">3次元MIMO-OTA評価装置を用いたMIMO伝送容量を測定するためのキャリブレーション方法</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2015-215, vol. 115, no. 506, pp. 63-68, Mar. 2016.
   </span>
@@ -2849,7 +2539,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>,
-    "<span class="ja">3次元エミュレータを用いた仰角方向ガウス分布の実現方法</span>,"
+    “<span class="ja">3次元エミュレータを用いた仰角方向ガウス分布の実現方法</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2015-197, vol. 115, no. 450, pp. 37-42, Feb. 2016.
   </span>
@@ -2859,7 +2549,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Keisuke Murata, Kazuhiro Honda, and Koichi Ogawa,
-    "Bit-Error-Rate OTA Testing of BAN Antennas Based on Shadowing-Fading Hybrid Effects,"
+    “Bit-Error-Rate OTA Testing of BAN Antennas Based on Shadowing-Fading Hybrid Effects,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     MICT2015-49, vol. 115, no. 438, pp. 45-50, Jan. 2016.
   </span>
@@ -2869,7 +2559,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，佐藤浩，本田和博，<u><b>李鯤</b></u>，小柳芳雄，小川晃一</span>,
-    "<span class="ja">直交偏波指向性を形成する減結合スタブ装荷並設ダイポールアレー</span>,"
+    “<span class="ja">直交偏波指向性を形成する減結合スタブ装荷並設ダイポールアレー</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2015-71, vol. 115, no. 199, pp. 61-66, Aug. 2015.
   </span>
@@ -2879,7 +2569,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "An Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,"
+    “An Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2015-69, vol. 115, no. 199, pp. 49-54, Aug. 2015.
   </span>
@@ -2889,7 +2579,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>,
-    "<span class="ja">バイラテラルMIMO-OTA装置を用いた4x4MIMO伝送容量測定</span>,"
+    “<span class="ja">バイラテラルMIMO-OTA装置を用いた4x4MIMO伝送容量測定</span>,”
     <span class="ja">電気学会計測研究会</span>,
     IM15-022, pp. 19-24, Jul. 2015.
   </span>
@@ -2899,7 +2589,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，佐藤浩，<u><b>李鯤</b></u>，本田和博，小柳芳雄，小川晃一</span>,
-    "<span class="ja">パッチ付き円板装荷モノポールアンテナ</span>,"
+    “<span class="ja">パッチ付き円板装荷モノポールアンテナ</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2014-212, vol. 114, no. 522, pp. 7-12, Mar. 2015.
   </span>
@@ -2909,7 +2599,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>,
-    "<span class="ja">基地局相関を制御可能としたバイラテラルMIMO OTA装置</span>,"
+    “<span class="ja">基地局相関を制御可能としたバイラテラルMIMO OTA装置</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2014-190, vol. 114, no. 450, pp. 21-26, Feb. 2015.
   </span>
@@ -2919,7 +2609,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Experiments of a Polarization-controlled Antenna to Enhance BAN On-body Link in Human Dynamic Channels,"
+    “Experiments of a Polarization-controlled Antenna to Enhance BAN On-body Link in Human Dynamic Channels,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     MICT2014-46, vol. 114, no. 270, pp. 1-6, Oct. 2014.
   </span>
@@ -2929,7 +2619,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，上田真司</span>,
-    "<span class="ja">上り／下り回線のアンテナ性能総合評価を目的としたバイラテラルMIMO OTA装置</span>,"
+    “<span class="ja">上り／下り回線のアンテナ性能総合評価を目的としたバイラテラルMIMO OTA装置</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2014-74, vol. 114, no. 193, pp. 13-18, Aug. 2014.
   </span>
@@ -2939,7 +2629,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>,
-    "<span class="ja">アクティブMIMOアンテナのOTA測定のためのキャリブレーション方法</span>,"
+    “<span class="ja">アクティブMIMOアンテナのOTA測定のためのキャリブレーション方法</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2014-60, vol. 114, no. 148, pp. 67-72, Jul. 2014.
   </span>
@@ -2949,7 +2639,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">小川晃一，本田和博，<u><b>李鯤</b></u></span>,
-    "<span class="ja">2次元配列MIMOアレーアンテナのOTA評価</span>,"
+    “<span class="ja">2次元配列MIMOアレーアンテナのOTA評価</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2013-196, vol. 118, no. 310, pp. 63-68, Mar. 2014.
   </span>
@@ -2959,7 +2649,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>,
-    "<span class="ja">3軸重み付け偏波アクティブアンテナによる腕装着時の8×8 MIMO伝送容量解析</span>,"
+    “<span class="ja">3軸重み付け偏波アクティブアンテナによる腕装着時の8×8 MIMO伝送容量解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2013-173, vol. 113, no. 428, pp. 39-44, Feb. 2014.
   </span>
@@ -2969,7 +2659,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "BAN-OTA Testing Using a Fading Emulator Considering the Variation of K-factor Due to the Dynamic Characteristics of Human Motion,"
+    “BAN-OTA Testing Using a Fading Emulator Considering the Variation of K-factor Due to the Dynamic Characteristics of Human Motion,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2013-90, vol. 113, no. 233, pp. 19-24, Oct. 2013.
   </span>
@@ -2979,10 +2669,10 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">小川晃一，<u><b>李鯤</b></u>，本田和博</span>,
-    "<span class="ja">動的ファントムとフェージングエミュレータを用いたBANアンテナのOver-The-Air評価方法</span>,"
+    “<span class="ja">動的ファントムとフェージングエミュレータを用いたBANアンテナのOver-The-Air評価方法</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     MICT2013-1, pp. 1-21, May 2013.
-    <span class="badge-invited">依頼講演</span>
+    (依頼講演)
   </span>
 </li>
 
@@ -2990,7 +2680,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>,
-    "<span class="ja">歩行時の動的統計データに基づくBANダイバーシチアンテナのシャドウイング・マルチパス練成解析</span>,"
+    “<span class="ja">歩行時の動的統計データに基づくBANダイバーシチアンテナのシャドウイング・マルチパス練成解析</span>,”
     <span class="ja">電子情報通信学会技術研究報告</span>,
     AP2012-155, vol. 112, no. 384, pp. 177-182, Jan. 2013.
   </span>
@@ -3001,28 +2691,20 @@
           -->
 
         </ol>
-      </div>
-    </div><!-- /technical -->
+  </section>
 
-
-    <!-- ============================================================
-         4. DOMESTIC CONFERENCE
-         ============================================================ -->
-    <div class="section-card" id="domestic">
-      <div class="section-head">
-        <div class="accent-bar accent-bar-d"></div>
-        <h2><span class="ja">全国大会等</span> &nbsp;(Domestic Conference)</h2>
-        <!-- UPDATE the number below -->
-        <span class="section-count count-d">71</span>
-      </div>
-      <div class="section-body">
-        <ol class="pub-list" reversed start="71">
+  <!-- ============ DOMESTIC CONFERENCE ============
+       To add a paper: copy one <li> ... </li> block and paste it at the top of this list.
+       Numbers and totals update automatically. -->
+  <section id="domestic">
+    <h2><span class="ja">全国大会等</span> (Domestic Conference) <span class="count" data-count="domestic">–</span></h2>
+    <ol class="pub-list" data-section="domestic">
 
 <li>
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">後藤樹，上田 有真，<u><b>李鯤</b></u>，日景隆，増田宏，永井亜希子，田口健治</span>，
-    "<span class="ja">FR3 帯電力密度評価に向けた生体曲面上での電磁界再構成手法</span>,"
+    “<span class="ja">FR3 帯電力密度評価に向けた生体曲面上での電磁界再構成手法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2026年ソサイエティ大会</span>，
     No. B-4-07, Sep. 2026.
   </span>
@@ -3032,7 +2714,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">移川春音，<u><b>李鯤</b></u>，藤井威生</span>，
-    "<span class="ja">広域EMF分布評価のための空間ダウンサンプリング手法に関する研究</span>,"
+    “<span class="ja">広域EMF分布評価のための空間ダウンサンプリング手法に関する研究</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2026年ソサイエティ大会</span>，
     No. B-4-15, Sep. 2026.
   </span>
@@ -3042,7 +2724,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">堀江理，本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">SAM頭部ファントムを用いた空間平均SARとMIMO伝送容量の関係</span>,"
+    “<span class="ja">SAM頭部ファントムを用いた空間平均SARとMIMO伝送容量の関係</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2026年ソサイエティ大会</span>，
     No. B-4-16, Sep. 2026.
   </span>
@@ -3052,7 +2734,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">酒井優弥，移川春音，<u><b>李鯤</b></u></span>，
-    "<span class="ja">高齢者転倒見守りに向けた室内電磁場理論の検証に関する一検討</span>,"
+    “<span class="ja">高齢者転倒見守りに向けた室内電磁場理論の検証に関する一検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2026年全国大会</span>，
     No. B-19-04, Mar. 2026.
   </span>
@@ -3062,7 +2744,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>，
-    "<span class="ja">7 GHz帯局所電波ばく露による温熱生理反応評価を目的としたレンズアンテナの開発および特性解析</span>,"
+    “<span class="ja">7 GHz帯局所電波ばく露による温熱生理反応評価を目的としたレンズアンテナの開発および特性解析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2026年全国大会</span>，
     No. B-4-06, Mar. 2026.
   </span>
@@ -3071,7 +2753,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">尾本匠，本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">両偏波環境におけるOTA評価法の有効性検証</span>,"
+    “<span class="ja">両偏波環境におけるOTA評価法の有効性検証</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2026年全国大会</span>，
     No. B-1C-15, Mar. 2026.
   </span>
@@ -3080,7 +2762,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">岩見海志，<u><b>李鯤</b></u></span>，
-    "<span class="ja">Cell-Free システムに向けた分散配置アンテナ環境における端末伝送容量評価の一検討</span>,"
+    “<span class="ja">Cell-Free システムに向けた分散配置アンテナ環境における端末伝送容量評価の一検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会第31回東京支部学生会研究発表会</span></span>，
     Mar. 2026.
   </span>
@@ -3089,7 +2771,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">後藤樹，<u><b>李鯤</b></u></span>，
-    "<span class="ja">7GHzにおける局所電波ばく露評価のための電力密度推定法</span>,"
+    “<span class="ja">7GHzにおける局所電波ばく露評価のための電力密度推定法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会第31回東京支部学生会研究発表会</span></span>，
     Mar. 2026.
   </span>
@@ -3098,7 +2780,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">田中成朋，<u><b>李鯤</b></u></span>，
-    "<span class="ja">地下鉄トンネルにおけるBF 同時適用時の全身ばく露に関する一検討</span>,"
+    “<span class="ja">地下鉄トンネルにおけるBF 同時適用時の全身ばく露に関する一検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会第31回東京支部学生会研究発表会</span></span>，
     Mar. 2026.
   </span>
@@ -3107,7 +2789,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">鈴木将太，日景隆，増田宏，石竹達也，<u><b>李鯤</b></u>，永井亜希子</span>，
-    "<span class="ja">7 GHz帯電波の局所ばく露が温熱生理や細胞機能にもたらす影響調査を目的としたばく露装置開発</span>,"
+    “<span class="ja">7 GHz帯電波の局所ばく露が温熱生理や細胞機能にもたらす影響調査を目的としたばく露装置開発</span>,”
     <span class="italic"><span class="ja">令和7年度 電気・情報関係学会北海道支部連合大会</span></span>，
     p.93, <span class="ja">室蘭工業大学</span>, 2025年11月.
   </span>
@@ -3116,7 +2798,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">尾本匠，本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">3周波数帯におけるOTA評価精度の比較</span>,"
+    “<span class="ja">3周波数帯におけるOTA評価精度の比較</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2025年ソサイエティ大会</span>，
     No. B-1C-19, Sep. 2025.
   </span>
@@ -3125,7 +2807,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，尾本匠，<u><b>李鯤</b></u></span>，
-    "<span class="ja">散乱体配置がOTA評価精度に及ぼす影響</span>,"
+    “<span class="ja">散乱体配置がOTA評価精度に及ぼす影響</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2025年ソサイエティ大会</span>，
     No. B-1C-18, Sep. 2025.
   </span>
@@ -3134,7 +2816,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">クラスター伝搬環境における大型MIMOアンテナのOTA評価法の検証</span>,"
+    “<span class="ja">クラスター伝搬環境における大型MIMOアンテナのOTA評価法の検証</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2025年全国大会</span>，
     No. B-1C-12, Mar. 2025.
   </span>
@@ -3143,7 +2825,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">大坂隼輝，本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">3軸偏波制御アンテナの位相シフト最適化</span>,"
+    “<span class="ja">3軸偏波制御アンテナの位相シフト最適化</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2024年全国大会</span>，
     No. B-4-16, Mar. 2024.
   </span>
@@ -3152,7 +2834,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">木本圭拓，本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">上り回線のMIMO伝送容量を用いた局所SARの推定</span>,"
+    “<span class="ja">上り回線のMIMO伝送容量を用いた局所SARの推定</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2024年全国大会</span>，
     No. B-1C-07, Mar. 2024.
   </span>
@@ -3162,7 +2844,7 @@
   <span class="pub-content">
     <span class="ja">新井紀香，小寺紗千子，</span>Yinliang Diao, <u><b>Kun Li</b></u>,
     <span class="ja">平田晃正</span>，
-    "<span class="ja">吸収電力密度におけるアンテナ-モデル間相互結合に関する一検討</span>,"
+    “<span class="ja">吸収電力密度におけるアンテナ-モデル間相互結合に関する一検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2023年総合大会</span>，
     No. C-15-6, Mar. 2023.
   </span>
@@ -3171,7 +2853,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，関野湧斗，<u><b>李鯤</b></u></span>，
-    "<span class="ja">クラスター伝搬環境における3軸偏波制御アンテナの重み関数</span>,"
+    “<span class="ja">クラスター伝搬環境における3軸偏波制御アンテナの重み関数</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2021年ソサイエティ大会</span>，
     No. B-1-122, Sep. 2021.
   </span>
@@ -3180,7 +2862,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u>，本田和博</span>，
-    "<span class="ja">5G Sub-6GHzアンテナの局所SARとMIMO伝送特性の相関に関する基礎検討</span>,"
+    “<span class="ja">5G Sub-6GHzアンテナの局所SARとMIMO伝送特性の相関に関する基礎検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2021年ソサイエティ大会</span>，
     No. B-4-2, Sep. 2021.
   </span>
@@ -3189,7 +2871,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">岡龍駿，<u><b>李鯤</b></u>，本田和博</span>，
-    "<span class="ja">屋内環境下In-Body無線におけるライスファクターの測定</span>,"
+    “<span class="ja">屋内環境下In-Body無線におけるライスファクターの測定</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2021年ソサイエティ大会</span>，
     No. B-19-10, Sep. 2021.
   </span>
@@ -3198,7 +2880,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">市川智照，佐々木謙介，<u><b>李鯤</b></u>，和氣加奈子，須賀良介，橋本修</span>，
-    "<span class="ja">屋内環境における28GHz電波ばく露による全身平均SARのレイトレーシング法を用いた評価法に関する基礎検討</span>,"
+    “<span class="ja">屋内環境における28GHz電波ばく露による全身平均SARのレイトレーシング法を用いた評価法に関する基礎検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2021年総合大会</span>，
     No. B-4-34, Mar. 2021.
   </span>
@@ -3207,7 +2889,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u>，チャカロタイジェドヴィスノプ，藤井勝巳</span>，
-    "<span class="ja">FDTD法を用いた人体近傍UWB信号の到来波電力遅延特性解析</span>,"
+    “<span class="ja">FDTD法を用いた人体近傍UWB信号の到来波電力遅延特性解析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2020年ソサイエティ大会</span>，
     No. B-19-7, Sep. 2020.
   </span>
@@ -3216,7 +2898,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, Tomoaki Nagaoka, and Soichi Watanabe,
-    "Validations on SAR estimations of Multi-Antenna Transmitters in Non-homogeneous Models,"
+    “Validations on SAR estimations of Multi-Antenna Transmitters in Non-homogeneous Models,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2019年ソサイエティ大会</span>，
     No. B-4-20, Sep. 2019.
   </span>
@@ -3225,7 +2907,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kensuke Sasaki, Soichi Watanabe, and Kanako Wake,
-    "Measurement Condition of Power Density Assessment using a Near-Field Reconstruction Technique in Compliance Test of 5G Mobile Antennas,"
+    “Measurement Condition of Power Density Assessment using a Near-Field Reconstruction Technique in Compliance Test of 5G Mobile Antennas,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2019年ソサイエティ大会</span>，
     No. B-4-28, Sep. 2019.
   </span>
@@ -3234,7 +2916,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     Dinh Thanh Le, <u><b>Kun Li</b></u>, and Soichi Watanabe,
-    "A K-Order Model: Novel SAR Evaluation with Low Estimation Errors for Multiple-Antenna Transmitters,"
+    “A K-Order Model: Novel SAR Evaluation with Low Estimation Errors for Multiple-Antenna Transmitters,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2019年総合大会</span>，
     No. BS-2-2, Mar. 2019.
   </span>
@@ -3243,7 +2925,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">松本涼，<u><b>李鯤</b></u>，佐々木謙介，渡辺聡一，和氣加奈子，須賀良介，橋本修</span>，
-    "<span class="ja">散乱電界計測に基づく人体を透過する電力密度の測定方法に関する基礎的な検討</span>,"
+    “<span class="ja">散乱電界計測に基づく人体を透過する電力密度の測定方法に関する基礎的な検討</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2019年総合大会</span>，
     No. B-4-32, Mar. 2019.
   </span>
@@ -3252,7 +2934,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">武林龍太，本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">床反射を考慮したOn-Body動的チャンネルにおける受信電力解析</span>,"
+    “<span class="ja">床反射を考慮したOn-Body動的チャンネルにおける受信電力解析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2017年総合大会</span>，
     No. B-20-4, Mar. 2017.
   </span>
@@ -3261,7 +2943,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">岩本大史，<u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">スロットアンテナを用いた3D-OTA装置の散乱体反射波軽減対策</span>,"
+    “<span class="ja">スロットアンテナを用いた3D-OTA装置の散乱体反射波軽減対策</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2017年総合大会</span>，
     No. B-1-175, Mar. 2017.
   </span>
@@ -3270,7 +2952,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">バイラテラルOTA装置への基地局アンテナ4×4相関行列の実装方法</span>,"
+    “<span class="ja">バイラテラルOTA装置への基地局アンテナ4×4相関行列の実装方法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2017年総合大会</span>，
     No. B-1-174, Mar. 2017.
   </span>
@@ -3279,7 +2961,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Analysis of Wearable MIMO Antenna with Random-Directional Human Movement in Street Microcell Environment,"
+    “Analysis of Wearable MIMO Antenna with Random-Directional Human Movement in Street Microcell Environment,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2017年総合大会</span>，
     No. B-1-132, Mar. 2017.
   </span>
@@ -3288,7 +2970,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">村田圭丞，<u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">BANダイバーシチアンテナのOTA測定によるビット誤り率性能評価</span>,"
+    “<span class="ja">BANダイバーシチアンテナのOTA測定によるビット誤り率性能評価</span>,”
     <span class="italic"><span class="ja">平成28年度電気関係学会北陸支部連合大会</span></span>，
     No. C-22, Sep. 2016.
   </span>
@@ -3297,7 +2979,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">恒吉優次，表航平，<u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">偏波制御アンテナとして用いるパッチ付き円板装荷モノポールアンテナの位相シフト量の検討</span>,"
+    “<span class="ja">偏波制御アンテナとして用いるパッチ付き円板装荷モノポールアンテナの位相シフト量の検討</span>,”
     <span class="italic"><span class="ja">平成28年度電気関係学会北陸支部連合大会</span></span>，
     No. C-20, Sep. 2016.
   </span>
@@ -3306,7 +2988,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，<u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">2素子スタブ装荷並設ダイポールアレーアンテナの特性測定</span>,"
+    “<span class="ja">2素子スタブ装荷並設ダイポールアレーアンテナの特性測定</span>,”
     <span class="italic"><span class="ja">平成28年度電気関係学会北陸支部連合大会</span></span>，
     No. C-11, Sep. 2016.
   </span>
@@ -3315,7 +2997,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，村田圭丞，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">腕振り電磁ファントムを用いた偏波制御BANアンテナのビット誤り率Over-The-Air測定</span>,"
+    “<span class="ja">腕振り電磁ファントムを用いた偏波制御BANアンテナのビット誤り率Over-The-Air測定</span>,”
     <span class="italic"><span class="ja">日本生体医工学会大会</span></span>，
     No. 1OS4-3-5, Apr. 2016.
   </span>
@@ -3324,7 +3006,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Keisuke Murata, Kazuhiro Honda, and Koichi Ogawa,
-    "Bit-Error-Rate OTA Testing of BAN Antennas Based on Shadowing-Fading Hybrid Effects,"
+    “Bit-Error-Rate OTA Testing of BAN Antennas Based on Shadowing-Fading Hybrid Effects,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. BS-1-15, Mar. 2016.
   </span>
@@ -3333,7 +3015,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，村田圭丞，小川晃一</span>，
-    "<span class="ja">腕振りファントムを用いた偏波制御BANアンテナのBER-OTA測定法</span>,"
+    “<span class="ja">腕振りファントムを用いた偏波制御BANアンテナのBER-OTA測定法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. B-20-1, Mar. 2016.
   </span>
@@ -3342,7 +3024,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">前川智哉，<u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">減結合技術によるイントラEMC内部干渉ノイズ低減法</span>,"
+    “<span class="ja">減結合技術によるイントラEMC内部干渉ノイズ低減法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. B-4-49, Mar. 2016.
   </span>
@@ -3351,7 +3033,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，佐藤浩，<u><b>李鯤</b></u>，本田和博，小柳芳雄，小川晃一</span>，
-    "<span class="ja">パッチ付き円板装荷モノポールアンテナのMIMO伝送容量測定</span>,"
+    “<span class="ja">パッチ付き円板装荷モノポールアンテナのMIMO伝送容量測定</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. B-1-221, Mar. 2016.
   </span>
@@ -3360,7 +3042,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Toshihiko Kabeya, Kento Karitani, Kazuhiro Honda, Koichi Ogawa, Yoshio Koyanagi, Hiroshi Sato, and Ritsu Miura,
-    "A Method of Realizing Gaussian Elevation Distribution for 3D-OTA,"
+    “A Method of Realizing Gaussian Elevation Distribution for 3D-OTA,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. B-1-180, Mar. 2016.
   </span>
@@ -3369,7 +3051,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">3次元MIMO-OTA装置のキャリブレーション方法</span>,"
+    “<span class="ja">3次元MIMO-OTA装置のキャリブレーション方法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. B-1-170, Mar. 2016.
   </span>
@@ -3378,7 +3060,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">狩谷健登，壁谷俊彦，<u><b>李鯤</b></u>，本田和博，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">偏波制御MIMOアンテナを用いたスループットOTA評価</span>,"
+    “<span class="ja">偏波制御MIMOアンテナを用いたスループットOTA評価</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2016年総合大会</span>，
     No. B-1-169, Mar. 2016.
   </span>
@@ -3387,17 +3069,17 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">狩谷健登，<u><b>李鯤</b></u>，本田和博，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">商用LTEスマートフォン2×2 MIMOアンテナのOTA測定によるスループット変動メカニズム考察</span>,"
+    “<span class="ja">商用LTEスマートフォン2×2 MIMOアンテナのOTA測定によるスループット変動メカニズム考察</span>,”
     <span class="italic"><span class="ja">平成27年度電気関係学会北陸支部連合大会</span></span>，
     No. C-15, Sep. 2015.
-    <span class="badge-award"><span class="ja">電気関係学会北陸支部連合大会電子情報通信学会学生優秀論文発表賞</span></span>
+    (<span class="ja">電気関係学会北陸支部連合大会電子情報通信学会学生優秀論文発表賞)</span>
   </span>
 </li>
 <li>
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，佐藤浩，<u><b>李鯤</b></u>，本田和博，小柳芳雄，小川晃一</span>，
-    "<span class="ja">減結合・直交偏波を実現するスタブ装荷並設ダイポールアレー</span>,"
+    “<span class="ja">減結合・直交偏波を実現するスタブ装荷並設ダイポールアレー</span>,”
     <span class="italic"><span class="ja">平成27年度電気関係学会北陸支部連合大会</span></span>，
     No. C-14, Sep. 2015.
   </span>
@@ -3406,7 +3088,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,"
+    “Analysis of the Body Proximity Cross-Polarization Power Ratio in a Human Walking Motion,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年ソサイエティ大会</span>，
     No. B-20-5, Sep. 2015.
   </span>
@@ -3415,7 +3097,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">ユースシーンに応じた最適位相シフト量を実現した偏波制御MIMOアンテナの伝送容量OTA測定</span>,"
+    “<span class="ja">ユースシーンに応じた最適位相シフト量を実現した偏波制御MIMOアンテナの伝送容量OTA測定</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年ソサイエティ大会</span>，
     No. B-1-138, Sep. 2015.
   </span>
@@ -3424,7 +3106,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">MIMO-OTAにおける4×4MIMO基地局相関の制御方法</span>,"
+    “<span class="ja">MIMO-OTAにおける4×4MIMO基地局相関の制御方法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年ソサイエティ大会</span>，
     No. B-1-137, Sep. 2015.
   </span>
@@ -3433,7 +3115,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">佐藤浩，表航平，<u><b>李鯤</b></u>，本田和博，小柳芳雄，小川晃一</span>，
-    "<span class="ja">プリント基板に構成したパッチ付き円板装荷3軸偏波アンテナ</span>,"
+    “<span class="ja">プリント基板に構成したパッチ付き円板装荷3軸偏波アンテナ</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年ソサイエティ大会</span>，
     No. B-1-119, Sep. 2015.
   </span>
@@ -3442,7 +3124,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，佐藤浩，<u><b>李鯤</b></u>，本田和博，小柳芳雄，小川晃一</span>，
-    "<span class="ja">直交偏波指向性を形成する減結合スタブ装荷並設ダイポールアレー</span>,"
+    “<span class="ja">直交偏波指向性を形成する減結合スタブ装荷並設ダイポールアレー</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年ソサイエティ大会</span>，
     No. B-1-30, Sep. 2015.
   </span>
@@ -3451,7 +3133,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Yuta Ishisaka, Kazuhiro Honda, and Koichi Ogawa,
-    "Dual-Polarized Turn-style Patch Antenna for Wearable Applications,"
+    “Dual-Polarized Turn-style Patch Antenna for Wearable Applications,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年総合大会</span>，
     No. B-20-13, Mar. 2015.
   </span>
@@ -3460,7 +3142,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">ユースシーンに応じた最適化機能を有した偏波制御MIMOアンテナ</span>,"
+    “<span class="ja">ユースシーンに応じた最適化機能を有した偏波制御MIMOアンテナ</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年総合大会</span>，
     No. B-1-214, Mar. 2015.
   </span>
@@ -3469,7 +3151,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">MIMO-OTAにおける基地局相関の制御方法</span>,"
+    “<span class="ja">MIMO-OTAにおける基地局相関の制御方法</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年総合大会</span>，
     No. B-1-213, Mar. 2015.
   </span>
@@ -3478,7 +3160,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，本田和博，小川晃一，小柳芳雄，佐藤浩，三浦律</span>，
-    "<span class="ja">基地局シミュレータを用いたスループット低減量のメカニズム分析</span>,"
+    “<span class="ja">基地局シミュレータを用いたスループット低減量のメカニズム分析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年総合大会</span>，
     No. B-1-179, Mar. 2015.
   </span>
@@ -3487,7 +3169,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">表航平，佐藤浩，<u><b>李鯤</b></u>，本田和博，小柳芳雄，小川晃一</span>，
-    "<span class="ja">パッチ付き円板装荷モノポールアンテナ</span>,"
+    “<span class="ja">パッチ付き円板装荷モノポールアンテナ</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年総合大会</span>，
     No. B-1-152, Mar. 2015.
   </span>
@@ -3496,7 +3178,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">狩谷健登，<u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">腕振りファントムを用いた偏波制御MIMOアンテナの伝送容量測定</span>,"
+    “<span class="ja">腕振りファントムを用いた偏波制御MIMOアンテナの伝送容量測定</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2015年総合大会</span>，
     No. B-1-133, Mar. 2015.
   </span>
@@ -3505,7 +3187,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "Three-dimensional OTA Design Considerations Based on MIMO Antenna Radiation and Multipath Interactions,"
+    “Three-dimensional OTA Design Considerations Based on MIMO Antenna Radiation and Multipath Interactions,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年ソサイエティ大会</span>，
     No. BS-1-9, Sep. 2014.
   </span>
@@ -3514,7 +3196,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "On-body Polarization-controlled Active Antenna to Enhance Signal Power in Human Dynamic Channels,"
+    “On-body Polarization-controlled Active Antenna to Enhance Signal Power in Human Dynamic Channels,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年ソサイエティ大会</span>，
     No. B-20-1, Sep. 2014.
   </span>
@@ -3523,7 +3205,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">アクティブMIMOアンテナのOTA測定のためのキャリブレーション</span>,"
+    “<span class="ja">アクティブMIMOアンテナのOTA測定のためのキャリブレーション</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年信学ソサイエティ大会</span>，
     No. B-1-141, Sep. 2014.
   </span>
@@ -3532,7 +3214,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，壁谷俊彦，狩谷健登，<u><b>李鯤</b></u>，小川晃一，小柳芳雄，佐藤浩，上田真司</span>，
-    "<span class="ja">上り／下り回線を考慮したMIMOアンテナの設計指標の提案</span>,"
+    “<span class="ja">上り／下り回線を考慮したMIMOアンテナの設計指標の提案</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年信学ソサイエティ大会</span>，
     No. B-1-138, Sep. 2014.
   </span>
@@ -3541,7 +3223,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "A Method of Calibration for BAN Over-The-Air Testing Using a Fading Emulator with a Dynamic Phantom,"
+    “A Method of Calibration for BAN Over-The-Air Testing Using a Fading Emulator with a Dynamic Phantom,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年ソサイエティ大会</span>，
     No. BS-5-1, Sep. 2014.
   </span>
@@ -3550,7 +3232,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">小川晃一，本田和博，<u><b>李鯤</b></u></span>，
-    "<span class="ja">2次元配列MIMOアレーアンテナのOTA評価</span>,"
+    “<span class="ja">2次元配列MIMOアレーアンテナのOTA評価</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年総合大会</span>，
     No. B-1-237, Mar. 2014.
   </span>
@@ -3559,7 +3241,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">3軸重み付け偏波MIMOアンテナを用いた端末保持角度に対する伝送容量劣化改善</span>,"
+    “<span class="ja">3軸重み付け偏波MIMOアンテナを用いた端末保持角度に対する伝送容量劣化改善</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年総合大会</span>，
     No. B-1-65, Mar. 2014.
   </span>
@@ -3568,7 +3250,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">ギガビット伝送を実現する3軸重み付け偏波8×8 MIMOアンテナ</span>,"
+    “<span class="ja">ギガビット伝送を実現する3軸重み付け偏波8×8 MIMOアンテナ</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2014年総合大会</span>，
     No. ABS-1-7, Mar. 2014.
   </span>
@@ -3577,7 +3259,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">床がBANアンテナの放射指向特性に与える影響解析</span>,"
+    “<span class="ja">床がBANアンテナの放射指向特性に与える影響解析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2013年ソサイエティ大会</span>，
     No. BS-9-22, Sep. 2013.
   </span>
@@ -3586,7 +3268,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">手首に装着したBANアンテナのBER特性解析</span>,"
+    “<span class="ja">手首に装着したBANアンテナのBER特性解析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2013年ソサイエティ大会</span>，
     No. BS-9-21, Sep. 2013.
   </span>
@@ -3595,7 +3277,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "K-factor Dependent Multipath Characterization for BAN-OTA Testing Using a Fading Emulator,"
+    “K-factor Dependent Multipath Characterization for BAN-OTA Testing Using a Fading Emulator,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2013年ソサイエティ大会</span>，
     No. BS-9-14, Sep. 2013.
   </span>
@@ -3604,7 +3286,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "K-factor Dependent Multipath Characterization for BAN-OTA Testing Using a Fading Emulator,"
+    “K-factor Dependent Multipath Characterization for BAN-OTA Testing Using a Fading Emulator,”
     <span class="italic">IEEE Nagoya Chapter, Midland Student Express 2013 Spring</span>,
     S3-2, Apr. 2013.
   </span>
@@ -3613,7 +3295,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <u><b>Kun Li</b></u>, Kazuhiro Honda, and Koichi Ogawa,
-    "BAN-OTA Testing Using a Fading Emulator with a Dynamic Phantom,"
+    “BAN-OTA Testing Using a Fading Emulator with a Dynamic Phantom,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2013年総合大会</span>，
     No. BS-8-8, Mar. 2013.
   </span>
@@ -3622,7 +3304,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">BANファントムを用いた屋内伝搬環境下におけるKファクターの測定</span>,"
+    “<span class="ja">BANファントムを用いた屋内伝搬環境下におけるKファクターの測定</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2013年総合大会</span>，
     No. B-1-40, Mar. 2013.
   </span>
@@ -3631,7 +3313,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja">本田和博，<u><b>李鯤</b></u>，小川晃一</span>，
-    "<span class="ja">歩行時の計測統計データに基づいたBANダイバーシチアンテナのBER特性解析</span>,"
+    “<span class="ja">歩行時の計測統計データに基づいたBANダイバーシチアンテナのBER特性解析</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2012年ソサイエティ大会</span>，
     No. BS-7-6, Sep. 2012.
   </span>
@@ -3640,7 +3322,7 @@
   <span class="pub-num"></span>
   <span class="pub-content">
     <span class="ja"><u><b>李鯤</b></u>，本田和博，小川晃一</span>，
-    "<span class="ja">BANアンテナの腕振りによるQPSK信号のBER特性劣化</span>,"
+    “<span class="ja">BANアンテナの腕振りによるQPSK信号のBER特性劣化</span>,”
     <span class="italic"><span class="ja">電子情報通信学会</span>2012年ソサイエティ大会</span>，
     No. B-1-128, Sep. 2012.
   </span>
@@ -3651,58 +3333,74 @@
           -->
 
         </ol>
-      </div>
-    </div><!-- /domestic -->
+  </section>
 
-
-    <!-- ============================================================
-         5. BOOKS
-         ============================================================ -->
-    <div class="section-card" id="books">
-      <div class="section-head">
-        <div class="accent-bar accent-bar-b"></div>
-        <h2><span class="ja">著書</span> &nbsp;(Books)</h2>
-        <span class="section-count count-b">1</span>
-      </div>
-      <div class="section-body">
-        <ol class="pub-list" reversed start="1">
+  <!-- ============ BOOKS ============
+       To add a paper: copy one <li> ... </li> block and paste it at the top of this list.
+       Numbers and totals update automatically. -->
+  <section id="books">
+    <h2><span class="ja">著書</span> (Books) <span class="count" data-count="books">–</span></h2>
+    <ol class="pub-list" data-section="books">
 
           <!-- EXAMPLE ENTRY -->
           <li>
             <span class="pub-num"></span>
             <span class="pub-content">
               Tongning Wu, Ruiyun Peng, Lei Zhang, and <u><b>Kun Li</b></u>,
-              <span class="italic">"Human Exposure to New-Emerging Electric, Magnetic and Electromagnetic Fields,"</span>
+              <span class="italic">“Human Exposure to New-Emerging Electric, Magnetic and Electromagnetic Fields,”</span>
               Frontiers Media SA, ISBN: 978-2-88976-194-4, May. 2022.
             </span>
           </li>
 
         </ol>
-      </div>
-    </div><!-- /books -->
+  </section>
 
-  </main>
-</div><!-- /page-wrapper -->
+</main>
 
-<!-- ── FOOTER ── -->
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+  <div class="container footer-grid">
+    <div>
+      <h3>Contact</h3>
+      1-5-1 Chofugaoka, Chofu,<br>Tokyo 182-8585, Japan<br>
+      <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a><br>
+      Established: April 2023
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="people.html">Members &amp; Alumni</a></li>
+        <li><a href="research.html">Research Topics</a></li>
+        <li><a href="publication.html">Publications</a></li>
+        <li><a href="openings.html">Join the Lab</a></li>
+        <li><a href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Visitors</h3>
+      <a class="flag-counter" href="https://info.flagcounter.com/Vknb" target="_blank" rel="noopener">
+        <img src="https://s11.flagcounter.com/countxl/Vknb/bg_F5F7FA/txt_1E3A5F/border_E2E8F0/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_1/percent_0/"
+             alt="Flag Counter — visitors by country" />
+      </a>
+    </div>
+  </div>
+  <div class="copyright">
+    &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+  </div>
 </footer>
 
 <script>
-  // Hamburger menu
-  const btn = document.getElementById('hamburger');
-  const menu = document.getElementById('mobile-nav');
-  btn.addEventListener('click', () => menu.classList.toggle('open'));
-
-  // Auto-number the pub-num spans to match the reversed <ol> counter
+  /* Count the papers in each list, number them [N] ... [1] from the top,
+     and fill every element that has the matching data-count. Nothing to edit by hand. */
   document.querySelectorAll('.pub-list').forEach(ol => {
     const items = ol.querySelectorAll(':scope > li');
-    const start = parseInt(ol.getAttribute('start') || items.length);
+    const total = items.length;
     items.forEach((li, i) => {
       const numEl = li.querySelector('.pub-num');
-      if (numEl) numEl.textContent = '[' + (start - i) + ']';
+      if (numEl) numEl.textContent = '[' + (total - i) + ']';
     });
+    document.querySelectorAll('[data-count="' + ol.dataset.section + '"]')
+      .forEach(el => el.textContent = total);
   });
 </script>
 

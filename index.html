@@ -1,839 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Li Laboratory | AWCC | UEC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
-  <style>
-    /* ============================================================
-       DESIGN TOKENS
-       ============================================================ */
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />  <style>
+    /* ============ Colors & sizes (edit here) ============ */
     :root {
-      --clr-bg:        #f5f7fa;
-      --clr-surface:   #ffffff;
-      --clr-border:    #e2e8f0;
-      --clr-accent:    #2563eb;
-      --clr-accent-lt: #dbeafe;
-      --clr-navy:      #1e3a5f;
-      --clr-text:      #1a202c;
-      --clr-muted:     #64748b;
-      --clr-tag-j:     #0e7490;
-      --clr-tag-c:     #7c3aed;
-      --clr-tag-a:     #b45309;
-      --radius:        8px;
-      --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
-      --shadow-md:     0 4px 16px rgba(0,0,0,.09);
-      --font-sans:     'DM Sans', sans-serif;
-      --font-serif:    'DM Serif Display', serif;
-      --sidebar-w:     260px;
+      --navy:   #1a2d4a;
+      --accent: #2563eb;
+      --text:   #222;
+      --heading: #111;            /* titles, menu text, dates */
+      --muted:  #666;
+      --line:   #e3e3e3;
+      --bg-alt: #f6f7f9;
+      --width:  980px;
     }
 
-    /* ============================================================
-       RESET & BASE
-       ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font-sans);
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      font-size: 15px;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
       line-height: 1.7;
+      color: var(--text);
+      background: #fff;
     }
-    a { color: var(--clr-accent); text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    b, strong { font-weight: 600; }
+    .container { max-width: var(--width); margin: 0 auto; padding: 0 24px; }
 
-    /* ============================================================
-       TOP HEADER BAR
-       ============================================================ */
-    .site-header {
-      background: var(--clr-navy);
-      color: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
-    }
+    /* ============ Header ============ */
+    .site-header { border-bottom: 1px solid var(--line); }
+    /* Left column: title + menu. Right column: logos spanning both rows */
     .header-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: space-between;
-      height: 58px;
+      gap: 24px;
+      padding-top: 28px;
+      padding-bottom: 12px;
     }
-    .site-title {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      letter-spacing: .3px;
-      color: #fff;
+    .brand { margin-bottom: 14px; }
+    .brand h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1.3;
       white-space: nowrap;
     }
-    .site-title span {
-      color: #93c5fd;
-      font-family: var(--font-sans);
-      font-weight: 400;
-      font-size: 13px;
-      margin-left: 10px;
-      opacity: .9;
+    .brand p { font-size: 16px; color: var(--muted); margin-top: 4px; }
+    /* Logos stacked, right-aligned: UEC top = title top, AWCC bottom = menu bottom */
+    .logos {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
     }
+    .logos img { height: auto; display: block; }
+    .logo-uec  { width: 70px; margin-top: 0px; }   /* UEC: narrower; margin-top nudges it to the title's top */
+    .logo-awcc { width: 130px }                   /* AWCC: wider */
 
-    nav { display: flex; gap: 4px; }
+    /* Menu: plain text links, highlight floats up on hover */
+    nav { display: flex; flex-wrap: wrap; gap: 4px; }
     nav a {
-      color: rgba(255,255,255,.82);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 5px 11px;
-      border-radius: 5px;
-      transition: background .18s, color .18s;
-      letter-spacing: .3px;
+      color: var(--heading);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 6px;
+      transition: background .2s, color .2s, transform .2s, box-shadow .2s;
     }
-    nav a:hover, nav a.active {
-      background: rgba(255,255,255,.13);
+    nav a:hover {
+      background: var(--navy);
       color: #fff;
       text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(26,45,74,.25);
     }
+    nav a.active { background: var(--navy); color: #fff; }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: .3s;
-    }
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: var(--clr-navy);
-      padding: 12px 24px 16px;
-      border-top: 1px solid rgba(255,255,255,.1);
-    }
-    .mobile-nav a {
-      color: rgba(255,255,255,.85);
-      font-size: 14px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .mobile-nav.open { display: flex; }
-
-    /* ============================================================
-       HERO STRIP
-       ============================================================ */
-    .hero {
-      background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
-      color: #fff;
-      padding: 52px 24px 48px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 4vw, 34px);
-      margin-bottom: 10px;
-      letter-spacing: .3px;
-    }
-    .hero p {
-      font-size: 14.5px;
-      opacity: .88;
-      max-width: 640px;
-      margin: 0 auto 24px;
-    }
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .hero-stat { text-align: center; }
-    .hero-stat .num {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      display: block;
-    }
-    .hero-stat .label {
-      font-size: 12px;
-      opacity: .75;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-    }
-
-    /* ============================================================
-       PAGE WRAPPER
-       ============================================================ */
-    .page-wrapper {
-      max-width: 1160px;
-      margin: 32px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: var(--sidebar-w) 1fr;
-      gap: 28px;
-      align-items: start;
-    }
-
-    /* ============================================================
-       SIDEBAR
-       ============================================================ */
-    .sidebar { display: flex; flex-direction: column; gap: 20px; }
-
-    .card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .card-head {
-      background: var(--clr-navy);
-      color: #fff;
-      font-size: 11.5px;
+    /* ============ Sections ============ */
+    section { padding: 22px 0; }
+    section:first-of-type { padding-top: 30px; }
+    section:last-of-type { padding-bottom: 40px; }
+    h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 24px;
       font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 8px 16px;
-    }
-    .card-body { padding: 16px; }
-
-    .info-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      margin-bottom: 10px;
-      font-size: 13.5px;
-      color: var(--clr-text);
-    }
-    .info-item:last-child { margin-bottom: 0; }
-    .info-icon {
-      width: 18px;
-      flex-shrink: 0;
-      margin-top: 2px;
-      color: var(--clr-accent);
-    }
-
-    .quick-links { display: flex; flex-direction: column; gap: 6px; }
-    .quick-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      color: var(--clr-accent);
-      padding: 6px 10px;
-      border-radius: 5px;
-      transition: background .15s;
-    }
-    .quick-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
-    .quick-link svg { flex-shrink: 0; }
-
-    /* ============================================================
-       VISITOR COUNTER CARD  ← NEW
-       ============================================================ */
-    .visitor-card-body {
-      padding: 14px 16px 16px;
-    }
-
-    /* The pill row at top showing total count */
-    .visitor-total {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--clr-bg);
-      border: 1px solid var(--clr-border);
-      border-radius: 6px;
-      padding: 9px 12px;
+      color: var(--heading);
       margin-bottom: 12px;
     }
-    .visitor-total-label {
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      color: var(--clr-muted);
+    section p { margin-bottom: 12px; }
+
+    .pillars { list-style: none; margin: 14px 0; }
+    .pillars li {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 18px;
+      background: var(--bg-alt);
+      border-radius: 6px;
+      margin-bottom: 12px;
     }
-    .visitor-total-label svg {
-      color: var(--clr-accent);
+    .pillars i {
+      font-size: 22px;
+      color: var(--accent);
+      width: 28px;
+      text-align: center;
+      margin-top: 4px;
       flex-shrink: 0;
     }
-    .visitor-total-num {
-      font-family: var(--font-serif);
-      font-size: 18px;
-      color: var(--clr-navy);
-      letter-spacing: .5px;
-    }
+    .pillars strong { color: var(--heading); display: block; margin-bottom: 2px; }
 
-    /* The embedded flag counter — hidden overflow so it clips cleanly */
-    .flag-counter-wrap {
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--clr-border);
-      line-height: 0; /* collapse inline-block gap */
+    /* ============ News ============ */
+    .news-scroll {
+      max-height: 480px;          /* window height: change this to show more/less */
+      overflow-y: auto;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0 18px;
     }
-    .flag-counter-wrap img {
-      width: 100%;
-      height: auto;
+    .news-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-date { font-weight: 600; color: var(--heading); }
+    .news-type {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--muted);
       display: block;
     }
 
-    /* Small helper note below the counter */
-    .visitor-note {
-      margin-top: 8px;
-      font-size: 11px;
-      color: var(--clr-muted);
+    /* ============ Footer ============ */
+    footer { background: var(--navy); color: rgba(255,255,255,.85); font-size: 15px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      padding: 36px 24px 28px;
+    }
+    footer h3 { font-size: 16px; color: #fff; margin-bottom: 10px; }
+    footer a { color: #bcd4ff; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 4px; }
+    .flag-counter img { width: 100%; max-width: 280px; height: auto; display: block; border-radius: 4px; }
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding: 14px 0;
+      font-size: 13px;
       text-align: center;
-      line-height: 1.4;
+      color: rgba(255,255,255,.6);
     }
 
-    /* ============================================================
-       MAIN CONTENT
-       ============================================================ */
-    .main-content { display: flex; flex-direction: column; gap: 24px; }
-
-    .section-card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .section-head {
-      padding: 14px 24px;
-      border-bottom: 1px solid var(--clr-border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-head h2 {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      color: var(--clr-navy);
-      font-weight: 400;
-    }
-    .section-head .accent-bar {
-      width: 3px;
-      height: 18px;
-      background: var(--clr-accent);
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .section-body { padding: 20px 24px; }
-
-    /* ============================================================
-       NEWS LIST
-       ============================================================ */
-    .news-scroll {
-      max-height: 420px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-    .news-scroll::-webkit-scrollbar { width: 5px; }
-    .news-scroll::-webkit-scrollbar-track { background: var(--clr-bg); border-radius: 3px; }
-    .news-scroll::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
-    .news-scroll::-webkit-scrollbar-thumb:hover { background: var(--clr-muted); }
-
-    .news-item {
-      display: flex;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--clr-border);
-      font-size: 13.5px;
-    }
-    .news-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .news-item:first-child { padding-top: 0; }
-
-    .news-date {
-      flex-shrink: 0;
-      width: 82px;
-      font-size: 12px;
-      color: var(--clr-muted);
-      padding-top: 2px;
-      font-weight: 500;
-    }
-    .news-body { flex: 1; }
-    .news-tag {
-      display: inline-block;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      padding: 1px 7px;
-      border-radius: 20px;
-      margin-bottom: 4px;
-    }
-    .tag-journal     { background: #cffafe; color: var(--clr-tag-j); }
-    .tag-conference  { background: #ede9fe; color: var(--clr-tag-c); }
-    .tag-award       { background: #fef3c7; color: var(--clr-tag-a); }
-
-    .news-body a { color: var(--clr-accent); }
-    .news-body a:hover { text-decoration: underline; }
-
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 12.5px;
-      color: var(--clr-muted);
-      border-top: 1px solid var(--clr-border);
-      margin-top: 8px;
-    }
-
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
-    @media (max-width: 768px) {
-      .page-wrapper { grid-template-columns: 1fr; }
-      .hamburger { display: flex; }
-      nav { display: none; }
-      .hero-stats { gap: 20px; }
-      .site-title span { display: none; }
+    /* ============ Mobile ============ */
+    @media (max-width: 720px) {
+      body { font-size: 16px; }
+      .brand h1 { font-size: 24px; white-space: normal; }
+      .header-inner { flex-direction: column; }
+      .logos { flex-direction: row; align-items: center; order: -1; }
+      .logo-uec { margin-top: 0; }
+      .logo-uec  { width: 60px; }
+      .logo-awcc { width: 110px; }
+      nav a { padding: 10px 12px; font-size: 15px; }
+      .news-item { grid-template-columns: 1fr; gap: 2px; }      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
+<!-- ============ HEADER ============ -->
 <header class="site-header">
-  <div class="header-inner">
-    <div class="site-title">
-      Li Lab. / AWCC / UEC
-      <span>The University of Electro-Communications, Tokyo</span>
+  <div class="container header-inner">
+    <div class="header-left">
+      <div class="brand">
+        <h1>Smart Body-Centric Wireless Communications Lab.</h1>
+        <p>Li Laboratory, The University of Electro-Communications, Tokyo</p>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="people.html">People</a>
+        <a href="research.html">Research</a>
+        <a href="publication.html">Publications</a>
+        <a href="openings.html">Openings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="people.html">People</a>
-      <a href="research.html">Research</a>
-      <a href="publication.html">Publications</a>
-      <a href="openings.html">Openings</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
+    <!-- Put the logo files in an "images" folder in the repository -->
+    <div class="logos">
+      <img class="logo-uec" src="images/uec_logo.png" alt="UEC" onerror="this.style.display='none'" />
+      <img class="logo-awcc" src="images/awcc_logo.png" alt="AWCC" onerror="this.style.display='none'" />
     </div>
-  </div>
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="people.html">People</a>
-    <a href="research.html">Research</a>
-    <a href="publication.html">Publications</a>
-    <a href="openings.html">Openings</a>
-    <a href="contact.html">Contact</a>
   </div>
 </header>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-<div class="hero">
-  <h1>Smart Body-Centric Wireless Communications Lab.</h1>
-  <p>Advanced Wireless and Communication Center (AWCC) &nbsp;|&nbsp;
-     The University of Electro-Communications, Tokyo, Japan</p>
-</div>
+<main class="container">
 
-<!-- ============================================================
-     PAGE BODY
-     ============================================================ -->
-<div class="page-wrapper">
+  <!-- ============ WELCOME ============ -->
+  <section>
+    <h2>Welcome</h2>
+    <p>
+      Welcome to the <strong>Smart Body-Centric Wireless Communications Laboratory</strong> at the Advanced Wireless and Communication Center (AWCC), The University of Electro-Communications (UEC), Tokyo, Japan.
+    </p>
+    <p>
+      In our group, we are aiming at bridging the gap between ultra-high-speed wireless connectivity and human-centric electromagnetic safety in the 5G-Advanced/6G era, driven by two synergetic pillars:
+    </p>
+    <ul class="pillars">
+      <li>
+        <i class="fas fa-tower-broadcast"></i>
+        <div>
+          <strong>Advanced Wireless Communications</strong>
+          Focusing on next-generation networks (5G/6G, Cell-Free Massive MIMO), we specialize in antenna system design, and MIMO-OTA testing.
+          We also explore channel modeling, Communication EMC, and LF/UHF signal evaluations for industrial environments.
+        </div>
+      </li>
+      <li>
+        <i class="fas fa-user-shield"></i>
+        <div>
+          <strong>RF-EMF Safety &amp; System Co-Design</strong>
+          Integrating traditional bioelectromagnetics with system-level design, we utilize Sionna Ray Tracing and PHY/MAC simulations for EMF-aware network optimization.
+          We tackle the coexistence of high data traffic and EMF compliance in multi-BS scenarios,
+          while evaluating wearable/implantable devices for biomedical applications.
+        </div>
+      </li>
+    </ul>
+    <p>
+      We welcome motivated students and researchers. See our <a href="openings.html"><strong>Openings</strong></a> page for available positions.
+    </p>
+  </section>
 
-  <!-- ---- SIDEBAR ---- -->
-  <aside class="sidebar">
+  <!-- ============ NEWS ============
+       To add news: copy one <div class="news-item"> block and paste it at the top. -->
+  <section>
+    <h2>News</h2>
+    <div class="news-scroll">
 
-    <!-- Lab info -->
-    <div class="card">
-      <div class="card-head">Lab Information</div>
-      <div class="card-body">
-        <div class="info-item">
-          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-          </svg>
-          <span>1-5-1 Chofugaoka, Chofu, Tokyo 182-8585, Japan</span>
-        </div>
-        <div class="info-item">
-          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-          </svg>
-          <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a>
-        </div>
-        <div class="info-item">
-          <svg class="info-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-          </svg>
-          <span>Established: April 2023</span>
-        </div>
+    <div class="news-item">
+      <div class="news-date">2026/09/23</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Utsushigawa (M2) and Goto (M1) presented at <strong>IEICE Society Conference</strong> (Hokkaido).
+        Topics: A Study on Spatial Downsampling Method for Large-Scale EMF Distribution Assessment,
+        and Field Reconstruction Technique on Biological Surfaces for Power Density Assessment in the FR3 Band.
       </div>
     </div>
 
-    <!-- Quick links -->
-    <div class="card">
-      <div class="card-head">Quick Links</div>
-      <div class="card-body">
-        <div class="quick-links">
-          <a class="quick-link" href="people.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-            </svg>
-            Members &amp; Alumni
-          </a>
-          <a class="quick-link" href="research.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
-            </svg>
-            Research Topics
-          </a>
-          <a class="quick-link" href="publication.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-            </svg>
-            Publications
-          </a>
-          <a class="quick-link" href="openings.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
-            </svg>
-            Join the Lab
-          </a>
-          <a class="quick-link" href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-            </svg>
-            Google Scholar
-          </a>
-        </div>
+    <div class="news-item">
+      <div class="news-date">2026/08/19</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Ueda (M2) and Tanaka (M1) presented at <strong>URSI GASS 2026</strong> (Kraków).
+        Topics: Estimation of Absorbed Power Density at 7 GHz via PWS-based Inverse Reconstruction,
+        and A Study on RF-EMF Assessment of 5G Shared Base Stations in Subway Tunnels Using Ray-Tracing Simulation.
       </div>
     </div>
 
-    <!-- ============================================================
-         VISITOR COUNTER CARD  ← PLACED HERE (bottom of sidebar)
-         
-         Design choices:
-         - Same .card shell as every other sidebar widget -> visually unified
-         - Navy card-head matches the entire sidebar language
-         - Flag Counter URL params tuned:
-             bg_F5F7FA  = matches --clr-bg (light gray, not jarring white)
-             txt_1A202C = matches --clr-text
-             border_E2E8F0 = matches --clr-border
-             columns_3 / maxflags_12 / pageviews_1 / labels_1
-         - Rounded wrapper clips the img into the card's border-radius
-         - A tiny "Visitors since Apr 2023" label adds context
-         ============================================================ -->
-    <div class="card">
-      <div class="card-head">
-        <!-- globe icon inline SVG, no emoji -->
-        <span style="display:inline-flex;align-items:center;gap:6px;">
-          <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" style="opacity:.85;">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
-          </svg>
-          Visitor Statistics
-        </span>
-      </div>
-      <div class="visitor-card-body">
-
-
-        <!-- Flag Counter image, wrapped for clean clipping -->
-        <!--
-          COLOR PARAMS EXPLAINED (edit freely):
-            bg_F5F7FA   -> widget background = --clr-bg
-            txt_1E3A5F  -> text color        = --clr-navy
-            border_E2E8F0 -> border          = --clr-border
-            columns_3   -> 3 flag columns
-            maxflags_12 -> show top 12 countries
-            pageviews_1 -> show pageview count
-            labels_1    -> show country labels
-            flags_0     -> hide flag images (set to 1 to show them)
-            percent_0   -> hide percentage bars
-          
-          To show actual flags, change flags_0 to flags_1.
-          Pageview total is pulled from the img src live by Flag Counter's server.
-        -->
-        <div class="flag-counter-wrap">
-          <a href="https://info.flagcounter.com/Vknb" target="_blank" rel="noopener" style="display:block;line-height:0;">
-            <img
-              src="https://s11.flagcounter.com/countxl/Vknb/bg_F5F7FA/txt_1E3A5F/border_E2E8F0/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_1/percent_0/"
-              alt="Flag Counter — visitors by country"
-              style="width:100%;height:auto;display:block;"
-            />
-          </a>
-        </div>
-
-        <p class="visitor-note">Tracking visitors since April 2023</p>
-
-      </div>
-    </div>
-    <!-- /visitor counter card -->
-
-  </aside><!-- /sidebar -->
-
-  <!-- ---- MAIN CONTENT ---- -->
-  <main class="main-content">
-
-    <!-- Welcome -->
-    <div class="section-card">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Welcome Message</h2>
-      </div>
-      <div class="section-body">
-        <p style="margin-bottom: 18px;">
-          Welcome to the <strong>Smart Body-Centric Wireless Communications Laboratory</strong> at the Advanced Wireless and Communication Center (AWCC), The University of Electro-Communications (UEC), Tokyo, Japan.
-        </p>
-        <p style="margin-bottom: 16px;">
-          In our group, we are aiming at bridging the gap between ultra-high-speed wireless connectivity and human-centric electromagnetic safety in the 5G-Advanced/6G era, driven by two synergetic pillars:
-        </p>
-        <ul style="list-style: none; padding-left: 0; margin-bottom: 16px;">
-          <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-            <i class="fas fa-broadcast-tower" style="color: var(--clr-accent); margin-top: 4px; margin-right: 12px; font-size: 1.1em;"></i>
-            <div>
-              <strong style="color: var(--clr-navy);">Advanced Wireless Communications:</strong>
-              Focusing on next-generation networks (<strong>5G/6G, Cell-Free Massive MIMO</strong>), we specialize in antenna system design, and MIMO-OTA testing.
-              We also explore channel modeling, Communication EMC, and LF/UHF signal evaluations for industrial environments.
-            </div>
-          </li>
-          <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-            <i class="fas fa-user-shield" style="color: var(--clr-accent); margin-top: 4px; margin-right: 12px; font-size: 1.1em;"></i>
-            <div>
-              <strong style="color: var(--clr-navy);">RF-EMF Safety &amp; System Co-Design:</strong>
-              Integrating traditional bioelectromagnetics with system-level design, we utilize <strong>Sionna Ray Tracing</strong> and PHY/MAC simulations for <strong>EMF-aware network optimization</strong>.
-              We tackle the coexistence of high data traffic and EMF compliance in multi-BS scenarios,
-              while evaluating wearable/implantable devices for biomedical applications.
-            </div>
-          </li>
-        </ul>
-        <p style="margin-bottom: 0;">
-          We welcome motivated students and researchers. See our
-          <a href="openings.html" style="font-weight: bold; color: var(--clr-accent);">Openings</a>
-          page for available positions.
-        </p>
+    <div class="news-item">
+      <div class="news-date">2026/08/12</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Oda and Enomoto (M2) presented at <strong>APWCS 2026</strong> (Seoul).
+        Topics: Numerical Assessment of Quiet-Zone Formation in a Phantom-Free BAN-OTA Fading Emulator Using Vivaldi Scatterer Antennas,
+        and EMF Compliance Boundary Assessment Based on Near-Field Power Density for Airy Beam Antennas.
       </div>
     </div>
 
-    <!-- News -->
-    <div class="section-card">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>News &amp; Updates</h2>
+    <div class="news-item">
+      <div class="news-date">2026/08/08</div>
+      <div>
+        <span class="news-type">Journal</span>
+        Paper accepted in <strong>IEEE Transactions on Electromagnetic Compatibility</strong>:
+        "A Comprehensive Electromagnetic and Thermal Modeling Framework for Highly Focused Millimeter-Wave Beam Exposure on Rat Dorsal Skin."
+        [<a href="https://doi.org/10.1109/TEMC.2026.3717201" target="_blank">DOI</a>]
       </div>
-      <div class="section-body" style="padding-top:12px; padding-bottom:12px;">
-        <div class="news-scroll">
+    </div>
 
-          <div class="news-item">
-            <div class="news-date">2026/09/23</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Utsushigawa (M2) and Goto (M1) presented at <strong>IEICE Society Conference</strong> (Hokkaido).
-              Topics: A Study on Spatial Downsampling Method for Large-Scale EMF Distribution Assessment,
-              and Field Reconstruction Technique on Biological Surfaces for Power Density Assessment in the FR3 Band.
-            </div>
-          </div>
-          
-          <div class="news-item">
-            <div class="news-date">2026/08/19</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Ueda (M2) and Tanaka (M1) presented at <strong>URSI GASS 2026</strong> (Kraków).
-              Topics: Estimation of Absorbed Power Density at 7 GHz via PWS-based Inverse Reconstruction,
-              and A Study on RF-EMF Assessment of 5G Shared Base Stations in Subway Tunnels Using Ray-Tracing Simulation.
-            </div>
-          </div>
-          
-          <div class="news-item">
-            <div class="news-date">2026/08/12</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Oda and Enomoto (M2) presented at <strong>APWCS 2026</strong> (Seoul).
-              Topics: Numerical Assessment of Quiet-Zone Formation in a Phantom-Free BAN-OTA Fading Emulator Using Vivaldi Scatterer Antennas,
-              and EMF Compliance Boundary Assessment Based on Near-Field Power Density for Airy Beam Antennas.
-            </div>
-          </div>
-
-         <div class="news-item">
-            <div class="news-date">2026/08/08</div>
-            <div class="news-body">
-              <span class="news-tag tag-journal">Journal</span><br>
-              Paper accepted in <strong>IEEE Transactions on Electromagnetic Compatibility</strong>:
-              "A Comprehensive Electromagnetic and Thermal Modeling Framework for Highly Focused Millimeter-Wave Beam Exposure on Rat Dorsal Skin."
-              [<a href="https://doi.org/10.1109/TEMC.2026.3717201" target="_blank">DOI</a>]
-            </div>
-          </div>
-          
-          <div class="news-item">
-            <div class="news-date">2026/07/16</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Enomoto (M2) presented at <strong>EMCJ Workshop</strong> @ Tokyo. 
-              Topic: EMF Compliance Boundary Assessment Based on Near-Field Power Density for Airy Beam Antennas .
-            </div>
-          </div>
-          
-          <div class="news-item">
-            <div class="news-date">2026/06/22</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Goto (M1) presented at <strong>BioEM 2026</strong> (Cairns). 
-              Topic: Field Reconstruction for Power Density Assessment on Curved Surfaces for EMF Exposure in the FR3 Band.
-            </div>
-          </div>
-          
-          <div class="news-item">
-            <div class="news-date">2026/06/01</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Sakai (M1) presented at <strong>MICT Workshop</strong> @ Yokosuka Research Park(YRP) . 
-              Topic: Posture change estimation in indoor NLOS environments for elderly fall monitoring.
-            </div>
-          </div>
-          
-          <div class="news-item">
-            <div class="news-date">2026/04/22</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Xu and Li (D1) presented at <strong>EuCAP 2026</strong> (Dublin).
-              Topics: Sionna ray-tracing-driven RF-EMF analysis in FR3 mmWave LOS scenarios,
-              and RF-EMF / EIRP trade-off in 6G handset multi-antenna systems at FR1 and FR3 bands.
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2026/03/13</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Sakai (B4) presented at <strong>IEICE General Conference</strong> @ Kyushu Sangyo University.
-              Topic: A study on the verification of room electromagnetics theory for elderly fall monitoring.
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2026/03/06</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Xu (D1) presented at <strong>RCS Workshop</strong> @ Tokyo University of Science.
-              Topic: Precoding optimization for FR3 downlink considering RF-EMF exposure based on Sionna ray-tracing.
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/12/24</div>
-            <div class="news-body">
-              <span class="news-tag tag-journal">Journal</span><br>
-              Paper accepted in <strong>IEICE Transactions C</strong>:
-              "Dosimetry estimation of 60 GHz millimeter-wave exposure for thermal physiological threshold evaluation."
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/12/16</div>
-            <div class="news-body">
-              <span class="news-tag tag-journal">Journal</span><br>
-              Paper accepted in <strong>Physics in Medicine and Biology</strong>:
-              "Intercomparisons of computed epithelial/absorbed power density and temperature rise in anatomical human face models under localized exposures at 10 GHz and 30 GHz."
-              [<a href="https://doi.org/10.1088/1361-6560/ae2ce1" target="_blank">DOI</a>]
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/11/26</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Utsukawa, Ueda, and Zhou (M1) presented at <strong>ICETC 2025</strong> (Osaka).
-              Topics: Weibull distribution-based MMW skin temperature approximation,
-              averaging of absorbed power density for forearm skin exposure,
-              and BER enhancement under SAR constraints for implanted biomedical telemetry.
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/11/01</div>
-            <div class="news-body">
-              <span class="news-tag tag-journal">Journal</span><br>
-              Paper accepted in <strong>IEEE Journal of Microwaves</strong>:
-              "Model Variability in Assessment of Human Exposure to Radio-Frequency Fields."
-              [<a href="https://doi.org/10.1109/JMW.2025.3628902" target="_blank">DOI</a>]
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/10/30</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Oda (M1) presented at <strong>ISAP 2025</strong> (Fukuoka).
-              Topic: Over-the-Air testing of BAN diversity antennas in 4G downlink frequency band.
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/09/02</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Ueda (M1) presented at the <strong>17th Bioelectromagnetics Symposium</strong> @ NICT Nihonbashi.
-              Topic: Weibull distribution application and accuracy evaluation for thermal response estimation in MMW exposure.
-            </div>
-          </div>
-
-          <div class="news-item">
-            <div class="news-date">2025/08/21</div>
-            <div class="news-body">
-              <span class="news-tag tag-conference">Conference</span><br>
-              Utsukawa and Ueda (M1) presented at <strong>AP-RASC 2025</strong> (Sydney).
-              Topics: LF-band underground wireless communication characterization using PCA,
-              and ML-based thermal parameter estimation in MMW exposure.
-            </div>
-          </div>
-
-        </div><!-- /news-scroll -->
+    <div class="news-item">
+      <div class="news-date">2026/07/16</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Enomoto (M2) presented at <strong>EMCJ Workshop</strong> @ Tokyo.
+        Topic: EMF Compliance Boundary Assessment Based on Near-Field Power Density for Airy Beam Antennas.
       </div>
-    </div><!-- /news card -->
+    </div>
 
-  </main><!-- /main-content -->
-</div><!-- /page-wrapper -->
+    <div class="news-item">
+      <div class="news-date">2026/06/22</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Goto (M1) presented at <strong>BioEM 2026</strong> (Cairns).
+        Topic: Field Reconstruction for Power Density Assessment on Curved Surfaces for EMF Exposure in the FR3 Band.
+      </div>
+    </div>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+    <div class="news-item">
+      <div class="news-date">2026/06/01</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Sakai (M1) presented at <strong>MICT Workshop</strong> @ Yokosuka Research Park (YRP).
+        Topic: Posture change estimation in indoor NLOS environments for elderly fall monitoring.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2026/04/22</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Xu and Li (D1) presented at <strong>EuCAP 2026</strong> (Dublin).
+        Topics: Sionna ray-tracing-driven RF-EMF analysis in FR3 mmWave LOS scenarios,
+        and RF-EMF / EIRP trade-off in 6G handset multi-antenna systems at FR1 and FR3 bands.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2026/03/13</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Sakai (B4) presented at <strong>IEICE General Conference</strong> @ Kyushu Sangyo University.
+        Topic: A study on the verification of room electromagnetics theory for elderly fall monitoring.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2026/03/06</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Xu (D1) presented at <strong>RCS Workshop</strong> @ Tokyo University of Science.
+        Topic: Precoding optimization for FR3 downlink considering RF-EMF exposure based on Sionna ray-tracing.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/12/24</div>
+      <div>
+        <span class="news-type">Journal</span>
+        Paper accepted in <strong>IEICE Transactions C</strong>:
+        "Dosimetry estimation of 60 GHz millimeter-wave exposure for thermal physiological threshold evaluation."
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/12/16</div>
+      <div>
+        <span class="news-type">Journal</span>
+        Paper accepted in <strong>Physics in Medicine and Biology</strong>:
+        "Intercomparisons of computed epithelial/absorbed power density and temperature rise in anatomical human face models under localized exposures at 10 GHz and 30 GHz."
+        [<a href="https://doi.org/10.1088/1361-6560/ae2ce1" target="_blank">DOI</a>]
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/11/26</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Utsukawa, Ueda, and Zhou (M1) presented at <strong>ICETC 2025</strong> (Osaka).
+        Topics: Weibull distribution-based MMW skin temperature approximation,
+        averaging of absorbed power density for forearm skin exposure,
+        and BER enhancement under SAR constraints for implanted biomedical telemetry.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/11/01</div>
+      <div>
+        <span class="news-type">Journal</span>
+        Paper accepted in <strong>IEEE Journal of Microwaves</strong>:
+        "Model Variability in Assessment of Human Exposure to Radio-Frequency Fields."
+        [<a href="https://doi.org/10.1109/JMW.2025.3628902" target="_blank">DOI</a>]
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/10/30</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Oda (M1) presented at <strong>ISAP 2025</strong> (Fukuoka).
+        Topic: Over-the-Air testing of BAN diversity antennas in 4G downlink frequency band.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/09/02</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Ueda (M1) presented at the <strong>17th Bioelectromagnetics Symposium</strong> @ NICT Nihonbashi.
+        Topic: Weibull distribution application and accuracy evaluation for thermal response estimation in MMW exposure.
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025/08/21</div>
+      <div>
+        <span class="news-type">Conference</span>
+        Utsukawa and Ueda (M1) presented at <strong>AP-RASC 2025</strong> (Sydney).
+        Topics: LF-band underground wireless communication characterization using PCA,
+        and ML-based thermal parameter estimation in MMW exposure.
+      </div>
+    </div>
+
+    </div><!-- /news-scroll -->
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+  <div class="container footer-grid">
+    <div>
+      <h3>Contact</h3>
+      1-5-1 Chofugaoka, Chofu,<br>Tokyo 182-8585, Japan<br>
+      <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a><br>
+      Established: April 2023
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="people.html">Members &amp; Alumni</a></li>
+        <li><a href="research.html">Research Topics</a></li>
+        <li><a href="publication.html">Publications</a></li>
+        <li><a href="openings.html">Join the Lab</a></li>
+        <li><a href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Visitors</h3>
+      <a class="flag-counter" href="https://info.flagcounter.com/Vknb" target="_blank" rel="noopener">
+        <img src="https://s11.flagcounter.com/countxl/Vknb/bg_F5F7FA/txt_1E3A5F/border_E2E8F0/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_1/percent_0/"
+             alt="Flag Counter — visitors by country" />
+      </a>
+    </div>
+  </div>
+  <div class="copyright">
+    &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+  </div>
 </footer>
-
-<!-- ============================================================
-     JS
-     ============================================================ -->
-<script>
-  /* Hamburger toggle */
-  const btn  = document.getElementById('hamburger');
-  const menu = document.getElementById('mobile-nav');
-  btn.addEventListener('click', () => menu.classList.toggle('open'));
-
-  /* ----------------------------------------------------------------
-     Page-view display in the summary bar above the flag counter.
-     Flag Counter does NOT expose a JSON API, so we do a lightweight
-     image-load trick: when the img loads successfully its natural
-     width gives us a proxy — but more practically, just leave the
-     "--" placeholder and let the flag counter image speak for itself.
-     If you add a real analytics backend (e.g. GoatCounter, Plausible,
-     or a simple server-side counter) you can fetch the number here
-     and update #pv-display accordingly.
-     ---------------------------------------------------------------- */
-  // Example: replace with a real API call if you have one
-  // fetch('/api/pageviews').then(r=>r.json()).then(d=>{
-  //   document.getElementById('pv-display').textContent = d.total.toLocaleString();
-  // });
-</script>
 
 </body>
 </html>

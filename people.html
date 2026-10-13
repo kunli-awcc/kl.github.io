@@ -6,1179 +6,396 @@
   <title>People | Li Laboratory | AWCC | UEC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* ============================================================
-       DESIGN TOKENS — identical to index.html
-       ============================================================ */
+    /* ============ Colors & sizes (same as index.html) ============ */
     :root {
-      --clr-bg:        #f5f7fa;
-      --clr-surface:   #ffffff;
-      --clr-border:    #e2e8f0;
-      --clr-accent:    #2563eb;
-      --clr-accent-lt: #dbeafe;
-      --clr-navy:      #1e3a5f;
-      --clr-text:      #1a202c;
-      --clr-muted:     #64748b;
-      --radius:        8px;
-      --shadow-sm:     0 1px 4px rgba(0,0,0,.07);
-      --shadow-md:     0 4px 16px rgba(0,0,0,.09);
-      --font-sans:     'DM Sans', sans-serif;
-      --font-serif:    'DM Serif Display', serif;
-      --sidebar-w:     260px;
+      --navy:   #1a2d4a;
+      --accent: #2563eb;
+      --text:   #222;
+      --heading: #111;
+      --muted:  #666;
+      --line:   #e3e3e3;
+      --bg-alt: #f6f7f9;
+      --width:  980px;
     }
 
-    /* ============================================================
-       RESET & BASE
-       ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font-sans);
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      font-size: 15px;
+      font-family: 'Source Serif 4', 'Noto Serif JP', Georgia, serif;
+      font-size: 16px;
       line-height: 1.7;
+      color: var(--text);
+      background: #fff;
     }
-    a { color: var(--clr-accent); text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    b, strong { font-weight: 600; }
-    ul { list-style: none; padding: 0; }
+    .container { max-width: var(--width); margin: 0 auto; padding: 0 24px; }
 
-    /* ============================================================
-       TOP HEADER BAR — identical to index.html
-       ============================================================ */
-    .site-header {
-      background: var(--clr-navy);
-      color: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
-    }
+    /* ============ Header (same as index.html) ============ */
+    .site-header { border-bottom: 1px solid var(--line); }
     .header-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: space-between;
-      height: 58px;
+      gap: 24px;
+      padding-top: 28px;
+      padding-bottom: 12px;
     }
-    .site-title {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      letter-spacing: .3px;
-      color: #fff;
+    .brand { margin-bottom: 14px; }
+    .brand h1 {
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1.3;
       white-space: nowrap;
     }
-    .site-title span {
-      color: #93c5fd;
-      font-family: var(--font-sans);
-      font-weight: 400;
-      font-size: 13px;
-      margin-left: 10px;
-      opacity: .9;
+    .brand p { font-size: 16px; color: var(--muted); margin-top: 4px; }
+    .logos {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
     }
+    .logos img { height: auto; display: block; }
+    .logo-uec  { width: 70px; margin-top: 0px; }
+    .logo-awcc { width: 130px }
 
-    /* NAV */
-    nav { display: flex; gap: 4px; }
+    nav { display: flex; flex-wrap: wrap; gap: 4px; }
     nav a {
-      color: rgba(255,255,255,.82);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 5px 11px;
-      border-radius: 5px;
-      transition: background .18s, color .18s;
-      letter-spacing: .3px;
-    }
-    nav a:hover, nav a.active {
-      background: rgba(255,255,255,.13);
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: .3s;
-    }
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: var(--clr-navy);
-      padding: 12px 24px 16px;
-      border-top: 1px solid rgba(255,255,255,.1);
-    }
-    .mobile-nav a {
-      color: rgba(255,255,255,.85);
-      font-size: 14px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .mobile-nav.open { display: flex; }
-
-    /* ============================================================
-       HERO STRIP
-       ============================================================ */
-    .hero {
-      background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%);
-      color: #fff;
-      padding: 48px 24px 44px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 4vw, 34px);
-      margin-bottom: 10px;
-      letter-spacing: .3px;
-    }
-    .hero p {
-      font-size: 14.5px;
-      opacity: .88;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    /* ============================================================
-       PAGE WRAPPER
-       ============================================================ */
-    .page-wrapper {
-      max-width: 1160px;
-      margin: 32px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: var(--sidebar-w) 1fr;
-      gap: 28px;
-      align-items: start;
-    }
-
-    /* ============================================================
-       SIDEBAR — identical structure to index.html
-       ============================================================ */
-    .sidebar { display: flex; flex-direction: column; gap: 20px; }
-
-    .card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .card-head {
-      background: var(--clr-navy);
-      color: #fff;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 8px 16px;
-    }
-    .card-body { padding: 16px; }
-
-    .lab-photo-placeholder {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--clr-accent);
-      font-size: 13px;
-      font-weight: 500;
-    }
-    .lab-photo {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Sidebar navigation links */
-    .side-nav { display: flex; flex-direction: column; gap: 4px; }
-    .side-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--clr-text);
-      padding: 7px 10px;
-      border-radius: 5px;
-      transition: background .15s, color .15s;
-      cursor: pointer;
-    }
-    .side-nav-link:hover, .side-nav-link.active {
-      background: var(--clr-accent-lt);
-      color: var(--clr-accent);
-      text-decoration: none;
-    }
-    .side-nav-link .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--clr-border);
-      flex-shrink: 0;
-      transition: background .15s;
-    }
-    .side-nav-link:hover .dot, .side-nav-link.active .dot {
-      background: var(--clr-accent);
-    }
-    .side-nav-divider {
-      height: 1px;
-      background: var(--clr-border);
-      margin: 6px 0;
-    }
-
-    /* Quick links (same style as index) */
-    .quick-links { display: flex; flex-direction: column; gap: 6px; }
-    .quick-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      color: var(--clr-accent);
-      padding: 6px 10px;
-      border-radius: 5px;
-      transition: background .15s;
-    }
-    .quick-link:hover { background: var(--clr-accent-lt); text-decoration: none; }
-    .quick-link svg { flex-shrink: 0; }
-
-    /* ============================================================
-       MAIN CONTENT
-       ============================================================ */
-    .main-content { display: flex; flex-direction: column; gap: 24px; }
-
-    /* Section card — identical to index */
-    .section-card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .section-head {
-      padding: 14px 24px;
-      border-bottom: 1px solid var(--clr-border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-head h2 {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      color: var(--clr-navy);
-      font-weight: 400;
-    }
-    .section-head .badge {
-      margin-left: auto;
-      font-size: 11px;
-      font-weight: 600;
-      background: var(--clr-accent-lt);
-      color: var(--clr-accent);
-      padding: 2px 9px;
-      border-radius: 20px;
-      letter-spacing: .3px;
-    }
-    .accent-bar {
-      width: 3px;
-      height: 18px;
-      background: var(--clr-accent);
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .section-body { padding: 20px 24px; }
-
-    /* ============================================================
-       PERSON CARDS
-       ============================================================ */
-
-    /* --- SUPERVISOR: wide horizontal card --- */
-    .pi-card {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-    }
-    .pi-photo {
-      width: 150px;
-      flex-shrink: 0;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 2px solid var(--clr-border);
-    }
-    .pi-photo img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-    }
-    .pi-photo-placeholder {
-      width: 150px;
-      height: 185px;
-      flex-shrink: 0;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--clr-accent);
-      font-size: 12px;
-      border: 2px solid var(--clr-border);
-    }
-    .pi-info { flex: 1; min-width: 0; }
-    .pi-name {
-      font-family: var(--font-serif);
-      font-size: 19px;
-      color: var(--clr-navy);
-      margin-bottom: 2px;
-    }
-    .pi-title-label {
-      font-size: 13px;
-      color: var(--clr-muted);
-      margin-bottom: 12px;
-    }
-    .pi-meta { margin-bottom: 12px; }
-    .pi-meta p {
-      font-size: 13.5px;
-      color: var(--clr-text);
-      margin-bottom: 3px;
-    }
-    .pi-meta p span {
-      color: var(--clr-muted);
-      margin-right: 6px;
-    }
-
-    /* CV / links row */
-    .profile-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-    .profile-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12.5px;
-      font-weight: 500;
-      padding: 4px 12px;
-      border-radius: 20px;
-      border: 1px solid var(--clr-border);
-      color: var(--clr-accent);
-      background: var(--clr-surface);
-      transition: background .15s, border-color .15s;
-    }
-    .profile-link:hover {
-      background: var(--clr-accent-lt);
-      border-color: var(--clr-accent);
-      text-decoration: none;
-    }
-
-    /* Timeline for PI bio */
-    .timeline { margin-top: 4px; }
-    .timeline-item {
-      display: flex;
-      gap: 12px;
-      font-size: 13px;
-      padding: 5px 0;
-      border-bottom: 1px solid var(--clr-bg);
-      color: var(--clr-text);
-    }
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-year {
-      flex-shrink: 0;
-      width: 40px;
-      font-weight: 600;
-      color: var(--clr-accent);
-      font-size: 12px;
-      padding-top: 1px;
-    }
-
-    /* --- MEMBER GRID: 2-col grid for students --- */
-    .member-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-    .member-card {
-      background: var(--clr-bg);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: box-shadow .2s, transform .2s;
-    }
-    .member-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-    .member-photo {
-      width: 100%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      background: #dbeafe;
-    }
-    .member-photo-placeholder {
-      width: 100%;
-      aspect-ratio: 1/1;
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      color: var(--clr-accent);
-    }
-    .member-info {
-      padding: 12px 14px;
-    }
-    .member-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--clr-navy);
-      line-height: 1.3;
-      margin-bottom: 1px;
-    }
-    .member-name-en {
-      font-size: 12px;
-      color: var(--clr-muted);
-      margin-bottom: 6px;
-    }
-    .member-bio {
-      font-size: 12.5px;
-      color: var(--clr-text);
-      line-height: 1.55;
-      margin-bottom: 6px;
-    }
-    .member-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      color: var(--clr-accent);
-      margin-top: 2px;
-    }
-    .member-link:hover { text-decoration: underline; }
-
-    /* --- RESEARCHER: single horizontal card (smaller than PI) --- */
-    .researcher-card {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 4px 0;
-    }
-    .researcher-photo {
-      width: 110px;
-      flex-shrink: 0;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 2px solid var(--clr-border);
-    }
-    .researcher-photo img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-    }
-    .researcher-photo-placeholder {
-      width: 110px;
-      height: 130px;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--clr-accent);
-      font-size: 12px;
-      border: 2px solid var(--clr-border);
-    }
-    .researcher-info { flex: 1; }
-    .researcher-name {
+      color: var(--heading);
       font-size: 16px;
       font-weight: 600;
-      color: var(--clr-navy);
-      margin-bottom: 2px;
+      padding: 7px 16px;
+      border-radius: 6px;
+      transition: background .2s, color .2s, transform .2s, box-shadow .2s;
     }
-    .researcher-name-en {
-      font-size: 13px;
-      color: var(--clr-muted);
-      margin-bottom: 8px;
+    nav a:hover {
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(26,45,74,.25);
     }
+    nav a.active { background: var(--navy); color: #fff; }
 
-    /* --- VISITOR LIST --- */
-    .visitor-list { display: flex; flex-direction: column; gap: 0; }
-    .visitor-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--clr-border);
-      font-size: 13.5px;
-    }
-    .visitor-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .visitor-item:first-child { padding-top: 0; }
-    .visitor-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--clr-accent);
-      flex-shrink: 0;
-      margin-top: 7px;
-    }
-    .visitor-body { flex: 1; }
-    .visitor-name { font-weight: 600; color: var(--clr-navy); }
-    .visitor-detail { color: var(--clr-muted); font-size: 12.5px; margin-top: 1px; }
-    .visitor-period {
-      display: inline-block;
-      font-size: 11px;
+    /* ============ Sections ============ */
+    section { padding: 22px 0; }
+    section:first-of-type { padding-top: 30px; }
+    section:last-of-type { padding-bottom: 40px; }
+    h2 {
+      font-size: 24px;
       font-weight: 600;
-      background: #f0fdf4;
-      color: #16a34a;
-      padding: 1px 7px;
-      border-radius: 20px;
-      margin-left: 6px;
-      vertical-align: middle;
+      color: var(--heading);
+      margin-bottom: 12px;
     }
+    section p { margin-bottom: 12px; }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    footer {
+    /* ============ Supervisor ============
+       Photo is exactly one grid cell wide, so it matches the members' photos.
+       Text block is stretched to the photo height (top and bottom aligned). */
+    .pi { display: flex; gap: 20px; align-items: stretch; }
+    .pi-photo {
+      width: calc((100% - 80px) / 5);
+      flex-shrink: 0;
+      align-self: flex-start;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-alt);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .pi-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pi-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+    .pi-name { font-size: 20px; font-weight: 600; color: var(--heading); line-height: 1.2; }
+    .pi-title { color: var(--muted); }
+    .pi-links a { margin-right: 14px; white-space: nowrap; }
+    .career { border-collapse: collapse; }
+    .career td { padding: 0; vertical-align: top; }
+    .career td:first-child { width: 48px; font-weight: 600; color: var(--heading); }
+
+    /* ============ Members (postdoc & students in one grid) ============
+       To add someone: copy one <div class="member"> block.
+       With a link: <a class="photo" href="...">…</a>; without one: <div class="photo">…</div>. */
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px 20px;
+    }
+    .member { text-align: center; line-height: 1.35; }
+    /* "new-row" puts that person at the start of a new line (used for the first M2, M1 and B4 student) */
+    .member.new-row { grid-column-start: 1; }
+    .member .photo {
+      display: block;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-alt);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 6px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .member .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .member a.photo:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,.15); }
+    .member-name { font-weight: 600; color: var(--heading); }
+    .member-name-en { font-size: 15px; color: var(--text); }
+    .member-role { font-size: 14px; color: var(--muted); }
+
+    /* ============ Visitors ============ */
+    .visitors { list-style: none; }
+    .visitors li { margin-bottom: 6px; }
+    .visitors .period { color: var(--muted); margin-left: 6px; }
+
+    /* ============ Footer (same as index.html) ============ */
+    footer { background: var(--navy); color: rgba(255,255,255,.85); font-size: 15px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      padding: 36px 24px 28px;
+    }
+    footer h3 { font-size: 16px; color: #fff; margin-bottom: 10px; }
+    footer a { color: #bcd4ff; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 4px; }
+    .flag-counter img { width: 100%; max-width: 280px; height: auto; display: block; border-radius: 4px; }
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding: 14px 0;
+      font-size: 13px;
       text-align: center;
-      padding: 24px;
-      font-size: 12.5px;
-      color: var(--clr-muted);
-      border-top: 1px solid var(--clr-border);
-      margin-top: 8px;
+      color: rgba(255,255,255,.6);
     }
 
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
-    @media (max-width: 900px) {
-      .pi-card { flex-direction: column; }
-      .pi-photo, .pi-photo-placeholder { width: 120px; height: 148px; }
-    }
-    @media (max-width: 768px) {
-      .page-wrapper { grid-template-columns: 1fr; }
-      .hamburger { display: flex; }
-      nav { display: none; }
-      .site-title span { display: none; }
-      .member-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-    }
-    @media (max-width: 480px) {
-      .member-grid { grid-template-columns: repeat(2, 1fr); }
-      .researcher-card { flex-direction: column; }
+    /* ============ Mobile ============ */
+    @media (max-width: 720px) {
+      .brand h1 { font-size: 24px; white-space: normal; }
+      .header-inner { flex-direction: column; }
+      .logos { flex-direction: row; align-items: center; order: -1; }
+      .logo-uec  { width: 60px; }
+      .logo-awcc { width: 110px; }
+      nav a { padding: 10px 12px; font-size: 15px; }
+      .pi { flex-direction: column; gap: 12px; }
+      .pi-photo { width: 50%; }
+      .pi-info { gap: 8px; }
+      .member-grid { grid-template-columns: repeat(2, 1fr); gap: 18px 14px; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ============================================================
-     HEADER — identical to index.html
-     ============================================================ -->
+<!-- ============ HEADER ============ -->
 <header class="site-header">
-  <div class="header-inner">
-    <div class="site-title">
-      Li Lab. / AWCC / UEC
-      <span>The University of Electro-Communications, Tokyo</span>
+  <div class="container header-inner">
+    <div class="header-left">
+      <div class="brand">
+        <h1>Smart Body-Centric Wireless Communications Lab.</h1>
+        <p>Li Laboratory, The University of Electro-Communications, Tokyo</p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="people.html" class="active">People</a>
+        <a href="research.html">Research</a>
+        <a href="publication.html">Publications</a>
+        <a href="openings.html">Openings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="people.html" class="active">People</a>
-      <a href="research.html">Research</a>
-      <a href="publication.html">Publications</a>
-      <a href="openings.html">Openings</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
+    <div class="logos">
+      <img class="logo-uec" src="images/uec_logo.png" alt="UEC" onerror="this.style.display='none'" />
+      <img class="logo-awcc" src="images/awcc_logo.png" alt="AWCC" onerror="this.style.display='none'" />
     </div>
-  </div>
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="people.html">People</a>
-    <a href="research.html">Research</a>
-    <a href="publication.html">Publications</a>
-    <a href="openings.html">Openings</a>
-    <a href="contact.html">Contact</a>
   </div>
 </header>
 
-<!-- ============================================================
-     HERO STRIP
-     ============================================================ -->
-<div class="hero">
-  <h1>Lab Members</h1>
-  <p>Smart Body-Centric Wireless Communications Laboratory &nbsp;|&nbsp;
-     AWCC, The University of Electro-Communications, Tokyo, Japan</p>
-</div>
+<main class="container">
 
-<!-- ============================================================
-     PAGE BODY
-     ============================================================ -->
-<div class="page-wrapper">
-
-  <!-- ======== SIDEBAR ======== -->
-  <aside class="sidebar">
-
-
-
-    <!-- On-page navigation -->
-    <div class="card">
-      <div class="card-head">Jump To</div>
-      <div class="card-body" style="padding: 10px 12px;">
-        <div class="side-nav">
-          <a class="side-nav-link" href="#supervisor">
-            <span class="dot"></span>Supervisor
-          </a>
-          <a class="side-nav-link" href="#researcher">
-            <span class="dot"></span>Researcher
-          </a>
-          <div class="side-nav-divider"></div>
-          <a class="side-nav-link" href="#phd">
-            <span class="dot"></span>PhD Students (D)
-          </a>
-          <a class="side-nav-link" href="#m2">
-            <span class="dot"></span>Master Students (M2)
-          </a>
-          <a class="side-nav-link" href="#m1">
-            <span class="dot"></span>Master Students (M1)
-          </a>
-          <a class="side-nav-link" href="#b4">
-            <span class="dot"></span>Bachelor Students (B4)
-          </a>
-          <div class="side-nav-divider"></div>
-          <a class="side-nav-link" href="#visitors">
-            <span class="dot"></span>Visitors
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick links -->
-    <div class="card">
-      <div class="card-head">Quick Links</div>
-      <div class="card-body">
-        <div class="quick-links">
-          <a class="quick-link" href="index.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-            </svg>
-            Home
-          </a>
-          <a class="quick-link" href="openings.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
-            </svg>
-            Join the Lab
-          </a>
-          <a class="quick-link" href="publication.html">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-            </svg>
-            Publications
-          </a>
-          <a class="quick-link" href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-            </svg>
-            Google Scholar
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </aside><!-- /sidebar -->
-
-  <!-- ======== MAIN CONTENT ======== -->
-  <main class="main-content">
-
-    <!-- ============================================================
-     SUPERVISOR
-     ============================================================ -->
-<div class="section-card" id="supervisor">
-  <div class="section-head">
-    <div class="accent-bar"></div>
+  <!-- ============ SUPERVISOR ============ -->
+  <section id="supervisor">
     <h2>Supervisor</h2>
-    <span class="badge">Principal Investigator</span>
-  </div>
-  <div class="section-body">
-    <div class="pi-card">
-
-      <!-- Photo: same pattern as member-card -->
-      <img class="pi-photo" src="Li3.jpg" alt="Prof. Kun Li"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="pi-photo-placeholder" style="display:none;">
-        <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-        </svg>
+    <div class="pi">
+      <div class="pi-photo">
+        <img src="images/Li3.jpg" alt="Kun Li" onerror="this.style.display='none'" />
       </div>
-
       <div class="pi-info">
+        <div>
         <div class="pi-name">Kun Li (李 鯤)</div>
-        <div class="pi-title-label">Associate Professor, Ph.D.
-          <p>IEEE Senior Member, URSI Senior Member, IEICE Member.</p>
+        <div class="pi-title">Associate Professor, Ph.D. &nbsp;|&nbsp; IEEE Senior Member, URSI Senior Member, IEICE Member.</div>
+        <div class="pi-links">
+          <a href="CV_Kun Li.pdf" target="_blank">CV</a>
+          <a href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a>
+          <a href="https://www.researchgate.net/profile/Kun-Li-110" target="_blank">ResearchGate</a>
+          <a href="https://orcid.org/0000-0002-0013-045X" target="_blank">ORCiD</a>
+          <a href="https://researchmap.jp/kunli" target="_blank">Researchmap</a>
         </div>
-
-        <div class="pi-meta">
-          <p><span>Affiliation:</span>Advanced Wireless and Communication Research Center (AWCC), UEC</p>
-          <p><span>Office:</span>Building East-10, Room 313, East Campus</p>
-          <p><span>Extension:</span>5870</p>
-          <p><span>E-mail:</span><a href="mailto:li.kun[at mark]awcc.uec.ac.jp">li.kun[at mark]awcc.uec.ac.jp</a></p>
         </div>
-
-        <!-- Academic profile links -->
-        <div class="profile-links">
-          <a class="profile-link" href="CV_Kun Li.pdf" target="_blank">
-            <i class="fas fa-file-pdf"></i> CV
-          </a>
-          <a class="profile-link" href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">
-            <i class="fas fa-graduation-cap"></i> Google Scholar
-          </a>
-          <a class="profile-link" href="https://www.researchgate.net/profile/Kun-Li-110" target="_blank">
-            <i class="fab fa-researchgate"></i> ResearchGate
-          </a>
-          <a class="profile-link" href="https://orcid.org/0000-0002-0013-045X" target="_blank">
-            <i class="fab fa-orcid"></i> ORCiD
-          </a>
-          <a class="profile-link" href="https://researchmap.jp/kunli" target="_blank">
-            <i class="fas fa-map-marker-alt"></i> Researchmap
-          </a>
-        </div>
-
-        <!-- Career timeline -->
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="timeline-year">2023</span>
-            <span>Associate Professor, AWCC, The University of Electro-Communications, Tokyo</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2022</span>
-            <span>Visiting Researcher, eWAVES Group, CNRS/IETR, University of Rennes 1, France</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2020</span>
-            <span>Assistant Professor, Faculty of Engineering and Design, Kagawa University, Japan</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2017</span>
-            <span>Researcher, EMC Lab., NICT (National Institute of Information and Communications Technology), Tokyo</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2017</span>
-            <span>Ph.D. in Electrical &amp; Electronic Systems Engineering, University of Toyama, Japan</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2011</span>
-            <span>B.E. in Communication Engineering, Nanjing University of Posts and Telecommunications, China</span>
-          </div>
-        </div>
-
-      </div><!-- /pi-info -->
-
-    </div><!-- /pi-card -->
-  </div>
-</div>
-
-    <!-- ============================================================
-         RESEARCHER
-         ============================================================ -->
-    <div class="section-card" id="researcher">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Researcher</h2>
-        <span class="badge">Postdoc</span>
-      </div>
-      <div class="section-body">
-        <div class="member-grid">
-
-          <!-- Maoyuan Li -->
-          <div class="member-card">
-            <img class="member-photo" src="limaoyuan.jpg" alt="Maoyuan Li"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">李 茂源</div>
-              <div class="member-name-en">Maoyuan Li</div>
-              <a class="member-link" href="https://maoyuanli.github.io/" target="_blank">
-                <i class="fas fa-graduation-cap"></i> Personal Webpage
-              </a>
-            </div>
-          </div>
-
-        </div><!-- /member-grid -->
+        <table class="career">
+          <tr><td>2023</td><td>Associate Professor, AWCC, The University of Electro-Communications, Tokyo</td></tr>
+          <tr><td>2022</td><td>Visiting Researcher, eWAVES Group, CNRS/IETR, University of Rennes 1, France</td></tr>
+          <tr><td>2020</td><td>Assistant Professor, Faculty of Engineering and Design, Kagawa University, Japan</td></tr>
+          <tr><td>2017</td><td>Researcher, EMC Lab., NICT (National Institute of Information and Communications Technology), Tokyo</td></tr>
+          <tr><td>2017</td><td>Ph.D. in Electrical &amp; Electronic Systems Engineering, University of Toyama, Japan</td></tr>
+          <tr><td>2011</td><td>B.E. in Communication Engineering, Nanjing University of Posts and Telecommunications, China</td></tr>
+        </table>
       </div>
     </div>
+  </section>
 
-    <!-- ============================================================
-         PhD STUDENTS
-         ============================================================ -->
-    <div class="section-card" id="phd">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>PhD Students</h2>
-        <span class="badge">D1</span>
+  <!-- ============ MEMBERS ============ -->
+  <section id="members">
+    <h2>Members</h2>
+    <div class="member-grid">
+      <div class="member">
+        <a class="photo" href="https://maoyuanli.github.io/" target="_blank"><img src="images/limaoyuan.jpg" alt="Maoyuan Li" onerror="this.style.display='none'" /></a>
+        <div class="member-name">李 茂源</div>
+        <div class="member-name-en">Maoyuan Li</div>
+        <div class="member-role">Researcher</div>
       </div>
-      <div class="section-body">
-        <div class="member-grid">
-
-          <!-- Chunxiao Li -->
-          <div class="member-card">
-            <img class="member-photo" src="lichunxiao.jpg" alt="Chunxiao Li"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">李 春曉</div>
-              <div class="member-name-en">Chunxiao Li</div>
-              <div class="member-bio">From Tai'an, Shandong, China. Loves music, movies, and is currently learning dance.</div>
-            </div>
-          </div>
-
-          <!-- Hongda Xu -->
-          <div class="member-card">
-            <img class="member-photo" src="xuhongda.jpg" alt="Hongda Xu"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">徐 宏達</div>
-              <div class="member-name-en">Hongda Xu</div>
-              <div class="member-bio">From Dalian, Liaoning, China. Into bodybuilding and gaming.</div>
-              <a class="member-link" href="https://scholar.google.com/citations?hl=en&user=vo3B6xIAAAAJ" target="_blank">
-                <i class="fas fa-graduation-cap"></i> Google Scholar
-              </a>
-            </div>
-          </div>
-
-        </div><!-- /member-grid -->
+      <div class="member">
+        <div class="photo"><img src="images/lichunxiao.jpg" alt="Chunxiao Li" onerror="this.style.display='none'" /></div>
+        <div class="member-name">李 春曉</div>
+        <div class="member-name-en">Chunxiao Li</div>
+        <div class="member-role">PhD Student (D1)</div>
       </div>
-    </div>
-
-    <!-- ============================================================
-         MASTER STUDENTS M2
-         ============================================================ -->
-    <div class="section-card" id="m2">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Master Students</h2>
-        <span class="badge">M2</span>
+      <div class="member">
+        <a class="photo" href="https://scholar.google.com/citations?hl=en&user=vo3B6xIAAAAJ" target="_blank"><img src="images/xuhongda.jpg" alt="Hongda Xu" onerror="this.style.display='none'" /></a>
+        <div class="member-name">徐 宏達</div>
+        <div class="member-name-en">Hongda Xu</div>
+        <div class="member-role">PhD Student (D1)</div>
       </div>
-      <div class="section-body">
-        <div class="member-grid">
-
-          <!-- Yuhei Oda -->
-          <div class="member-card">
-            <img class="member-photo" src="oda.jpg" alt="Yuhei Oda"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">小田 祐平</div>
-              <div class="member-name-en">Yuhei Oda</div>
-              <div class="member-bio">From Shizuoka. Played soccer for 13 years. Now into scuba diving!</div>
-            </div>
-          </div>
-
-          <!-- Shoki Enomoto -->
-          <div class="member-card">
-            <img class="member-photo" src="enomoto.jpg" alt="Shoki Enomoto"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">榎本 翔希</div>
-              <div class="member-name-en">Shoki Enomoto</div>
-              <div class="member-bio">From Tokyo. Loves sports, especially cycling and soccer!</div>
-            </div>
-          </div>
-
-          <!-- Haruto Utsushigawa -->
-          <div class="member-card">
-            <img class="member-photo" src="utsushi.jpg" alt="Haruto Utsushigawa"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">移川 春音</div>
-              <div class="member-name-en">Haruto Utsushigawa</div>
-              <div class="member-bio">From Saitama. Former electone and brass band player. Now enjoys game soundtracks and cooking.</div>
-            </div>
-          </div>
-
-          <!-- Yuma Ueda -->
-          <div class="member-card">
-            <img class="member-photo" src="ueda.jpg" alt="Yuma Ueda"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">上田 有真</div>
-              <div class="member-name-en">Yuma Ueda</div>
-              <div class="member-bio">From Toyama. Enjoys movies, gaming, and good drinks!</div>
-            </div>
-          </div>
-
-          <!-- Ziheng Zhou -->
-          <div class="member-card">
-            <img class="member-photo" src="zhou.jpg" alt="Ziheng Zhou"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">周 子恒</div>
-              <div class="member-name-en">Ziheng Zhou</div>
-              <div class="member-bio">From Wuhan, Hubei, China. Likes gaming and travel. MBTI: INTJ.</div>
-            </div>
-          </div>
-
-        </div><!-- /member-grid -->
+      <div class="member new-row">
+        <div class="photo"><img src="images/oda.jpg" alt="Yuhei Oda" onerror="this.style.display='none'" /></div>
+        <div class="member-name">小田 祐平</div>
+        <div class="member-name-en">Yuhei Oda</div>
+        <div class="member-role">Master Student (M2)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/enomoto.jpg" alt="Shoki Enomoto" onerror="this.style.display='none'" /></div>
+        <div class="member-name">榎本 翔希</div>
+        <div class="member-name-en">Shoki Enomoto</div>
+        <div class="member-role">Master Student (M2)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/utsushi.jpg" alt="Haruto Utsushigawa" onerror="this.style.display='none'" /></div>
+        <div class="member-name">移川 春音</div>
+        <div class="member-name-en">Haruto Utsushigawa</div>
+        <div class="member-role">Master Student (M2)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/ueda.jpg" alt="Yuma Ueda" onerror="this.style.display='none'" /></div>
+        <div class="member-name">上田 有真</div>
+        <div class="member-name-en">Yuma Ueda</div>
+        <div class="member-role">Master Student (M2)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/zhou.jpg" alt="Ziheng Zhou" onerror="this.style.display='none'" /></div>
+        <div class="member-name">周 子恒</div>
+        <div class="member-name-en">Ziheng Zhou</div>
+        <div class="member-role">Master Student (M2)</div>
+      </div>
+      <div class="member new-row">
+        <div class="photo"><img src="images/goto.jpg" alt="Itsuki Goto" onerror="this.style.display='none'" /></div>
+        <div class="member-name">後藤 樹</div>
+        <div class="member-name-en">Itsuki Goto</div>
+        <div class="member-role">Master Student (M1)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/tanaka.jpg" alt="Haruto Tanaka" onerror="this.style.display='none'" /></div>
+        <div class="member-name">田中 成朋</div>
+        <div class="member-name-en">Haruto Tanaka</div>
+        <div class="member-role">Master Student (M1)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/iwami.jpg" alt="Kaiji Iwami" onerror="this.style.display='none'" /></div>
+        <div class="member-name">岩見 海志</div>
+        <div class="member-name-en">Kaiji Iwami</div>
+        <div class="member-role">Master Student (M1)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/sakai.jpg" alt="Yuuya Sakai" onerror="this.style.display='none'" /></div>
+        <div class="member-name">酒井 優弥</div>
+        <div class="member-name-en">Yuuya Sakai</div>
+        <div class="member-role">Master Student (M1)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/inukai.jpg" alt="Mikoto Inukai" onerror="this.style.display='none'" /></div>
+        <div class="member-name">犬飼 美寿</div>
+        <div class="member-name-en">Mikoto Inukai</div>
+        <div class="member-role">Master Student (M1)</div>
+      </div>
+      <div class="member new-row">
+        <div class="photo"><img src="images/suzuki.jpg" alt="Rima Suzuki" onerror="this.style.display='none'" /></div>
+        <div class="member-name">鈴木 りま</div>
+        <div class="member-name-en">Rima Suzuki</div>
+        <div class="member-role">Bachelor Student (B4)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/taito.jpg" alt="Taito Tanaka" onerror="this.style.display='none'" /></div>
+        <div class="member-name">田中 大偉翔</div>
+        <div class="member-name-en">Taito Tanaka</div>
+        <div class="member-role">Bachelor Student (B4)</div>
+      </div>
+      <div class="member">
+        <div class="photo"><img src="images/nakashita.jpg" alt="Shota Nakashita" onerror="this.style.display='none'" /></div>
+        <div class="member-name">中下 翔太</div>
+        <div class="member-name-en">Shota Nakashita</div>
+        <div class="member-role">Bachelor Student (B4)</div>
       </div>
     </div>
+  </section>
 
-    <!-- ============================================================
-         MASTER STUDENTS M1
-         ============================================================ -->
-    <div class="section-card" id="m1">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Master Students</h2>
-        <span class="badge">M1</span>
-      </div>
-      <div class="section-body">
-        <div class="member-grid">
+  <!-- ============ VISITORS ============ -->
+  <section id="visitors">
+    <h2>Visitors</h2>
+    <ul class="visitors">
+      <li><a href="https://scholar.google.com/citations?user=NxP6vBoAAAAJ&hl=en" target="_blank"><strong>Wenfu Fu</strong></a>, PhD Student, KTH Royal Institute of Technology, Sweden.<span class="period">(2025.11 - 2025.12)</span></li>
+      <li><a href="https://scholar.google.com/citations?hl=en&user=vE00zp8AAAAJ" target="_blank"><strong>Hairu Wang</strong></a>, PhD Student, KTH Royal Institute of Technology, Sweden.<span class="period">(2025.11 - 2025.12)</span></li>
+      <li><a href="https://scholar.google.com/citations?hl=en&user=4pQWaOUAAAAJ" target="_blank"><strong>Ming Yao</strong></a>, PhD Student, Aalborg University, Denmark.<span class="period">(2024.02 - 2024.03)</span></li>
+    </ul>
+  </section>
 
-          <!-- Itsuki Goto -->
-          <div class="member-card">
-            <img class="member-photo" src="goto.jpg" alt="Itsuki Goto"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">後藤 樹</div>
-              <div class="member-name-en">Itsuki Goto</div>
-              <div class="member-bio">From Kanagawa. Loves music; plays piano and saxophone!</div>
-            </div>
-          </div>
+</main>
 
-          <!-- Haruto Tanaka -->
-          <div class="member-card">
-            <img class="member-photo" src="tanaka.jpg" alt="Haruto Tanaka"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">田中 成朋</div>
-              <div class="member-name-en">Haruto Tanaka</div>
-              <div class="member-bio">From Aomori. Into music and exercise; recently hooked on weight training!</div>
-            </div>
-          </div>
-
-          <!-- Kaiji Iwami -->
-          <div class="member-card">
-            <img class="member-photo" src="iwami.jpg" alt="Kaiji Iwami"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">岩見 海志</div>
-              <div class="member-name-en">Kaiji Iwami</div>
-              <div class="member-bio">From Tokyo. Enjoys gaming and anime!</div>
-            </div>
-          </div>
-
-          <!-- Yuuya Sakai -->
-          <div class="member-card">
-            <img class="member-photo" src="sakai.jpg" alt="Yuuya Sakai"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">酒井 優弥</div>
-              <div class="member-name-en">Yuuya Sakai</div>
-              <div class="member-bio">From Kanagawa. Loves board games!</div>
-            </div>
-          </div>
-
-          <!-- Mikoto Inukai -->
-          <div class="member-card">
-            <img class="member-photo" src="inukai.jpg" alt="Mikoto Inukai"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">犬飼 美寿</div>
-              <div class="member-name-en">Mikoto Inukai</div>
-              <div class="member-bio">From Tokyo. Loves eating good food!</div>
-            </div>
-          </div>
-
-        </div><!-- /member-grid -->
-      </div>
-    </div>
-
-    <!-- ============================================================
-         BACHELOR STUDENTS B4
-         ============================================================ -->
-    <div class="section-card" id="b4">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Bachelor Students</h2>
-        <span class="badge">B4</span>
-      </div>
-      <div class="section-body">
-        <div class="member-grid">
-
-          <!-- Rima Suzuki -->
-          <div class="member-card">
-            <img class="member-photo" src="suzuki.jpg" alt="Rima Suzuki"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">鈴木 りま</div>
-              <div class="member-name-en">Rima Suzuki</div>
-              <div class="member-bio">From Niigata. Loves anime, music, and good food!</div>
-            </div>
-          </div>
-
-          <!-- Taito Tanaka -->
-          <div class="member-card">
-            <img class="member-photo" src="taito.jpg" alt="Taito Tanaka"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">田中 大偉翔</div>
-              <div class="member-name-en">Taito Tanaka</div>
-              <div class="member-bio">From Saitama. Multi-hobby enthusiast: music, art, film, soccer, tea, travel, and photography!</div>
-            </div>
-          </div>
-
-          <!-- Shota Nakashita -->
-          <div class="member-card">
-            <img class="member-photo" src="nakashita.jpg" alt="Shota Nakashita"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="member-photo-placeholder" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-            </div>
-            <div class="member-info">
-              <div class="member-name">中下 翔太</div>
-              <div class="member-name-en">Shota Nakashita</div>
-              <div class="member-bio">From Gifu. Bass player, billiards, gaming. Also enjoys cat cafes and aquariums on weekends!</div>
-            </div>
-          </div>
-
-        </div><!-- /member-grid -->
-      </div>
-    </div>
-
-    <!-- ============================================================
-         VISITORS
-         ============================================================ -->
-    <div class="section-card" id="visitors">
-      <div class="section-head">
-        <div class="accent-bar"></div>
-        <h2>Visitors</h2>
-      </div>
-      <div class="section-body" style="padding-top: 12px; padding-bottom: 12px;">
-        <div class="visitor-list">
-
-          <div class="visitor-item">
-            <div class="visitor-dot"></div>
-            <div class="visitor-body">
-              <span class="visitor-name">Wenfu Fu</span>
-              <span class="visitor-period">2025.11 - 2025.12</span>
-              <div class="visitor-detail">
-                PhD Student, KTH Royal Institute of Technology, Sweden.
-                &nbsp;<a href="https://scholar.google.com/citations?user=NxP6vBoAAAAJ&hl=en" target="_blank">
-                  <i class="fas fa-graduation-cap"></i> Google Scholar
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="visitor-item">
-            <div class="visitor-dot"></div>
-            <div class="visitor-body">
-              <span class="visitor-name">Hairu Wang</span>
-              <span class="visitor-period">2025.11 - 2025.12</span>
-              <div class="visitor-detail">
-                PhD Student, KTH Royal Institute of Technology, Sweden.
-                &nbsp;<a href="https://scholar.google.com/citations?hl=en&user=vE00zp8AAAAJ" target="_blank">
-                  <i class="fas fa-graduation-cap"></i> Google Scholar
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="visitor-item">
-            <div class="visitor-dot"></div>
-            <div class="visitor-body">
-              <span class="visitor-name">Ming Yao</span>
-              <span class="visitor-period">2024.02 - 2024.03</span>
-              <div class="visitor-detail">
-                PhD Student, Aalborg University, Denmark.
-                &nbsp;<a href="https://scholar.google.com/citations?hl=en&user=4pQWaOUAAAAJ" target="_blank">
-                  <i class="fas fa-graduation-cap"></i> Google Scholar
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /visitor-list -->
-      </div>
-    </div>
-
-  </main><!-- /main-content -->
-</div><!-- /page-wrapper -->
-
-<!-- ============================================================
-     FOOTER — identical to index.html
-     ============================================================ -->
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+  <div class="container footer-grid">
+    <div>
+      <h3>Contact</h3>
+      1-5-1 Chofugaoka, Chofu,<br>Tokyo 182-8585, Japan<br>
+      <a href="mailto:li.kun@awcc.uec.ac.jp">li.kun[at]awcc.uec.ac.jp</a><br>
+      Established: April 2023
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="people.html">Members &amp; Alumni</a></li>
+        <li><a href="research.html">Research Topics</a></li>
+        <li><a href="publication.html">Publications</a></li>
+        <li><a href="openings.html">Join the Lab</a></li>
+        <li><a href="https://scholar.google.com/citations?user=dtt2ZNMAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Visitors</h3>
+      <a class="flag-counter" href="https://info.flagcounter.com/Vknb" target="_blank" rel="noopener">
+        <img src="https://s11.flagcounter.com/countxl/Vknb/bg_F5F7FA/txt_1E3A5F/border_E2E8F0/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_1/percent_0/"
+             alt="Flag Counter — visitors by country" />
+      </a>
+    </div>
+  </div>
+  <div class="copyright">
+    &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
+  </div>
 </footer>
-
-<!-- ============================================================
-     JS — hamburger menu only
-     ============================================================ -->
-<script>
-  const btn  = document.getElementById('hamburger');
-  const menu = document.getElementById('mobile-nav');
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('open');
-  });
-</script>
 
 </body>
 </html>
