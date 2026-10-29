@@ -149,6 +149,14 @@
     .member-name-en { font-size: 15px; color: var(--text); }
     .member-role { font-size: 14px; color: var(--muted); }
 
+    /* ============ Theses ============ */
+    .theses h3 { font-size: 18px; font-weight: 600; color: var(--heading); margin: 16px 0 4px; }
+    .theses h3:first-of-type { margin-top: 0; }
+    .theses td { padding: 2px 0; vertical-align: top; }
+    .theses table { border-collapse: collapse; }
+    .theses td.deg  { color: var(--muted); white-space: nowrap; padding-right: 24px; }
+    .theses td.name { font-weight: 600; color: var(--heading); white-space: nowrap; padding-right: 32px; }
+
     /* ============ Visitors ============ */
     .visitors { list-style: none; }
     .visitors li { margin-bottom: 6px; }
@@ -355,6 +363,7 @@
       </div>
     </div>
   </section>
+  
 
   <!-- ============ VISITORS ============ -->
   <section id="visitors">
@@ -364,6 +373,32 @@
       <li><a href="https://scholar.google.com/citations?hl=en&user=vE00zp8AAAAJ" target="_blank"><strong>Hairu Wang</strong></a>, PhD Student, KTH Royal Institute of Technology, Sweden.<span class="period">(2025.11 - 2025.12)</span></li>
       <li><a href="https://scholar.google.com/citations?hl=en&user=4pQWaOUAAAAJ" target="_blank"><strong>Ming Yao</strong></a>, PhD Student, Aalborg University, Denmark.<span class="period">(2024.02 - 2024.03)</span></li>
     </ul>
+  </section>
+
+    <!-- ============ ALUMNI & THESES ============
+       All theses supervised in the lab, newest year on top.
+       Each year: copy one <h3> + <table> block.  Each thesis: one <tr>.
+       Degree: 博士論文 / 修士論文 / 卒業論文 -->
+  <section id="theses" class="theses">
+    <h2>Theses</h2>
+
+    <h3>2025年度</h3>
+    <table>
+      <tr><td class="deg">卒業論文</td><td class="name">後藤 樹</td><td>FR3帯における局所ばく露評価用電力密度推定手法に関する研究</td></tr>
+      <tr><td class="deg">卒業論文</td><td class="name">田中 成朋</td><td>地下鉄停車時における複数基地局同時運用による電波ばく露評価</td></tr>
+      <tr><td class="deg">卒業論文</td><td class="name">岩見 海志</td><td>Cell-Freeシステムに向けた分散配置アンテナ環境における端末伝送容量評価</td></tr>
+      <tr><td class="deg">卒業論文</td><td class="name">酒井 優弥</td><td>高齢者転倒見守りに向けた屋内伝搬チャネルに基づく姿勢変化推定</td></tr>
+      </table>
+
+    <h3>2024年度</h3>
+    <table>
+      <tr><td class="deg">卒業論文</td><td class="name">小田 祐平</td><td>人体・多重波複合効果の影響下におけるウェアラブルアンテナの通信品質評価</td></tr>
+      <tr><td class="deg">卒業論文</td><td class="name">榎本 翔希</td><td> 数値解析法によるミリ波ヒューマンブロッケージ効果の評価</td></tr>
+      <tr><td class="deg">卒業論文</td><td class="name">移川 春音</td><td>トンネル建設に適用する低周波無線の通信品質の評価に関する研究</td></tr>
+      <tr><td class="deg">卒業論文</td><td class="name">上田 有真</td><td>ミリ波ばく露評価のための吸収電力密度の平均化方法に関する研究</td></tr>
+     
+    </table>
+
   </section>
 
 </main>
