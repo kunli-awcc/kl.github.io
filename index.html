@@ -85,6 +85,10 @@
     }
     nav a.active { background: var(--navy); color: #fff; }
 
+    /* ============ Photo strip ============ */
+    .photo-strip { display: flex; gap: 8px; margin-top: 24px; }
+    .photo-strip img { flex: 1 1 0; min-width: 0; width: 100%; height: auto; display: block; border-radius: 6px; }
+
     /* ============ Sections ============ */
     section { padding: 22px 0; }
     section:first-of-type { padding-top: 30px; }
@@ -207,6 +211,14 @@
 </header>
 
 <main class="container">
+
+    <!-- ============ PHOTOS ============
+       Change the file names below to your three photos in the images folder. -->
+  <div class="photo-strip">
+    <img src="images/emulator.jpg"  />
+    <img src="images/emfmonitoring.jpg"  />
+    <img src="images/antennameas.jpg" />
+  </div>
 
   <!-- ============ WELCOME ============ -->
   <section>
@@ -455,6 +467,14 @@
     &copy; 2023&ndash;2026 Li Laboratory / AWCC / The University of Electro-Communications. All Rights Reserved.
   </div>
 </footer>
+
+<script>
+  /* 按每张图的宽高比分配宽度：三张图高度相同，合起来正好等于页宽 */
+  document.querySelectorAll('.photo-strip img').forEach(img => {
+    const fit = () => { if (img.naturalWidth) img.style.flexGrow = img.naturalWidth / img.naturalHeight; };
+    img.complete ? fit() : img.addEventListener('load', fit);
+  });
+</script>
 
 </body>
 </html>
